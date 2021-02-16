@@ -1,2 +1,5 @@
-# 2178Paper2
-2178Paper2ForCollaboration
+# starter_folder
+
+This repo....
+
+It is organised as follows...
