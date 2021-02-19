@@ -1,11 +1,4 @@
 library(ggmap)
-library(lubridate)
-library(ggplot2)
-library(dplyr)
-library(data.table)
-library(ggrepel)
-library(tidyverse)
-
 
 all_rest= read.csv('dataset/simulated_resturants.csv', stringsAsFactors = FALSE)
 rest_locations <- tibble(
