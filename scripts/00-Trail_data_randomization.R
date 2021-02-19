@@ -131,6 +131,8 @@ simulated_resturants <-
     Customers_Weekly_During_Covid = runif(totalobs, min=0, max=500) %>% as.integer(),
     Customers_Weekly_During_Reopen = runif(totalobs, min=0, max=500) %>% as.integer(),
     Helpfulness = runif(totalobs, min=1, max=5) %>% as.integer(),
+    Long = dinesafeCSV$LONGITUDE,
+    Lat = dinesafeCSV$LATITUDE
   )
 
 
