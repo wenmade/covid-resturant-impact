@@ -12,13 +12,15 @@ library(stringi)
 #### copy over column in data ####
 dinesafeCSV <- read.csv("dataset/dinesafeCSV.csv", header=TRUE, sep=",")
 
+#only keeping Resturants
 dinesafeCSV <- dinesafeCSV[dinesafeCSV$TYPE == 'Restaurant',]
 
 
-#17664 obs in total
+#7221 obs in total
 totalobs <- nrow(dinesafeCSV)
 
-totalobs
+
+
 #### Categories ####
 
 #https://www.chefspencil.com/top-10-most-popular-ethnic-cuisines-in-canada/
@@ -52,22 +54,22 @@ revgeo(longitude=-77.0229529, latitude=38.89283435)
 reverse_geocoding("99 CARLTON ST")
 
 
-stri_rand_strings(1, sample(8:16, 1, replace=TRUE), pattern = '[a-zA-Z0-9]');
 #### Simulation ####
 
 simulated_resturants <-
   tibble(
-    ID = seq(1, totalobs),
+    ID = seq(1, totalobs), #auto generate
     Name = dinesafeCSV$NAME,
     Owner = r_full_names(totalobs),
-    Dine_Type = dinesafeCSV$TYPE,
-    Mailing_Address = dinesafeCSV$ADDRESS,
+    Dine_Type = dinesafeCSV$TYPE, #from dinesafe
+    Mailing_Address = dinesafeCSV$ADDRESS, #from dinesafe
     Billing_Address = dinesafeCSV$ADDRESS,
-    Postal_Code = "NA",
-    Phone_1 = r_phone_numbers(totalobs),
+    Postal_Code = NA,
+    Phone_1 = r_phone_numbers(totalobs), 
     Phone_2 = r_phone_numbers(totalobs),
     Email = r_email_addresses(totalobs),
-    Website = "NA",
+    Website = paste(stri_rand_strings(totalobs, sample(8:16, 1, replace=TRUE), pattern = '[a-zA-Z0-9]'), "@", 
+                    stri_rand_strings(totalobs, sample(3:5, 1, replace=TRUE), pattern = '[a-z]'), ".com"),
     Business_Operation_Year = sample(x = business_op_list, 
                                      size = totalobs,
                                      replace=TRUE,
@@ -75,7 +77,7 @@ simulated_resturants <-
     Business_Owner_Year = sample(x = business_owner_list, 
                                  size = totalobs,
                                  replace=TRUE,
-                                 prob=c(0.25, 0.3, 0.15, 0.15, 0.15)),  # this has issue matching business year
+                                 prob=c(0.25, 0.3, 0.15, 0.15, 0.15)), 
     Number_Of_Staff_Before_Covid = runif(totalobs, min=5, max=30) %>% as.integer(),
     Number_Of_Staff_During_Covid = runif(totalobs, min=1, max=30) %>% as.integer(),
     Number_Of_Staff_During_Reopen = runif(totalobs, min=1, max=30) %>% as.integer(),
@@ -136,25 +138,29 @@ simulated_resturants <-
   )
 
 
+# Randomly fill in NA value for website to make it look real(er)
+index <- which(simulated_resturants$Website %in% sample(simulated_resturants$Website, 456))
+simulated_resturants$Website[index]<- NA
+
+
+#Separate data into control group
+sample_size <- floor(0.7 * nrow(simulated_resturants)) #set sample size
+sample_rest_ind <- sample(seq_len(nrow(simulated_resturants)), size = sample_size)
+
+set.seed(123) #make it reproducible
+sample_rest <- simulated_resturants[sample_rest_ind, ] #Train set 70%
+control_rest <- simulated_resturants[-sample_rest_ind, ] #Test set 30%
+
+
+#as.factor(sample_rest$Price_Point_Target)
+table(sample_rest$Price_Point_Target) #high-end 19.8%
+
+
+table(control_rest$Price_Point_Target) #high-end 20.1%
+
+#Write files for map
 
 write_csv(simulated_resturants, "dataset/simulated_resturants.csv")
+write_csv(sample_rest, "dataset/sample_resturants.csv")
+write_csv(control_rest, "dataset/control_resturants.csv")
 
-#check null
-is.null(simulated_resturants)
-apply(simulated_resturants, 2, function(x) any(is.na(x)))
-
-#only keep resturants which are relevant
-levels(simulated_resturants$Dine_Type)
-
-#only Restaurant - all three
-
-
-simulated_resturants %>%
-  ggplot(aes(x=Annual_Income)) +
-  geom_histogram()
-
-
-lookup_result <- postcode_lookup("EC1Y8LX")
-
-#overview
-str(lookup_result)
