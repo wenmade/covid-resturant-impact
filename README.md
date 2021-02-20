@@ -1,5 +1,8 @@
 # starter_folder
 
-This repo....
-
-It is organised as follows...
+Used libraries:
+library(tidyverse)
+library(generator)
+library(stringi)
+library(opendatatoronto)
+library(dplyr)
