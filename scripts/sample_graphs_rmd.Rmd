@@ -1,0 +1,144 @@
+---
+title: "sample_graphs"
+author: "Wen Ma"
+date: "2/20/2021"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(kableExtra)
+library(dplyr)
+library(ggplot2)
+library(janitor)
+```
+
+## R Markdown
+
+Sample graphs
+
+## Including Plots
+
+Sample overall, Red - 2019, Green - 2020, Blue - 2021
+
+```{r pressure, echo=FALSE}
+sample_resturants = read.csv('../dataset/sample_resturants.csv', stringsAsFactors = FALSE)
+
+#histogram over 3 years profit
+ggplot(data = sample_resturants) +
+  geom_histogram(aes(x = Profit_052019_102019, y=(..count..)/sum(..count..)), 
+                 alpha=0.3, fill ="red",position="identity") +
+  geom_histogram(aes(x = Profit_052020_102020, y=(..count..)/sum(..count..)), 
+                 alpha=0.3,, fill ="green",position="identity") +
+  geom_histogram(aes(x = Profit_052021_102021, y=(..count..)/sum(..count..)), 
+                 alpha=0.7,, fill ="blue",position="identity")
+
+#histogram over 3 years income
+ggplot(data = sample_resturants) +
+  geom_histogram(aes(x = Income_052019_102019, y=(..count..)/sum(..count..)), 
+                 alpha=0.3, fill ="red",position="identity") +
+  geom_histogram(aes(x = Income_052020_102020, y=(..count..)/sum(..count..)), 
+                 alpha=0.3,, fill ="green",position="identity") +
+  geom_histogram(aes(x = Income_052021_102021, y=(..count..)/sum(..count..)), 
+                 alpha=0.7,, fill ="blue",position="identity")
+
+#histogram over 3 years staff
+ggplot(data = sample_resturants) +
+  geom_histogram(aes(x = Number_Of_Staff_Before_Covid, y=(..count..)/sum(..count..)), 
+                 alpha=0.3, fill ="red",position="identity") +
+  geom_histogram(aes(x = Number_Of_Staff_During_Covid, y=(..count..)/sum(..count..)), 
+                 alpha=0.3,, fill ="green",position="identity") +
+  geom_histogram(aes(x = Number_Of_Staff_During_Reopen, y=(..count..)/sum(..count..)), 
+                 alpha=0.7,, fill ="blue",position="identity")
+
+```
+\newpage
+Low end resturants, 3 years profit and income, then min and max of income, min and max of profit
+```{r low, echo=FALSE}
+
+#Low-End Resturants
+low_end_rest <- sample_resturants[sample_resturants$Price_Point_Target == "Low-end", ] 
+
+# 3 year profit
+ggplot(data = low_end_rest) +
+  geom_histogram(aes(x = Profit_052019_102019, y=(..count..)/sum(..count..)), 
+                 alpha=0.3, fill ="red",position="identity") +
+  geom_histogram(aes(x = Profit_052020_102020, y=(..count..)/sum(..count..)), 
+                 alpha=0.3,, fill ="green",position="identity") +
+  geom_histogram(aes(x = Profit_052021_102021, y=(..count..)/sum(..count..)), 
+                 alpha=0.7,, fill ="blue",position="identity")
+# 3 year income
+ggplot(data = low_end_rest) +
+  geom_histogram(aes(x = Income_052019_102019, y=(..count..)/sum(..count..)), 
+                 alpha=0.3, fill ="red",position="identity") +
+  geom_histogram(aes(x = Income_052020_102020, y=(..count..)/sum(..count..)), 
+                 alpha=0.3,, fill ="green",position="identity") +
+  geom_histogram(aes(x = Income_052021_102021, y=(..count..)/sum(..count..)), 
+                 alpha=0.7,, fill ="blue",position="identity")
+
+paste("min income is: ",min(low_end_rest$Income_052021_102021)) #225666
+paste("mean income is: ",mean(low_end_rest$Income_052021_102021)) #1435222
+paste("min income is: ",min(low_end_rest$Profit_052021_102021)) #225666
+paste("mean income is: ",mean(low_end_rest$Profit_052021_102021)) #1435222
+```
+\newpage
+Average resturants, 3 years profit and income, then min and mean of income, min and mean of profit
+```{r average, echo=FALSE}
+#Average Resturants
+average_rest <- sample_resturants[sample_resturants$Price_Point_Target == "Average", ]
+
+#3 years profit
+ggplot(data = average_rest) +
+  geom_histogram(aes(x = Profit_052019_102019, y=(..count..)/sum(..count..)), 
+                 alpha=0.3, fill ="red",position="identity") +
+  geom_histogram(aes(x = Profit_052020_102020, y=(..count..)/sum(..count..)), 
+                 alpha=0.3,, fill ="green",position="identity") +
+  geom_histogram(aes(x = Profit_052021_102021, y=(..count..)/sum(..count..)), 
+                 alpha=0.7,, fill ="blue",position="identity")
+
+#3 years income
+ggplot(data = average_rest) +
+  geom_histogram(aes(x = Income_052019_102019, y=(..count..)/sum(..count..)), 
+                 alpha=0.3, fill ="red",position="identity") +
+  geom_histogram(aes(x = Income_052020_102020, y=(..count..)/sum(..count..)), 
+                 alpha=0.3,, fill ="green",position="identity") +
+  geom_histogram(aes(x = Income_052021_102021, y=(..count..)/sum(..count..)), 
+                 alpha=0.7,, fill ="blue",position="identity")
+
+paste("min income is: ",min(average_rest$Income_052021_102021)) #225666
+paste("mean income is: ",mean(average_rest$Income_052021_102021)) #1435222
+paste("min income is: ",min(average_rest$Profit_052021_102021)) #225666
+paste("mean income is: ",mean(average_rest$Profit_052021_102021)) #1435222
+```
+\newpage
+High end resturants, 3 years profit and income, then min and mean of income, min and mean of profit
+```{r high, echo=FALSE}
+
+high_end_rest <- sample_resturants[sample_resturants$Price_Point_Target == "High-end", ]
+#3 years profit
+ggplot(data = high_end_rest) +
+  geom_histogram(aes(x = Profit_052019_102019, y=(..count..)/sum(..count..)), 
+                 alpha=0.3, fill ="red",position="identity") +
+  geom_histogram(aes(x = Profit_052020_102020, y=(..count..)/sum(..count..)), 
+                 alpha=0.3,, fill ="green",position="identity") +
+  geom_histogram(aes(x = Profit_052021_102021, y=(..count..)/sum(..count..)), 
+                 alpha=0.7,, fill ="blue",position="identity")
+
+#3 years income
+ggplot(data = high_end_rest) +
+  geom_histogram(aes(x = Income_052019_102019, y=(..count..)/sum(..count..)), 
+                 alpha=0.3, fill ="red",position="identity") +
+  geom_histogram(aes(x = Income_052020_102020, y=(..count..)/sum(..count..)), 
+                 alpha=0.3,, fill ="green",position="identity") +
+  geom_histogram(aes(x = Income_052021_102021, y=(..count..)/sum(..count..)), 
+                 alpha=0.7,, fill ="blue",position="identity")
+
+paste("min income is: ", min(high_end_rest$Income_052021_102021)) #225666
+paste("mean income is: ",mean(high_end_rest$Income_052021_102021)) #1435222
+paste("min income is: ",min(high_end_rest$Profit_052021_102021)) #225666
+paste("mean income is: ",mean(high_end_rest$Profit_052021_102021)) #1435222
+```
+
+
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

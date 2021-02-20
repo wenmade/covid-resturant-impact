@@ -20,19 +20,20 @@ resturants_data <- resturants_data[resturants_data$Selected_Open == 'Y',]
 
 
 #convert some variable types
-reopened_resturants$Business_Operation_Year <- as.factor(reopened_resturants$Business_Operation_Year)
-reopened_resturants$Franchise <- as.factor(reopened_resturants$Franchise)
-reopened_resturants$Own_Lease <- as.factor(reopened_resturants$Own_Lease)
-reopened_resturants$Delivery <- as.factor(reopened_resturants$Delivery)
-reopened_resturants$Curbside_Pickup <- as.factor(reopened_resturants$Curbside_Pickup)
-reopened_resturants$Dine_In_Service <- as.factor(reopened_resturants$Dine_In_Service)
-reopened_resturants$Patio_Service <- as.factor(reopened_resturants$Patio_Service)
-reopened_resturants$Cuisine <- as.factor(reopened_resturants$Cuisine)
-reopened_resturants$Offer_Alcohol <- as.factor(reopened_resturants$Offer_Alcohol)
-reopened_resturants$Price_Point_Target <- as.factor(reopened_resturants$Price_Point_Target)
-reopened_resturants$Helpfulness_Factor <- as.factor(reopened_resturants$Helpfulness) #added this to draw some graphs as factor
+resturants_data$Business_Operation_Year <- as.factor(resturants_data$Business_Operation_Year)
+resturants_data$Franchise <- as.factor(resturants_data$Franchise)
+resturants_data$Own_Lease <- as.factor(resturants_data$Own_Lease)
+resturants_data$Delivery <- as.factor(resturants_data$Delivery)
+resturants_data$Curbside_Pickup <- as.factor(resturants_data$Curbside_Pickup)
+resturants_data$Dine_In_Service <- as.factor(resturants_data$Dine_In_Service)
+resturants_data$Patio_Service <- as.factor(resturants_data$Patio_Service)
+resturants_data$Cuisine <- as.factor(resturants_data$Cuisine)
+resturants_data$Offer_Alcohol <- as.factor(resturants_data$Offer_Alcohol)
+resturants_data$Price_Point_Target <- as.factor(resturants_data$Price_Point_Target)
+resturants_data$Helpfulness_Factor <- as.factor(resturants_data$Helpfulness) #added this to draw some graphs as factor
 
 
 
 # Write final csv for analysis
 write_csv(resturants_data, "dataset/reopened_resturants.csv")
+
