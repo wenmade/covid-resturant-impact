@@ -190,6 +190,6 @@ indexDineBug <- which(simulated_resturants$Dine_In_Service == "N" &&
                      simulated_resturants$Delivery == "N")
 simulated_resturants$Delivery[indexDineBug] <- "Y"
 
-# Write final csv for analysis
+# Write final csv for cleaning and preparation
 write_csv(simulated_resturants, "dataset/raw_data_all_resturants.csv")
 
