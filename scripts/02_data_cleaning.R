@@ -18,5 +18,21 @@ resturants_data <- resturants_data[resturants_data$Selected_Open == 'Y',]
 
 #3529 records remain
 
+
+#convert some variable types
+reopened_resturants$Business_Operation_Year <- as.factor(reopened_resturants$Business_Operation_Year)
+reopened_resturants$Franchise <- as.factor(reopened_resturants$Franchise)
+reopened_resturants$Own_Lease <- as.factor(reopened_resturants$Own_Lease)
+reopened_resturants$Delivery <- as.factor(reopened_resturants$Delivery)
+reopened_resturants$Curbside_Pickup <- as.factor(reopened_resturants$Curbside_Pickup)
+reopened_resturants$Dine_In_Service <- as.factor(reopened_resturants$Dine_In_Service)
+reopened_resturants$Patio_Service <- as.factor(reopened_resturants$Patio_Service)
+reopened_resturants$Cuisine <- as.factor(reopened_resturants$Cuisine)
+reopened_resturants$Offer_Alcohol <- as.factor(reopened_resturants$Offer_Alcohol)
+reopened_resturants$Price_Point_Target <- as.factor(reopened_resturants$Price_Point_Target)
+reopened_resturants$Helpfulness_Factor <- as.factor(reopened_resturants$Helpfulness) #added this to draw some graphs as factor
+
+
+
 # Write final csv for analysis
 write_csv(resturants_data, "dataset/reopened_resturants.csv")
