@@ -8,7 +8,7 @@ bibliography: restaurant_references.bib
 
 # Abstract
 
-
+In May and June of 2021, a random selection of Toronto restaurants were selected to open during the COVID-19 pandemic.
 
 
 # Introduction
@@ -78,27 +78,88 @@ Since financial compensation is not being offered in this study, the cost will b
 
 ## Dataset
 
-This dataset was pulled from the City of Toronto’s Open Data Portal – Dinesafe (@Dinesafe). The Open Data Portal is a regularly updated and open-sourced data delivery tool which allows users to “generate insights, analyses, and/or…develop web/mobile applications” (@CityOfToronto1, @CityOfToronto2). The dataset was analyzed using R (@R). Various packages were used to analyze the data. First, Opendatatoronto (@opendatatoronto) was used to get the dataset from the open data portal. The Tidyverse package (@tidyverse) was used for general analysis of the dataset. Ggplot2 (@ggplot2), knitr (@knitr), and kableExtra (@kableExtra) were used to create figures. The generator package (@generator) was used to help simulate data. The stringi (@stringi) package was used to process strings in the dataset. The janitor package (@janitor) was used to clean the dataset. TinyTex (@tinytex) was used to help write the output to PDF. Finally, bibtex (@bibtex) was used to create references. 
+This dataset was pulled from the City of Toronto’s Open Data Portal – Dinesafe (@Dinesafe). The Open Data Portal is a regularly updated and open-sourced data delivery tool which allows users to “generate insights, analyses, and/or…develop web/mobile applications” (@CityOfToronto1, @CityOfToronto2). The dataset was analyzed using R (@R). Various packages were used to analyze the data. First, Opendatatoronto (@opendatatoronto) was used to get the dataset from the open data portal. Next, the Here package (@here) was used for easily saving and locating files. The Tidyverse package (@tidyverse) was used for general analysis of the dataset. Ggplot2 (@ggplot2), knitr (@knitr), and kableExtra (@kableExtra) were used to create figures. The generator package (@generator) was used to help simulate data. The stringi (@stringi) package was used to process strings in the dataset. The janitor package (@janitor) was used to clean the dataset. TinyTex (@tinytex) was used to help write the output to PDF. Finally, bibtex (@bibtex) was used to create references. 
 
 &nbsp; 
 
-The Dinesafe dataset was published by Toronto Public Health. Its main purpose was to record the number of inspections, infractions, and legal histories of different foodservice businesses in the GTA. In addition, it also holds basic information on all registered foodservice establishments in the Toronto. For the purposes of this study, we kept information about the business’ name, location, and type. Information about inspections was removed from the dataset.
+The Dinesafe dataset was published by Toronto Public Health. Its main purpose is to record the number of inspections, infractions, and legal histories of different foodservice businesses in the GTA. In addition, it also holds basic information on all registered Torono foodservice establishments. After conducting an inspection of a respective foodservice location, a record of what was done or found is created and eventually transferred to a CSV file. For the purposes of this study, we kept information about the business’ name, location, and type. Information about inspections was removed from the dataset.
+
+### VARIABLES ADDED TO THE DATASET - SURVEY QUESTIONS ###
+
+### KEY FEATURES AND STRENGTHS ###
 
 
 # Discussion 
+
+## When Covid Strikes
+
+
+
+## Cheap Restaurants 
+
+
+
+## Average Restaurants
+
+
+
+## Fancy Restaurants
+
+
+
 
 
 # Conclusion 
 
 # Appendix
 
-# References 
+##Survey
 
-```{r}
-citation()
+A link the survey can be found here:
+https://docs.google.com/forms/d/e/1FAIpQLSeafb8VzHCH_0ZQVKnfg46_E6WHMVqnADwMcg7nOqaibhFweg/viewform?usp=sf_link 
 
-citation("janitor")
+&nbsp;
+
+Alternatively, screenshots of the different survey questions have been attached below. 
+
+&nbsp;
+
+```{r, fig.align='center', out.width="95%", out.height="95%", echo=FALSE}
+library(here)
+library(knitr)
+
+knitr::include_graphics(path = here("inputs/Images/Survey_Page1A.png"))
+
+knitr::include_graphics(path = here("inputs/Images/Survey_Page1B.png"))
+
+knitr::include_graphics(path = here("inputs/Images/Survey_Page2A.png"))
+
+knitr::include_graphics(path = here("inputs/Images/Survey_Page2B.png"))
+
+knitr::include_graphics(path = here("inputs/Images/Survey_Page2C.png"))
+
+knitr::include_graphics(path = here("inputs/Images/Survey_Page3A.png"))
+
+knitr::include_graphics(path = here("inputs/Images/Survey_Page3B.png"))
+
+knitr::include_graphics(path = here("inputs/Images/Survey_Page3C.png"))
+
+knitr::include_graphics(path = here("inputs/Images/Survey_Page3D.png"))
+
+knitr::include_graphics(path = here("inputs/Images/Survey_Page3E.png"))
+
+knitr::include_graphics(path = here("inputs/Images/Survey_Page3F.png"))
+
+knitr::include_graphics(path = here("inputs/Images/Survey_Page4A.png"))
+
+knitr::include_graphics(path = here("inputs/Images/Survey_Page4B.png"))
+
+knitr::include_graphics(path = here("inputs/Images/Survey_Page4C.png"))
 
 
 ```
+
+
+# References 
+
 
