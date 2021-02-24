@@ -1,23 +1,30 @@
 ---
 title: "The Effects of Opening a Restaurant During a Pandemic"
 author: "Wen Ma, Reem Alasadi,  Rachael Lam, Tim Stephens"
-date: "26/02/2021"
-output: pdf_document
+date: "`r format(Sys.time(), '%d %B %Y')`"
+output: 
+  bookdown::pdf_document2:
+thanks: 'Code and data are available at: https://github.com/wenmade/2178Paper2.git.'
+abstract: In May and June of 2021, a random selection of Toronto restaurants were selected to open during the COVID-19 pandemic.
 bibliography: restaurant_references.bib
+toc: yes
 ---
 
-# Abstract
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
 
-In May and June of 2021, a random selection of Toronto restaurants were selected to open during the COVID-19 pandemic.
+library(bookdown)
+library(knitr)
+```
 
-
+\pagebreak
 # Introduction
 
-The COVID-19 pandemic has induced global action and, in some instances, inaction, that has affected millions of people. With over 100 million confirmed cases and 2.4 million total deaths, the epidemic has caused suffering and distress for countless people (bbc). In other instances, it has brought immense fortune - Jeff Bezos’s wealth increased \$92 billion between March and August of 2020 (oxfam). It is estimated that he could give all his 876,000 employees a $105,000 bonus and still be as wealthy as he was pre-epidemic (oxfam). Unfortunately, this has been a fantasy for the majority of global citizens. For Canada in particular, the situation has been equally challenging. 
+The COVID-19 pandemic has induced global action and, in some instances, inaction, that has affected millions of people. With over 100 million confirmed cases and 2.4 million total deaths, the epidemic has caused suffering and distress for countless people [@bbc]. In other instances, it has brought immense fortune - Jeff Bezos’s wealth increased \$92 billion between March and August of 2020 [@oxfam]. It is estimated that he could give all his 876,000 employees a $105,000 bonus and still be as wealthy as he was pre-epidemic [@oxfam]. Unfortunately, this has been a fantasy for the majority of global citizens. For Canada in particular, the situation has been equally challenging. 
 
 &nbsp; 
 
-At the beginning of the epidemic, nearly a sixth of all Canadians applied for emergency benefits (harris). This has had enormous effects on the population’s mental health with 48% rating their mental health as eight or higher on a ten point scale in 2020 compared to 73% in 2018 (statcan). Concurrently, the COVID-19 pandemic has also caused disruptions in numerous industries, but with some of the most detrimental ones occurring in the consumer-facing service sector (statcan). Before the pandemic, the restaurant industry generated one out of every fifteen jobs, paying Canadians nearly \$30 billion in wages and benefits (ourrest). It also contributed $31 billion to Canada’s GDP annually, proving its economic value (ourrest). Unfortunately, the epidemic has generated massive unemployment and many restaurants have been shut down and will never reopen (larue). 
+At the beginning of the epidemic, nearly a sixth of all Canadians applied for emergency benefits [@harris]. This has had enormous effects on the population’s mental health with 48% rating their mental health as eight or higher on a ten point scale in 2020 compared to 73% in 2018 [@statcan]. Concurrently, the COVID-19 pandemic has also caused disruptions in numerous industries, but with some of the most detrimental ones occurring in the consumer-facing service sector [@statcan]. Before the pandemic, the restaurant industry generated one out of every fifteen jobs, paying Canadians nearly \$30 billion in wages and benefits [@ourrest]. It also contributed $31 billion to Canada’s GDP annually, proving its economic value [@ourrest]. Unfortunately, the epidemic has generated massive unemployment and many restaurants have been shut down and will never reopen [@larue]. 
 
 &nbsp;
 
@@ -38,7 +45,7 @@ At the time of this study, it was assumed that all restaurants in the Greater To
 
 &nbsp;
 
-There are many foodservice establishments in Toronto, and it would be ideal to re-open everything. However, this is not a realistic option. Due to the nature of how COVID-19 spreads, it is still crucial that we limit the number of interactions people have with one another during the day. Therefore, we had to take a subsample from the larger foodservice establishment population. Since “dine-in” restaurants have had minimal opportunity to generate revenue during the pandemic, they were selected as the frame for this study. Foodservice establishments listed as “restaurant” in the City of Toronto’s Dinesafe Dataset (@Dinesafe) were considered.
+There are many foodservice establishments in Toronto, and it would be ideal to re-open everything. However, this is not a realistic option. Due to the nature of how COVID-19 spreads, it is still crucial that we limit the number of interactions people have with one another during the day. Therefore, we had to take a subsample from the larger foodservice establishment population. Since “dine-in” restaurants have had minimal opportunity to generate revenue during the pandemic, they were selected as the frame for this study. Foodservice establishments listed as “restaurant” in the City of Toronto’s Dinesafe Dataset [@Dinesafe] were considered.
  
 &nbsp;
  
@@ -46,7 +53,7 @@ The eligible businesses were then contacted by the Ontario Government via email 
 
 &nbsp;
 
-To entice the control group to complete the survey at the end of June, we initially discussed providing financial compensation. However, with over 7,000 eager-to-open restaurants in the GTA (@Dinesafe) this number would quickly escalate to an unrealistic number. Therefore, the Ontario Government has allowed the control group to re-open their business for two months as well – if they completed the survey (as compensation for participating). Those in the control group who completed the survey could open for the months of July and August (2021), but would no longer be part of the study. For more information on the survey including a detailed description and screenshots of the questions, see the Appendix. Because of the way this study has been structured, the cost remained relatively low – just a payment to Petit Poll for their work. 
+To entice the control group to complete the survey at the end of June, we initially discussed providing financial compensation. However, with over 7,000 eager-to-open restaurants in the GTA [@Dinesafe] this number would quickly escalate to an unrealistic number. Therefore, the Ontario Government has allowed the control group to re-open their business for two months as well – if they completed the survey (as compensation for participating). Those in the control group who completed the survey could open for the months of July and August (2021), but would no longer be part of the study. For more information on the survey including a detailed description and screenshots of the questions, see the Appendix. Because of the way this study has been structured, the cost remained relatively low – just a payment to Petit Poll for their work. 
 
 &nbsp;
 
@@ -56,7 +63,7 @@ After completion of the study, Petit Poll analyzed the survey responses and pres
 
 ## Dataset
 
-This dataset was pulled from the City of Toronto’s Open Data Portal – Dinesafe (@Dinesafe). The Open Data Portal is a regularly updated and open-sourced data delivery tool which allows users to “generate insights, analyses, and/or…develop web/mobile applications” (@CityOfToronto1, @CityOfToronto2). The dataset was analyzed using R (@R). Various packages were used to analyze the data. First, Opendatatoronto (@opendatatoronto) was used to get the dataset from the open data portal. Next, the Here package (@here) was used for easily saving and locating files. The Tidyverse package (@tidyverse) was used for general analysis of the dataset. Ggplot2 (@ggplot2), knitr (@knitr), and kableExtra (@kableExtra) were used to create figures. The generator package (@generator) was used to help simulate data. The stringi (@stringi) package was used to process strings in the dataset. The janitor package (@janitor) was used to clean the dataset. TinyTex (@tinytex) was used to help write the output to PDF. Finally, bibtex (@bibtex) was used to create references. 
+This dataset was pulled from the City of Toronto’s Open Data Portal – Dinesafe [@Dinesafe]. The Open Data Portal is a regularly updated and open-sourced data delivery tool which allows users to “generate insights, analyses, and/or…develop web/mobile applications” [@CityOfToronto1, @CityOfToronto2]. The dataset was analyzed using R [@R]. Various packages were used to analyze the data. First, Opendatatoronto [@opendatatoronto] was used to get the dataset from the open data portal. Next, the Here package [@here] was used for easily saving and locating files. The Tidyverse package [@tidyverse] was used for general analysis of the dataset. Ggplot2 [@ggplot2], knitr [@knitr], and kableExtra [@kableExtra] were used to create figures. The generator package [@generator] was used to help simulate data. The stringi [@stringi] package was used to process strings in the dataset. The janitor package [@janitor] was used to clean the dataset. TinyTex [@tinytex] was used to help write the output to PDF. Finally, bookdown [@bookdown] was used to build the pdf and bibtex [@bibtex] was used to create references. 
 
 &nbsp; 
 
@@ -64,7 +71,7 @@ The Dinesafe dataset was published by Toronto Public Health. Its main purpose is
 
 &nbsp;
 
-For the purposes of this study, we kept information about the business’ name, location, and type. Location included street address, latitude, and longitude. Information about inspections was removed from the dataset. There were many variables from the survey that were added to the dataset. First, the restaurant ID was added, starting at 1 and increasing incrementally. The rest of the variables were randomly generating in R (@R). Those variables were: Phone number 1, phone number 2, email, website, number of years in operation, franchise (y/n), own or lease, number of employees before the first lockdown, number of employees at the end of the first lockdown, number of employees during re-opening, the total number of weekly hours the restaurant was open before the lockdown, weekly hours during the lockdown, weekly hours during the temporary re-opening, delivery (y/n), curbside pickup (y/n), dine-in service (y/n), patio service (y/n), type of cuisine, serves alcohol (y/n), target pricepoint (low, average, high), income and profit for the months of May and June in 2019, 2020, 2021 (each with their own column), was the restaurant selected to re-open (y/n), and finally, helpfulness of the re-opening on a scale of 1 to 5. 
+For the purposes of this study, we kept information about the business’ name, location, and type. Location included street address, latitude, and longitude. Information about inspections was removed from the dataset. There were many variables from the survey that were added to the dataset. First, the restaurant ID was added, starting at 1 and increasing incrementally. The rest of the variables were randomly generating in R [@R]. Those variables were: Phone number 1, phone number 2, email, website, number of years in operation, franchise (y/n), own or lease, number of employees before the first lockdown, number of employees at the end of the first lockdown, number of employees during re-opening, the total number of weekly hours the restaurant was open before the lockdown, weekly hours during the lockdown, weekly hours during the temporary re-opening, delivery (y/n), curbside pickup (y/n), dine-in service (y/n), patio service (y/n), type of cuisine, serves alcohol (y/n), target pricepoint (low, average, high), income and profit for the months of May and June in 2019, 2020, 2021 (each with their own column), was the restaurant selected to re-open (y/n), and finally, helpfulness of the re-opening on a scale of 1 to 5. 
 
 &nbsp; 
 
@@ -74,19 +81,28 @@ This dataset has strengths and weaknesses. For positives, this dataset is from a
 
 ## When Covid Strikes
 
+A total of 7221 surveys were collected and analysed to understand the effects of COVID-19 on the restaurant industry and the potential benefits of reopening for 2 months. Of the businesses that participated in the survey, income substantially decreased for all restaurants between 2019 and 2020 by almost 25% (table 1 population graphs), confirming the detrimental consequence of lockdown for restaurants. For restaurants whose income was less than the mean, these types of losses could quickly result in closure if intervention of subsidies are not put in place. Figure 1 further represents this income reduction, with the majority of businesses in 2020 earning close to [blank] and very few earning more than [blank]. 
+
+&nbsp; 
+
+In addition, restaurants saw a drastic decrease in the number of staff employed by 70% (table 2 population graphs). These losses indicate mass unemployment in the restaurant industry and the far reaching implications of COVID-19, which will be discussed in Section 3. All restaurants employed fewer than 20 staff and no restaurant employed more than 25 (Figure 2). This is compared to 2020 where there is a greater dispersion of numbers, with some restaurants employing over 60 people.
+
+&nbsp; 
+
+To understand the demographics of the surveyed businesses, we pulled information on their years of operation, type of operation and property ownership. It was discovered that the majority of businesses were non-franchised and were operational for less than five years. [insert reference to experiences of new businesses] Furthermore, the majority of properties were leased, creating additional costs that are difficult to maintain with a decrease in income. Of the businesses that completed the survey, 39.98% of restaurants were classified as low-end, 39.39% were classified as average and 20.63% were classified as high-end (table 3 population graphs). These restaurants were categorized accordingly as to not inflate or deflate the statistics between high-end and low-end restaurants. 
 
 
-## Cheap Restaurants 
+## Low-End Restaurants 
 
+Within the low-end restaurants, reopening for a two month period showed only minor improvements. Restaurants in the treatment group earned roughly 11% more than the control. Employment showed more significant improvements with an almost 247% increase in staff. In the end, treated restaurants were split evenly into five groups for their response to helpfulness on a five-point scale. This could be due to restaurants employing a large number of staff but only seeing marginal increase in income.
 
+## Middle-End Restaurants
 
-## Average Restaurants
+Middle-end restaurants experienced vastly different income outcomes compared to low-end restaurants. Restaurants in the treatment group saw a 95% increase in income in contrast to the control group. With this improvement, we would assume that restaurants would respond positively to the study, yet half of the restaurants categorized helpfulness as a one or two on the five point scale. This could be due to the effort that it takes to prepare a restaurant to open for a two month period, especially in the wake of COVID-19. The amount of personal protective equipment (PPE), training and sanitizing equipment needed could outweigh the benefits of opening. In addition, employment experienced a 270% increase in staff, which are similar numbers compared to low-end restaurants. 
 
+## High-End Restaurants
 
-
-## Fancy Restaurants
-
-
+Finally, high-end restaurants experienced the greatest improvement in earnings. The treatment group earned 225% more than the control group between May and June. The nature of high-end restaurants offering primarily dine-in service could contribute to the positive effects of the reopening. This substantial increase in income, could also be a factor in the similar 251% increase in staff. Despite this overwhelmingly positive increase, 50% of restaurants still responded negatively to the study.
 
 
 # Discussion 
@@ -162,7 +178,7 @@ knitr::include_graphics(path = here("inputs/Images/Survey_Page4C.png"))
 
 ```
 
-
+\pagebreak
 # References 
 
 
