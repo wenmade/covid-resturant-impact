@@ -107,11 +107,13 @@ simulated_resturants <-
 
 #Some data simulation to make it more realistic - all assumptions
 
-#1. If resturant is selected to reopen, we allow assumptions to have profit from may-oct 2021 of 10000 - 40000, otherwise 0 - 25000
+#1. If resturant is selected to reopen, we allow assumptions to have profit from may-oct 2021 of 10000 - 40000, 
+#otherwise 0 - 25000, staff number for not reopened resturants stay the same as 2020, 1-20.
 indexSY <- which(simulated_resturants$Selected_Open == "Y")
 simulated_resturants$Profit_052021_102021[indexSY] <- runif(length(indexSY), min=10000, max=40000) %>% as.integer()
 indexSN <- which(simulated_resturants$Selected_Open == "N")
 simulated_resturants$Profit_052021_102021[indexSN] <- runif(length(indexSN), min=0, max=25000) %>% as.integer()
+simulated_resturants$Number_Of_Staff_During_Reopen[indexSN] <- runif(length(indexSN), min=1, max=20) %>% as.integer()
 
 #2. If resturant is highend, we allow Income to be 3000000 - 5000000, if average, we allow income to be 1500000 - 3500000, if lowend, we allow income to be 750000 - 2000000.
 # For every raise in pricepoint, we cutdown half for the min, and 1.5million for the max. (2019)
@@ -122,13 +124,19 @@ simulated_resturants$Income_052019_102019[indexIA] <- runif(length(indexIA), min
 indexIH <- which(simulated_resturants$Price_Point_Target == "High-end")
 simulated_resturants$Income_052019_102019[indexIH] <- runif(length(indexIH), min=3000000, max=5000000) %>% as.integer()
 
+#cap resturants incomes assuming no resturant will make more profit/income than 2019. 
+simulated_resturants$Income_052021_102021[indexIL] <- runif(length(indexIL), min=750000, max=2000000) %>% as.integer()
+simulated_resturants$Income_052021_102021[indexIA] <- runif(length(indexIA), min=1500000, max=3500000) %>% as.integer()
+simulated_resturants$Income_052021_102021[indexIH] <- runif(length(indexIH), min=3000000, max=5000000) %>% as.integer()
+
 #2a. We assume that all resturants will receive lower income during covid, therefore, the max income from 052020 - 102020 will be based on the 052019-102019 minus a random 
-# percentage from 30% - 75% with cap of 1000000
-reduction <- runif(totalobs, min=0.3, max=0.75)
-calculatedmax <- simulated_resturants$Income_052020_102020 - simulated_resturants$Income_052019_102019*reduction %>% as.integer()
+# percentage from 30% - 75% 
+reduction <- runif(totalobs, min=0.3, max=0.7)
+calculatedmax = floor(simulated_resturants$Income_052019_102019*reduction)
 simulated_resturants$Income_052020_102020 <- runif(totalobs, min=0, max=calculatedmax) %>% as.integer()
-indexOF <- which(simulated_resturants$Income_052020_102020 > 1000000)
-simulated_resturants$Income_052020_102020[indexOF] <- 1000000
+
+#indexOF <- which(simulated_resturants$Income_052020_102020 > 1000000)
+#simulated_resturants$Income_052020_102020[indexOF] <- 1000000
 
 #2b. If resturant is highend, we allow Profit to be 20000 - 40000, if average, we allow profit to be 10000 - 25000, if low-end, we allow profit to be 0-10000.
 # For every raise in pricepoint, we cutdown half for the min, and 15000 for the max. (2019)
@@ -139,14 +147,31 @@ simulated_resturants$Profit_052019_102019[indexPA] <- runif(length(indexPA), min
 indexPH <- which(simulated_resturants$Price_Point_Target == "High-end")
 simulated_resturants$Profit_052019_102019[indexPH] <- runif(length(indexPH), min=20000, max=40000) %>% as.integer()
 
+#cap resturants profits assuming no resturant will make more profit/income than 2019. 
+simulated_resturants$Profit_052021_102021[indexPL] <- runif(length(indexPL), min=5000, max=10000) %>% as.integer()
+simulated_resturants$Profit_052021_102021[indexPA] <- runif(length(indexPA), min=10000, max=25000) %>% as.integer()
+simulated_resturants$Profit_052021_102021[indexPH] <- runif(length(indexPH), min=20000, max=40000) %>% as.integer()
+
+
 #2c. We assume that all resturants will receive lower profit during covid, therefore, the max profit from 052020 - 102020 will be based on the 052019-102019 minus a random 
 # percentage from 30% - 75% with cap of 25000
 reductionP <- runif(totalobs, min=0.3, max=0.75)
-calculatedmaxP <- simulated_resturants$Profit_052019_102019 - simulated_resturants$Profit_052019_102019*reductionP %>% as.integer()
+calculatedmaxP <- floor(simulated_resturants$Profit_052019_102019 - simulated_resturants$Profit_052019_102019*reductionP)
 simulated_resturants$Profit_052020_102020 <- runif(totalobs, min=0, max=calculatedmaxP) %>% as.integer()
 indexOFP <- which(simulated_resturants$Profit_052020_102020 > 25000)
-simulated_resturants$Profit_052021_102021[indexOFP] <- 25000
+simulated_resturants$Profit_052020_102020[indexOFP] <- 25000
 
+#2ca. If the resturant is not selected to open, income and profit goes down by 30% - 75% based on their 2019 data. 
+# Profit is capped
+indexIncProf <- which(simulated_resturants$Selected_Open == "N")
+reductionIncProf <- runif(length(indexIncProf), min=0.3, max=0.75)
+simulated_resturants$Profit_052021_102021[indexIncProf] <- floor(simulated_resturants$Profit_052019_102019[indexIncProf] - 
+                                                                   simulated_resturants$Profit_052019_102019[indexIncProf]*reductionIncProf)
+
+indexCOFP <- which(simulated_resturants$Profit_052021_102021 > 25000)
+simulated_resturants$Profit_052021_102021[indexCOFP] <- 25000
+
+simulated_resturants$Income_052021_102021[indexIncProf] <- floor(simulated_resturants$Income_052021_102021*reductionIncProf)
 
 #2d. If the resturance is not selected to open and not offering curb-side pick up or delivery, we assume the profit and income would be 0.(2020 and 2021)
 indexNCND <- which(simulated_resturants$Selected_Open == "N" && 
@@ -158,27 +183,32 @@ simulated_resturants$Profit_052020_102020[indexNCND] <- 0
 simulated_resturants$Income_052020_102020[indexNCND] <- 0
 simulated_resturants$Total_Hours_Per_Week_During_Reopen[indexNCND] <- 0
 
-#3. If the resturant offers dine-in service, we make assumption to reduce the income and profit by 30% - 50% of its current number (2021).
+#3. If the resturant offers dine-in service, 
+#we make assumption to reduce the income and profit by 30% - 50% of its current number (2021).
 indexDIS <- which(simulated_resturants$Dine_In_Service == "Y")
-simulated_resturants$Income_052021_102021[indexDIS] <- floor(simulated_resturants$Income_052021_102021[indexDIS] * 0.3) 
-simulated_resturants$Profit_052021_102021[indexDIS] <- floor(simulated_resturants$Profit_052021_102021[indexDIS] * 0.3)
+reductionDIS <- runif(length(indexDIS), min=0.3, max=0.5)
+simulated_resturants$Income_052021_102021[indexDIS] <- floor(simulated_resturants$Income_052021_102021[indexDIS] - 
+  simulated_resturants$Income_052021_102021[indexDIS]*reductionDIS)
+simulated_resturants$Profit_052021_102021[indexDIS] <- floor(simulated_resturants$Profit_052021_102021[indexDIS] - 
+  simulated_resturants$Profit_052021_102021[indexDIS]*reductionDIS)
 
 
-#4. If resturant is selected to open, helpfulness is under assumption of 3-5, if resturant is not selected to open, helpfulness is allowed 1-5.
+#4. If resturant is selected to open, helpfulness is under assumption of 1-5, otherwise, fill in 0
 indexHY <- which(simulated_resturants$Selected_Open == "Y")
-simulated_resturants$Helpfulness[indexHY] <- runif(length(indexHY), min=2, max=5) %>% as.integer()
+simulated_resturants$Helpfulness[indexHY] <- runif(length(indexHY), min=1, max=5) %>% as.integer()
 indexHN <- which(simulated_resturants$Selected_Open == "N")
-simulated_resturants$Helpfulness[indexHN] <- runif(length(indexHN), min=1, max=4) %>% as.integer()
+simulated_resturants$Helpfulness[indexHN] <- 0
+
 
 #5. If the resturant is lease, then profit goes down 20% - 40%. (all years)
 indexLe <- which(simulated_resturants$Own_Lease == "Lease" || simulated_resturants$Own_Lease == "Lease, want to purchase")
 reductionLe <- runif(length(indexLe), min=0.2, max=0.4)
-simulated_resturants$Profit_052019_102019[indexLe] <- simulated_resturants$Profit_052019_102019[indexLe] - 
-                                                      simulated_resturants$Profit_052019_102019[indexLe]*reductionLe %>% as.integer()
-simulated_resturants$Profit_052020_102020[indexLe] <- simulated_resturants$Profit_052020_102020[indexLe] - 
-  simulated_resturants$Profit_052020_102020[indexLe]*reductionLe %>% as.integer()
-simulated_resturants$Profit_052021_102021[indexLe] <- simulated_resturants$Profit_052021_102021[indexLe] - 
-  simulated_resturants$Profit_052021_102021[indexLe]*reductionLe %>% as.integer()
+simulated_resturants$Profit_052019_102019[indexLe] <- floor(simulated_resturants$Profit_052019_102019[indexLe] - 
+                                                      simulated_resturants$Profit_052019_102019[indexLe]*reductionLe)
+simulated_resturants$Profit_052020_102020[indexLe] <- floor(simulated_resturants$Profit_052020_102020[indexLe] - 
+  simulated_resturants$Profit_052020_102020[indexLe]*reductionLe)
+simulated_resturants$Profit_052021_102021[indexLe] <- floor(simulated_resturants$Profit_052021_102021[indexLe] - 
+  simulated_resturants$Profit_052021_102021[indexLe]*reductionLe)
 
 #5. Randomly fill in NA value for website to make it look real(er)
 index <- which(simulated_resturants$Website %in% sample(simulated_resturants$Website, 456))
@@ -189,6 +219,14 @@ indexDineBug <- which(simulated_resturants$Dine_In_Service == "N" &&
                      simulated_resturants$Curbside_Pickup == "N" && 
                      simulated_resturants$Delivery == "N")
 simulated_resturants$Delivery[indexDineBug] <- "Y"
+
+#6. Randomization bug: if income is lower than profit of the year, then set income to profit
+indexProfIncBug19 <- which(simulated_resturants$Income_052019_102019 < simulated_resturants$Profit_052019_102019)
+simulated_resturants$Income_052019_102019[indexProfIncBug19] <- simulated_resturants$Profit_052019_102019[indexProfIncBug19]
+indexProfIncBug20 <- which(simulated_resturants$Income_052020_102020 < simulated_resturants$Profit_052020_102020)
+simulated_resturants$Income_052020_102020[indexProfIncBug20] <- simulated_resturants$Profit_052020_102020[indexProfIncBug20]
+indexProfIncBug21 <- which(simulated_resturants$Income_052021_102021 < simulated_resturants$Profit_052021_102021)
+simulated_resturants$Income_052021_102021[indexProfIncBug21] <- simulated_resturants$Profit_052021_102021[indexProfIncBug21]
 
 # Write final csv for cleaning and preparation
 write_csv(simulated_resturants, "dataset/raw_data_all_resturants.csv")
