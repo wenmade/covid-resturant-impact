@@ -1,0 +1,104 @@
+---
+title: "The Effects of Opening a Restaurant During a Pandemic"
+author: "Wen Ma, Reem Alasadi,  Rachael Lam, Tim Stephens"
+date: "26/02/2021"
+output: pdf_document
+bibliography: restaurant_references.bib
+---
+
+# Abstract
+
+
+
+
+# Introduction
+
+The COVID-19 pandemic has induced global action and, in some instances, inaction, that has affected millions of people. With over 100 million confirmed cases and 2.4 million total deaths, the epidemic has caused suffering and distress for countless people (bbc). In other instances, it has brought immense fortune - Jeff Bezos’s wealth increased \$92 billion between March and August of 2020 (oxfam). It is estimated that he could give all his 876,000 employees a $105,000 bonus and still be as wealthy as he was pre-epidemic (oxfam). Unfortunately, this has been a fantasy for the majority of global citizens. For Canada in particular, the situation has been equally challenging. 
+
+&nbsp; 
+
+At the beginning of the epidemic, nearly a sixth of all Canadians applied for emergency benefits (harris). This has had enormous effects on the population’s mental health with 48% rating their mental health as eight or higher on a ten point scale in 2020 compared to 73% in 2018 (statcan). Concurrently, the COVID-19 pandemic has also caused disruptions in numerous industries, but with some of the most detrimental ones occurring in the consumer-facing service sector (statcan). Before the pandemic, the restaurant industry generated one out of every fifteen jobs, paying Canadians nearly \$30 billion in wages and benefits (ourrest). It also contributed $31 billion to Canada’s GDP yearly, validating its necessity to economic preservation and stability (ourrest). Unfortunately, the epidemic has generated massive unemployment and many restaurants have been shut down and will never reopen (larue). 
+
+&nbsp;
+
+In an effort to avoid further devastation to the restaurant community, Petit Poll has collaborated with the Ontario Government to examine the effects of COVID-19 on restaurants in Toronto and understand what provisions can be made. In this study, we reopened randomly selected restaurants in the Greater Toronto Area (GTA). The segment included restaurants of varying price points and those who had previously offered dine-in services. We then released a survey and compared the results to restaurants who did not have the opportunity to open and instead, remained closed. All restaurants were able to continue curb-side pickup and delivery services.
+
+&nbsp;
+
+This paper will first explore….
+
+
+
+
+# Data 
+
+## Description of Study 
+
+At the time of this study, it was assumed that all restaurants in the Greater Toronto Area (GTA) were closed due to COVID-19. However, restaurants could continue to prepare food for curb-side pickup and delivery so their businesses could generate some income. This study looks at the effects of the lockdown on the restaurant industry and inspects the benefits of re-opening a business for a short amount of time during the pandemic. Keeping the restaurant business afloat in Toronto will be a monumental and expensive task. If risk can be mitigated, it could be worth it to allow some restaurants to (temporarily) re-open. If so, they could generate enough income to survive the pandemic. Otherwise, the government could be looking at subsidies to each business – and with the sheer number of foodservice establishments in the GTA, this could add up quickly. 
+
+&nbsp;
+
+There are many foodservice establishments in Toronto, and it would be ideal to re-open everything. However, this is not a realistic option. Due to the nature of how COVID-19 spreads, it is still crucial that we limit the number of interactions people have with one another during the day. Therefore, we had to take a subsample from the larger foodservice establishment population. Since “dine-in” restaurants have had minimal opportunity to generate revenue during the pandemic, they were selected as the frame for this study. Foodservice establishments listed as “restaurant” in the City of Toronto’s Dinesafe Dataset (Reference) were considered.
+ 
+&nbsp;
+ 
+The eligible businesses were then contacted by the Ontario Government via email or phone and were asked if they would like to participate in a trial re-opening. If they answered yes, they were added to a list. If they decided against the re-opening, or did not respond, they were not included in the study. After contacting the different businesses, the “yes” list was randomly subsampled into 2 groups, with a 50:50 chance to be placed in each group. The first group had the opportunity to re-open their business for a period of 2 months: May – June 2021. The other group was asked to remain closed to act as a control group. Participants who could re-open their business were issued a certification sticker that must have been visible from the street. At the end of the two months, a survey was released to the participants to gain information about their business, how it has been affected by the COVID-19 pandemic, and how much re-opening helped. 
+
+&nbsp;
+
+To entice the control group to complete the survey at the end of June, we initially discussed providing financial compensation. However, with over 7,000 eager-to-open restaurants in the GTA (reference) this number would quickly escalate to an unrealistic number. Therefore, the Ontario Government has allowed the control group to re-open their business for two months as well – if they completed the survey (as compensation for participating). Those in the control group who completed the survey could open for the months of July and August (2021), but would no longer be part of the study. Because of the way this study has been structured, the cost remained relatively low – just a payment to Petit Poll for their work. 
+
+&nbsp;
+
+After completion of the study, Petit Poll analyzed the survey responses and presented them to the Ontario Government. Those restaurants who responded to the survey were considered as part of the sample. The government must make the final decision if it is worth the risk to re-open businesses during the COVID-19 pandemic. Further studies may be needed to decide how many businesses should be allowed to open, and for how long.  
+
+&nbsp;
+
+## Survey Description
+
+The survey was released to those businesses who answered “Yes” upon the initial contact from the government. Those who answered the survey were part of the sample for this study. The survey was produced by Petit Poll, a company employed by the Ontario Government, and a link can be found here.  The survey contained sections about contact information, background and workforce, and performance. The survey looked to generate data about 3 distinct time periods: pre-pandemic, lockdown, and during re-opening. 
+
+&nbsp;
+
+The first section of the survey is used to gain contact information for the business. Name, address, phone numbers, etc. The second section focuses on background and workforce. This is where we begin to ask about the effects of COVID-19 and re-opening. In this section, we ask about restaurant background, as well as how their number of hours and number of employees has changed due to the pandemic. In the final section, we ask questions about income and profit. We also ask, on a 5-point scale, how helpful it was in the eyes of the business owner to open for a few months. 
+
+&nbsp;
+
+As with any survey, there is the possibility of non-responses. If the non-response comes from the control group, then they are not eligible for compensation, which is the opportunity to re-open their business. We believe this to be a strong enough incentive to get a significant response rate from the control group. For the businesses who did open, they will have a period of 2 weeks to complete the survey, with a reminder email and phone call. After 2 weeks of no-response, they will be emailed and phoned daily to try and generate a response from the restaurant owner. If there is still no response at this point, they will be informed that when the COVID-19 pandemic restrictions are lifted, they will be held back from opening for a significant period of time. Hopefully, this is enough to entice the participant to respond. 
+
+&nbsp;
+
+To ensure participants' privacy, all information from the survey will be collected under the Freedom of Information and Protection of Privacy Act. Their responses of the survey will not be shared with anyone, other than the Ontario Government. 
+
+&nbsp;
+
+Since financial compensation is not being offered in this study, the cost will be the amount allotted to Petit Poll in the employment contract. However, it is possible that opening dine-in restaurants will increase the number of COVID-19 cases. This could increase cost for the healthcare profession indirectly. 
+
+&nbsp;
+
+## Dataset
+
+This dataset was pulled from the City of Toronto’s Open Data Portal – Dinesafe (@Dinesafe). The Open Data Portal is a regularly updated and open-sourced data delivery tool which allows users to “generate insights, analyses, and/or…develop web/mobile applications” (@CityOfToronto1, @CityOfToronto2). The dataset was analyzed using R (@R). Various packages were used to analyze the data. First, Opendatatoronto (@opendatatoronto) was used to get the dataset from the open data portal. The Tidyverse package (@tidyverse) was used for general analysis of the dataset. Ggplot2 (@ggplot2), knitr (@knitr), and kableExtra (@kableExtra) were used to create figures. The generator package (@generator) was used to help simulate data. The stringi (@stringi) package was used to process strings in the dataset. The janitor package (@janitor) was used to clean the dataset. TinyTex (@tinytex) was used to help write the output to PDF. Finally, bibtex (@bibtex) was used to create references. 
+
+&nbsp; 
+
+The Dinesafe dataset was published by Toronto Public Health. Its main purpose was to record the number of inspections, infractions, and legal histories of different foodservice businesses in the GTA. In addition, it also holds basic information on all registered foodservice establishments in the Toronto. For the purposes of this study, we kept information about the business’ name, location, and type. Information about inspections was removed from the dataset.
+
+
+# Discussion 
+
+
+# Conclusion 
+
+# Appendix
+
+# References 
+
+```{r}
+citation()
+
+citation("janitor")
+
+
+```
+
