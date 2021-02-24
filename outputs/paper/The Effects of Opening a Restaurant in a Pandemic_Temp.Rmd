@@ -17,7 +17,7 @@ The COVID-19 pandemic has induced global action and, in some instances, inaction
 
 &nbsp; 
 
-At the beginning of the epidemic, nearly a sixth of all Canadians applied for emergency benefits (harris). This has had enormous effects on the population’s mental health with 48% rating their mental health as eight or higher on a ten point scale in 2020 compared to 73% in 2018 (statcan). Concurrently, the COVID-19 pandemic has also caused disruptions in numerous industries, but with some of the most detrimental ones occurring in the consumer-facing service sector (statcan). Before the pandemic, the restaurant industry generated one out of every fifteen jobs, paying Canadians nearly \$30 billion in wages and benefits (ourrest). It also contributed $31 billion to Canada’s GDP yearly, validating its necessity to economic preservation and stability (ourrest). Unfortunately, the epidemic has generated massive unemployment and many restaurants have been shut down and will never reopen (larue). 
+At the beginning of the epidemic, nearly a sixth of all Canadians applied for emergency benefits (harris). This has had enormous effects on the population’s mental health with 48% rating their mental health as eight or higher on a ten point scale in 2020 compared to 73% in 2018 (statcan). Concurrently, the COVID-19 pandemic has also caused disruptions in numerous industries, but with some of the most detrimental ones occurring in the consumer-facing service sector (statcan). Before the pandemic, the restaurant industry generated one out of every fifteen jobs, paying Canadians nearly \$30 billion in wages and benefits (ourrest). It also contributed $31 billion to Canada’s GDP annually, proving its economic value (ourrest). Unfortunately, the epidemic has generated massive unemployment and many restaurants have been shut down and will never reopen (larue). 
 
 &nbsp;
 
@@ -34,11 +34,11 @@ This paper will first explore….
 
 ## Description of Study 
 
-At the time of this study, it was assumed that all restaurants in the Greater Toronto Area (GTA) were closed due to COVID-19. However, restaurants could continue to prepare food for curb-side pickup and delivery so their businesses could generate some income. This study looks at the effects of the lockdown on the restaurant industry and inspects the benefits of re-opening a business for a short amount of time during the pandemic. Keeping the restaurant business afloat in Toronto will be a monumental and expensive task. If risk can be mitigated, it could be worth it to allow some restaurants to (temporarily) re-open. If so, they could generate enough income to survive the pandemic. Otherwise, the government could be looking at subsidies to each business – and with the sheer number of foodservice establishments in the GTA, this could add up quickly. 
+At the time of this study, it was assumed that all restaurants in the Greater Toronto Area (GTA) were closed due to COVID-19. However, restaurants could continue to prepare food for curb-side pickup and delivery so their businesses could generate some income. This study looks at the effects of the lockdown on the restaurant industry and inspects the benefits of re-opening a business for a short amount of time during the pandemic. Keeping the restaurant business afloat in Toronto will be a monumental and expensive task. If risk can be mitigated, it could be worth it to allow some restaurants to (temporarily) re-open. If so, they could generate enough income to survive the pandemic. Otherwise, the government could be looking at subsidies for each business – and with the sheer number of foodservice establishments in the GTA, this could add up quickly. 
 
 &nbsp;
 
-There are many foodservice establishments in Toronto, and it would be ideal to re-open everything. However, this is not a realistic option. Due to the nature of how COVID-19 spreads, it is still crucial that we limit the number of interactions people have with one another during the day. Therefore, we had to take a subsample from the larger foodservice establishment population. Since “dine-in” restaurants have had minimal opportunity to generate revenue during the pandemic, they were selected as the frame for this study. Foodservice establishments listed as “restaurant” in the City of Toronto’s Dinesafe Dataset (Reference) were considered.
+There are many foodservice establishments in Toronto, and it would be ideal to re-open everything. However, this is not a realistic option. Due to the nature of how COVID-19 spreads, it is still crucial that we limit the number of interactions people have with one another during the day. Therefore, we had to take a subsample from the larger foodservice establishment population. Since “dine-in” restaurants have had minimal opportunity to generate revenue during the pandemic, they were selected as the frame for this study. Foodservice establishments listed as “restaurant” in the City of Toronto’s Dinesafe Dataset (@Dinesafe) were considered.
  
 &nbsp;
  
@@ -46,13 +46,55 @@ The eligible businesses were then contacted by the Ontario Government via email 
 
 &nbsp;
 
-To entice the control group to complete the survey at the end of June, we initially discussed providing financial compensation. However, with over 7,000 eager-to-open restaurants in the GTA (reference) this number would quickly escalate to an unrealistic number. Therefore, the Ontario Government has allowed the control group to re-open their business for two months as well – if they completed the survey (as compensation for participating). Those in the control group who completed the survey could open for the months of July and August (2021), but would no longer be part of the study. Because of the way this study has been structured, the cost remained relatively low – just a payment to Petit Poll for their work. 
+To entice the control group to complete the survey at the end of June, we initially discussed providing financial compensation. However, with over 7,000 eager-to-open restaurants in the GTA (@Dinesafe) this number would quickly escalate to an unrealistic number. Therefore, the Ontario Government has allowed the control group to re-open their business for two months as well – if they completed the survey (as compensation for participating). Those in the control group who completed the survey could open for the months of July and August (2021), but would no longer be part of the study. For more information on the survey including a detailed description and screenshots of the questions, see the Appendix. Because of the way this study has been structured, the cost remained relatively low – just a payment to Petit Poll for their work. 
 
 &nbsp;
 
 After completion of the study, Petit Poll analyzed the survey responses and presented them to the Ontario Government. Those restaurants who responded to the survey were considered as part of the sample. The government must make the final decision if it is worth the risk to re-open businesses during the COVID-19 pandemic. Further studies may be needed to decide how many businesses should be allowed to open, and for how long.  
 
 &nbsp;
+
+## Dataset
+
+This dataset was pulled from the City of Toronto’s Open Data Portal – Dinesafe (@Dinesafe). The Open Data Portal is a regularly updated and open-sourced data delivery tool which allows users to “generate insights, analyses, and/or…develop web/mobile applications” (@CityOfToronto1, @CityOfToronto2). The dataset was analyzed using R (@R). Various packages were used to analyze the data. First, Opendatatoronto (@opendatatoronto) was used to get the dataset from the open data portal. Next, the Here package (@here) was used for easily saving and locating files. The Tidyverse package (@tidyverse) was used for general analysis of the dataset. Ggplot2 (@ggplot2), knitr (@knitr), and kableExtra (@kableExtra) were used to create figures. The generator package (@generator) was used to help simulate data. The stringi (@stringi) package was used to process strings in the dataset. The janitor package (@janitor) was used to clean the dataset. TinyTex (@tinytex) was used to help write the output to PDF. Finally, bibtex (@bibtex) was used to create references. 
+
+&nbsp; 
+
+The Dinesafe dataset was published by Toronto Public Health. Its main purpose is to record the number of inspections, infractions, and legal histories of different foodservice businesses in the GTA. In addition, it also holds basic information on all registered Torono foodservice establishments. After conducting an inspection of a respective foodservice location, a record of what was done or found is created and eventually transferred to a CSV file. Unregistred restaurants are not included in the dataset. 
+
+&nbsp;
+
+For the purposes of this study, we kept information about the business’ name, location, and type. Location included street address, latitude, and longitude. Information about inspections was removed from the dataset. There were many variables from the survey that were added to the dataset. First, the restaurant ID was added, starting at 1 and increasing incrementally. The rest of the variables were randomly generating in R (@R). Those variables were: Phone number 1, phone number 2, email, website, number of years in operation, franchise (y/n), own or lease, number of employees before the first lockdown, number of employees at the end of the first lockdown, number of employees during re-opening, the total number of weekly hours the restaurant was open before the lockdown, weekly hours during the lockdown, weekly hours during the temporary re-opening, delivery (y/n), curbside pickup (y/n), dine-in service (y/n), patio service (y/n), type of cuisine, serves alcohol (y/n), target pricepoint (low, average, high), income and profit for the months of May and June in 2019, 2020, 2021 (each with their own column), was the restaurant selected to re-open (y/n), and finally, helpfulness of the re-opening on a scale of 1 to 5. 
+
+&nbsp; 
+
+
+This dataset has strengths and weaknesses. For positives, this dataset is from a reputable source. It should contain all registered restaurants in the GTA. Nothing should be left out (unless the establishment is running illegally). Additionally, we have real restaurant names and locations to study, although locations were not a main source of interest in this study. In terms of weaknesses, Dinesafe did not specify how they classified different establishments. It is unknown what the differences are between different classes of establishments. For example, what is the specific difference between a "restaurant" and a "cafeteria"? Depending on how (or who) classified the different establishments, it is possible for bias to arise here. There is the possibility that an establishment that should be classified as one thing was classified as another. Another weakness of this dataset was that much of the information was simulated. With so many variables, the potential for error increased. Also, many assumptions were made about different probabilities. It is important to recognize that this study is merely a model developed on randomized data. It has potential to be used in the future on real data. 
+
+
+## When Covid Strikes
+
+
+
+## Cheap Restaurants 
+
+
+
+## Average Restaurants
+
+
+
+## Fancy Restaurants
+
+
+
+
+# Discussion 
+
+
+# Conclusion 
+
+# Appendix
 
 ## Survey Description
 
@@ -76,45 +118,6 @@ Since financial compensation is not being offered in this study, the cost will b
 
 &nbsp;
 
-## Dataset
-
-This dataset was pulled from the City of Toronto’s Open Data Portal – Dinesafe (@Dinesafe). The Open Data Portal is a regularly updated and open-sourced data delivery tool which allows users to “generate insights, analyses, and/or…develop web/mobile applications” (@CityOfToronto1, @CityOfToronto2). The dataset was analyzed using R (@R). Various packages were used to analyze the data. First, Opendatatoronto (@opendatatoronto) was used to get the dataset from the open data portal. Next, the Here package (@here) was used for easily saving and locating files. The Tidyverse package (@tidyverse) was used for general analysis of the dataset. Ggplot2 (@ggplot2), knitr (@knitr), and kableExtra (@kableExtra) were used to create figures. The generator package (@generator) was used to help simulate data. The stringi (@stringi) package was used to process strings in the dataset. The janitor package (@janitor) was used to clean the dataset. TinyTex (@tinytex) was used to help write the output to PDF. Finally, bibtex (@bibtex) was used to create references. 
-
-&nbsp; 
-
-The Dinesafe dataset was published by Toronto Public Health. Its main purpose is to record the number of inspections, infractions, and legal histories of different foodservice businesses in the GTA. In addition, it also holds basic information on all registered Torono foodservice establishments. After conducting an inspection of a respective foodservice location, a record of what was done or found is created and eventually transferred to a CSV file. For the purposes of this study, we kept information about the business’ name, location, and type. Information about inspections was removed from the dataset.
-
-### VARIABLES ADDED TO THE DATASET - SURVEY QUESTIONS ###
-
-### KEY FEATURES AND STRENGTHS ###
-
-
-# Discussion 
-
-## When Covid Strikes
-
-
-
-## Cheap Restaurants 
-
-
-
-## Average Restaurants
-
-
-
-## Fancy Restaurants
-
-
-
-
-
-# Conclusion 
-
-# Appendix
-
-##Survey
-
 A link the survey can be found here:
 https://docs.google.com/forms/d/e/1FAIpQLSeafb8VzHCH_0ZQVKnfg46_E6WHMVqnADwMcg7nOqaibhFweg/viewform?usp=sf_link 
 
@@ -124,7 +127,7 @@ Alternatively, screenshots of the different survey questions have been attached 
 
 &nbsp;
 
-```{r, fig.align='center', out.width="95%", out.height="95%", echo=FALSE}
+```{r, fig.align='center', out.width="95%", out.height="95%", echo=FALSE, message = FALSE}
 library(here)
 library(knitr)
 
