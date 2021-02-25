@@ -1,0 +1,184 @@
+---
+title: "The Effects of Opening a Restaurant During a Pandemic"
+author: "Wen Ma, Reem Alasadi,  Rachael Lam, Tim Stephens"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+output: 
+  bookdown::pdf_document2:
+thanks: 'Code and data are available at: https://github.com/wenmade/2178Paper2.git.'
+abstract: In May and June of 2021, a random selection of Toronto restaurants were selected to open during the COVID-19 pandemic.
+bibliography: restaurant_references.bib
+toc: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(bookdown)
+library(knitr)
+```
+
+\pagebreak
+# Introduction
+
+The COVID-19 pandemic has induced global action and, in some instances, inaction, that has affected millions of people. With over 100 million confirmed cases and 2.4 million total deaths, the epidemic has caused suffering and distress for countless people [@bbc]. In other instances, it has brought immense fortune - Jeff Bezos’s wealth increased \$92 billion between March and August of 2020 [@oxfam]. It is estimated that he could give all his 876,000 employees a $105,000 bonus and still be as wealthy as he was pre-epidemic [@oxfam]. Unfortunately, this has been a fantasy for the majority of global citizens. For Canada in particular, the situation has been equally challenging. 
+
+&nbsp; 
+
+At the beginning of the epidemic, nearly a sixth of all Canadians applied for emergency benefits [@harris]. This has had enormous effects on the population’s mental health with 48% rating their mental health as eight or higher on a ten point scale in 2020 compared to 73% in 2018 [@statcan]. Concurrently, the COVID-19 pandemic has also caused disruptions in numerous industries, but with some of the most detrimental ones occurring in the consumer-facing service sector [@statcan]. Before the pandemic, the restaurant industry generated one out of every fifteen jobs, paying Canadians nearly \$30 billion in wages and benefits [@ourrest]. It also contributed $31 billion to Canada’s GDP annually, proving its economic value [@ourrest]. Unfortunately, the epidemic has generated massive unemployment and many restaurants have been shut down and will never reopen [@larue]. 
+
+&nbsp;
+
+In an effort to avoid further devastation to the restaurant community, Petit Poll has collaborated with the Ontario Government to examine the effects of COVID-19 on restaurants in Toronto and understand what provisions can be made. In this study, we reopened randomly selected restaurants in the Greater Toronto Area (GTA). The segment included restaurants of varying price points and those who had previously offered dine-in services. We then released a survey and compared the results to restaurants who did not have the opportunity to open and instead, remained closed. All restaurants were able to continue curb-side pickup and delivery services.
+
+&nbsp;
+
+This paper will first explore….
+
+
+
+
+# Data 
+
+## Description of Study 
+
+At the time of this study, it was assumed that all restaurants in the Greater Toronto Area (GTA) were closed due to COVID-19. However, restaurants could continue to prepare food for curb-side pickup and delivery so their businesses could generate some income. This study looks at the effects of the lockdown on the restaurant industry and inspects the benefits of re-opening a business for a short amount of time during the pandemic. Keeping the restaurant business afloat in Toronto will be a monumental and expensive task. If risk can be mitigated, it could be worth it to allow some restaurants to (temporarily) re-open. If so, they could generate enough income to survive the pandemic. Otherwise, the government could be looking at subsidies for each business – and with the sheer number of foodservice establishments in the GTA, this could add up quickly. 
+
+&nbsp;
+
+There are many foodservice establishments in Toronto, and it would be ideal to re-open everything. However, this is not a realistic option. Due to the nature of how COVID-19 spreads, it is still crucial that we limit the number of interactions people have with one another during the day. Therefore, we had to take a subsample from the larger foodservice establishment population. Since “dine-in” restaurants have had minimal opportunity to generate revenue during the pandemic, they were selected as the frame for this study. Foodservice establishments listed as “restaurant” in the City of Toronto’s Dinesafe Dataset [@Dinesafe] were considered.
+ 
+&nbsp;
+ 
+The eligible businesses were then contacted by the Ontario Government via email or phone and were asked if they would like to participate in a trial re-opening. If they answered yes, they were added to a list. If they decided against the re-opening, or did not respond, they were not included in the study. After contacting the different businesses, the “yes” list was randomly subsampled into 2 groups, with a 50:50 chance to be placed in each group. The first group had the opportunity to re-open their business for a period of 2 months: May – June 2021. The other group was asked to remain closed to act as a control group. Participants who could re-open their business were issued a certification sticker that must have been visible from the street. At the end of the two months, a survey was released to the participants to gain information about their business, how it has been affected by the COVID-19 pandemic, and how much re-opening helped. 
+
+&nbsp;
+
+To entice the control group to complete the survey at the end of June, we initially discussed providing financial compensation. However, with over 7,000 eager-to-open restaurants in the GTA [@Dinesafe] this number would quickly escalate to an unrealistic number. Therefore, the Ontario Government has allowed the control group to re-open their business for two months as well – if they completed the survey (as compensation for participating). Those in the control group who completed the survey could open for the months of July and August (2021), but would no longer be part of the study. For more information on the survey including a detailed description and screenshots of the questions, see the Appendix. Because of the way this study has been structured, the cost remained relatively low – just a payment to Petit Poll for their work. 
+
+&nbsp;
+
+After completion of the study, Petit Poll analyzed the survey responses and presented them to the Ontario Government. Those restaurants who responded to the survey were considered as part of the sample. The government must make the final decision if it is worth the risk to re-open businesses during the COVID-19 pandemic. Further studies may be needed to decide how many businesses should be allowed to open, and for how long.  
+
+&nbsp;
+
+## Dataset
+
+This dataset was pulled from the City of Toronto’s Open Data Portal – Dinesafe [@Dinesafe]. The Open Data Portal is a regularly updated and open-sourced data delivery tool which allows users to “generate insights, analyses, and/or…develop web/mobile applications” [@CityOfToronto1, @CityOfToronto2]. The dataset was analyzed using `R` [@R]. Various packages were used to analyze the data. First, `Opendatatoronto` [@opendatatoronto] was used to get the dataset from the open data portal. Next, the `Here` package [@here] was used for easily saving and locating files. The `Tidyverse` package [@tidyverse] was used for general analysis of the dataset. `Ggplot2` [@ggplot2], `knitr` [@knitr], and `kableExtra` [@kableExtra] were used to create figures. The `generator` package [@generator] was used to help simulate data. The `stringi` [@stringi] package was used to process strings in the dataset. The `janitor` package [@janitor] was used to clean the dataset. `TinyTex` [@tinytex] was used to help write the output to PDF. Finally, `bookdown` [@bookdown] was used to build the pdf and `bibtex` [@bibtex] was used to create references. 
+
+&nbsp; 
+
+The Dinesafe dataset was published by Toronto Public Health. Its main purpose is to record the number of inspections, infractions, and legal histories of different foodservice businesses in the GTA. In addition, it also holds basic information on all registered Torono foodservice establishments. After conducting an inspection of a respective foodservice location, a record of what was done or found is created and eventually transferred to a CSV file. Unregistred restaurants are not included in the dataset. 
+
+&nbsp;
+
+For the purposes of this study, we kept information about the business’ name, location, and type. Location included street address, latitude, and longitude. Information about inspections was removed from the dataset. There were many variables from the survey that were added to the dataset. First, the restaurant ID was added, starting at 1 and increasing incrementally. The rest of the variables were randomly generating in R [@R]. Those variables were: Phone number 1, phone number 2, email, website, number of years in operation, franchise (y/n), own or lease, number of employees before the first lockdown, number of employees at the end of the first lockdown, number of employees during re-opening, the total number of weekly hours the restaurant was open before the lockdown, weekly hours during the lockdown, weekly hours during the temporary re-opening, delivery (y/n), curbside pickup (y/n), dine-in service (y/n), patio service (y/n), type of cuisine, serves alcohol (y/n), target pricepoint (low, average, high), income and profit for the months of May and June in 2019, 2020, 2021 (each with their own column), was the restaurant selected to re-open (y/n), and finally, helpfulness of the re-opening on a scale of 1 to 5. 
+
+&nbsp; 
+
+
+This dataset has strengths and weaknesses. For positives, this dataset is from a reputable source. It should contain all registered restaurants in the GTA. Nothing should be left out (unless the establishment is running illegally). Additionally, we have real restaurant names and locations to study, although locations were not a main source of interest in this study. In terms of weaknesses, Dinesafe did not specify how they classified different establishments. It is unknown what the differences are between different classes of establishments. For example, what is the specific difference between a "restaurant" and a "cafeteria"? Depending on how (or who) classified the different establishments, it is possible for bias to arise here. There is the possibility that an establishment that should be classified as one thing was classified as another. Another weakness of this dataset was that much of the information was simulated. With so many variables, the potential for error increased. Also, many assumptions were made about different probabilities. It is important to recognize that this study is merely a model developed on randomized data. It has potential to be used in the future on real data. 
+
+
+## When Covid Strikes
+
+A total of 7221 surveys were collected and analysed to understand the effects of COVID-19 on the restaurant industry and the potential benefits of reopening for 2 months. Of the businesses that participated in the survey, income substantially decreased for all restaurants between 2019 and 2020 by almost 25% (table 1 population graphs), confirming the detrimental consequence of lockdown for restaurants. For restaurants whose income was less than the mean, these types of losses could quickly result in closure if intervention of subsidies are not put in place. Figure 1 further represents this income reduction, with the majority of businesses in 2020 earning close to [blank] and very few earning more than [blank]. 
+
+&nbsp; 
+
+In addition, restaurants saw a drastic decrease in the number of staff employed by 70% (table 2 population graphs). These losses indicate mass unemployment in the restaurant industry and the far reaching implications of COVID-19, which will be discussed in Section 3. All restaurants employed fewer than 20 staff and no restaurant employed more than 25 (Figure 2). This is compared to 2020 where there is a greater dispersion of numbers, with some restaurants employing over 60 people.
+
+&nbsp; 
+
+To understand the demographics of the surveyed businesses, we pulled information on their years of operation, type of operation and property ownership. It was discovered that the majority of businesses were non-franchised and were operational for less than five years. [insert reference to experiences of new businesses] Furthermore, the majority of properties were leased, creating additional costs that are difficult to maintain with a decrease in income. Of the businesses that completed the survey, 39.98% of restaurants were classified as low-end, 39.39% were classified as average and 20.63% were classified as high-end (table 3 population graphs). These restaurants were categorized accordingly as to not inflate or deflate the statistics between high-end and low-end restaurants. 
+
+
+## Low-End Restaurants 
+
+Within the low-end restaurants, reopening for a two month period showed only minor improvements. Restaurants in the treatment group earned roughly 11% more than the control. Employment showed more significant improvements with an almost 247% increase in staff. In the end, treated restaurants were split evenly into five groups for their response to helpfulness on a five-point scale. This could be due to restaurants employing a large number of staff but only seeing marginal increase in income.
+
+## Middle-End Restaurants
+
+Middle-end restaurants experienced vastly different income outcomes compared to low-end restaurants. Restaurants in the treatment group saw a 95% increase in income in contrast to the control group. With this improvement, we would assume that restaurants would respond positively to the study, yet half of the restaurants categorized helpfulness as a one or two on the five point scale. This could be due to the effort that it takes to prepare a restaurant to open for a two month period, especially in the wake of COVID-19. The amount of personal protective equipment (PPE), training and sanitizing equipment needed could outweigh the benefits of opening. In addition, employment experienced a 270% increase in staff, which are similar numbers compared to low-end restaurants. 
+
+## High-End Restaurants
+
+Finally, high-end restaurants experienced the greatest improvement in earnings. The treatment group earned 225% more than the control group between May and June. The nature of high-end restaurants offering primarily dine-in service could contribute to the positive effects of the reopening. This substantial increase in income, could also be a factor in the similar 251% increase in staff. Despite this overwhelmingly positive increase, 50% of restaurants still responded negatively to the study.
+
+
+# Discussion 
+
+
+# Conclusion 
+
+# Appendix
+
+## Survey Description
+
+The survey was released to those businesses who answered “Yes” upon the initial contact from the government. Those who answered the survey were part of the sample for this study. The survey was produced by Petit Poll, a company employed by the Ontario Government, and a link can be found here.  The survey contained sections about contact information, background and workforce, and performance. The survey looked to generate data about 3 distinct time periods: pre-pandemic, lockdown, and during re-opening. 
+
+&nbsp;
+
+The first section of the survey is used to gain contact information for the business. Name, address, phone numbers, etc. The second section focuses on background and workforce. This is where we begin to ask about the effects of COVID-19 and re-opening. In this section, we ask about restaurant background, as well as how their number of hours and number of employees has changed due to the pandemic. In the final section, we ask questions about income and profit. We also ask, on a 5-point scale, how helpful it was in the eyes of the business owner to open for a few months. 
+
+&nbsp;
+
+As with any survey, there is the possibility of non-responses. If the non-response comes from the control group, then they are not eligible for compensation, which is the opportunity to re-open their business. We believe this to be a strong enough incentive to get a significant response rate from the control group. For the businesses who did open, they will have a period of 2 weeks to complete the survey, with a reminder email and phone call. After 2 weeks of no-response, they will be emailed and phoned daily to try and generate a response from the restaurant owner. If there is still no response at this point, they will be informed that when the COVID-19 pandemic restrictions are lifted, they will be held back from opening for a significant period of time. Hopefully, this is enough to entice the participant to respond. 
+
+&nbsp;
+
+To ensure participants' privacy, all information from the survey will be collected under the Freedom of Information and Protection of Privacy Act. Their responses of the survey will not be shared with anyone, other than the Ontario Government. 
+
+&nbsp;
+
+Since financial compensation is not being offered in this study, the cost will be the amount allotted to Petit Poll in the employment contract. However, it is possible that opening dine-in restaurants will increase the number of COVID-19 cases. This could increase cost for the healthcare profession indirectly. 
+
+&nbsp;
+
+A link the survey can be found here:
+https://docs.google.com/forms/d/e/1FAIpQLSeafb8VzHCH_0ZQVKnfg46_E6WHMVqnADwMcg7nOqaibhFweg/viewform?usp=sf_link 
+
+&nbsp;
+
+Alternatively, screenshots of the different survey questions have been attached below. 
+
+&nbsp;
+
+```{r, fig.align='center', out.width="95%", out.height="95%", echo=FALSE, message = FALSE}
+library(here)
+library(knitr)
+
+knitr::include_graphics(path = here("inputs/Images/Survey_Page1A.png"))
+
+knitr::include_graphics(path = here("inputs/Images/Survey_Page1B.png"))
+
+knitr::include_graphics(path = here("inputs/Images/Survey_Page2A.png"))
+
+knitr::include_graphics(path = here("inputs/Images/Survey_Page2B.png"))
+
+knitr::include_graphics(path = here("inputs/Images/Survey_Page2C.png"))
+
+knitr::include_graphics(path = here("inputs/Images/Survey_Page3A.png"))
+
+knitr::include_graphics(path = here("inputs/Images/Survey_Page3B.png"))
+
+knitr::include_graphics(path = here("inputs/Images/Survey_Page3C.png"))
+
+knitr::include_graphics(path = here("inputs/Images/Survey_Page3D.png"))
+
+knitr::include_graphics(path = here("inputs/Images/Survey_Page3E.png"))
+
+knitr::include_graphics(path = here("inputs/Images/Survey_Page3F.png"))
+
+knitr::include_graphics(path = here("inputs/Images/Survey_Page4A.png"))
+
+knitr::include_graphics(path = here("inputs/Images/Survey_Page4B.png"))
+
+knitr::include_graphics(path = here("inputs/Images/Survey_Page4C.png"))
+
+
+```
+
+\pagebreak
+# References 
+
+
