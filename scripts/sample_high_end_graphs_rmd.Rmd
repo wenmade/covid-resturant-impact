@@ -62,15 +62,16 @@ kbl(tabyl(sample_high_end_resturants$Helpfulness_Factor, sort = TRUE), booktabs 
 
 ```{r two, echo=FALSE}
 #Average of everything table
-ave_Income2019 <- mean(sample_high_end_resturants$Income_052019_102019)
-ave_Income2020 <- mean(sample_high_end_resturants$Income_052020_102020)
-ave_Income2021 <- mean(sample_high_end_resturants$Income_052021_102021)
-ave_Profit2019 <- mean(sample_high_end_resturants$Profit_052019_102019)
-ave_Profit2020 <- mean(sample_high_end_resturants$Profit_052020_102020)
-ave_Profit2021 <- mean(sample_high_end_resturants$Profit_052021_102021)
+ave_Income2019 <- mean(sample_high_end_resturants$Income_052019_062019)
+ave_Income2020 <- mean(sample_high_end_resturants$Income_052020_062020)
+ave_Income2021 <- mean(sample_high_end_resturants$Income_052021_062021)
+ave_Profit2019 <- mean(sample_high_end_resturants$Profit_052019_062019)
+ave_Profit2020 <- mean(sample_high_end_resturants$Profit_052020_062020)
+ave_Profit2021 <- mean(sample_high_end_resturants$Profit_052021_062021)
 ave_Staff2019 <- mean(sample_high_end_resturants$Number_Of_Staff_Before_Covid)
 ave_Staff2020 <- mean(sample_high_end_resturants$Number_Of_Staff_During_Covid)
 ave_Staff2021 <- mean(sample_high_end_resturants$Number_Of_Staff_During_Reopen)
+ave_helpfulness <- mean(as.integer(sample_high_end_resturants$Helpfulness))
 
 average_table <- data.frame("ave_Income2019" = ave_Income2019, 
                             "ave_Income2020" = ave_Income2020, 
@@ -82,7 +83,8 @@ average_table <- data.frame("ave_Income2019" = ave_Income2019,
 average_staff <- data.frame(
                               "ave_Staff2019" = ave_Staff2019, 
                             "ave_Staff2020" = ave_Staff2020, 
-                            "ave_Staff2021" = ave_Staff2021
+                            "ave_Staff2021" = ave_Staff2021, 
+                            "ave_Helpfulness" = ave_helpfulness
 )
 kbl(average_table, booktabs = T) %>%
   kable_styling(latex_options = c("striped", "scale-down"))
@@ -92,9 +94,9 @@ kbl(average_staff, booktabs = T) %>%
 ```
 
 ```{r three, echo=FALSE}
-plot_profit <- data.frame(Profit_052019_102019 = sample_high_end_resturants$Profit_052019_102019, 
-                                  Profit_052020_102020 = sample_high_end_resturants$Profit_052020_102020, 
-                                  Profit_052021_102021 = sample_high_end_resturants$Profit_052021_102021)
+plot_profit <- data.frame(Profit_052019_062019 = sample_high_end_resturants$Profit_052019_062019, 
+                                  Profit_052020_062020 = sample_high_end_resturants$Profit_052020_062020, 
+                                  Profit_052021_062021 = sample_high_end_resturants$Profit_052021_062021)
 plot_profit <- gather(plot_profit)
 
 
@@ -106,22 +108,22 @@ ggplot(plot_profit, aes(x = value, fill = key)) +
 
 
 ```{r whatever, echo=FALSE}
-paste("Min 2019:", min(sample_high_end_resturants$Profit_052019_102019))
-paste("Mean 2019:", mean(sample_high_end_resturants$Profit_052019_102019))
-paste("Max 2019:", max(sample_high_end_resturants$Profit_052019_102019))
-paste("Min 2020:", min(sample_high_end_resturants$Profit_052020_102020))
-paste("Mean 2020:", mean(sample_high_end_resturants$Profit_052020_102020))
-paste("Max 2020:", max(sample_high_end_resturants$Profit_052020_102020))
-paste("Min 2021:", min(sample_high_end_resturants$Profit_052021_102021))
-paste("Mean 2021:", mean(sample_high_end_resturants$Profit_052021_102021))
-paste("Max 2021:", max(sample_high_end_resturants$Profit_052021_102021))
+paste("Min 2019:", min(sample_high_end_resturants$Profit_052019_062019))
+paste("Mean 2019:", mean(sample_high_end_resturants$Profit_052019_062019))
+paste("Max 2019:", max(sample_high_end_resturants$Profit_052019_062019))
+paste("Min 2020:", min(sample_high_end_resturants$Profit_052020_062020))
+paste("Mean 2020:", mean(sample_high_end_resturants$Profit_052020_062020))
+paste("Max 2020:", max(sample_high_end_resturants$Profit_052020_062020))
+paste("Min 2021:", min(sample_high_end_resturants$Profit_052021_062021))
+paste("Mean 2021:", mean(sample_high_end_resturants$Profit_052021_062021))
+paste("Max 2021:", max(sample_high_end_resturants$Profit_052021_062021))
 ```
 
 
 ```{r threehalf, echo=FALSE}
-plot_income <- data.frame(Income_052019_102019 = sample_high_end_resturants$Income_052019_102019, 
-                          Income_052020_102020 = sample_high_end_resturants$Income_052020_102020, 
-                           Income_052021_102021 = sample_high_end_resturants$Income_052021_102021)
+plot_income <- data.frame(Income_052019_062019 = sample_high_end_resturants$Income_052019_062019, 
+                          Income_052020_062020 = sample_high_end_resturants$Income_052020_062020, 
+                           Income_052021_062021 = sample_high_end_resturants$Income_052021_062021)
 plot_income <- gather(plot_income)
 
 
@@ -130,21 +132,21 @@ ggplot(plot_income, aes(x = value, fill = key)) +
 
 ```
 ```{r wersdf, echo=FALSE}
-paste("Min 2019:", min(sample_high_end_resturants$Income_052019_102019))
-paste("Mean 2019:", mean(sample_high_end_resturants$Income_052019_102019))
-paste("Max 2019:", max(sample_high_end_resturants$Income_052019_102019))
-paste("Min 2020:", min(sample_high_end_resturants$Income_052020_102020))
-paste("Mean 2020:", mean(sample_high_end_resturants$Income_052020_102020))
-paste("Max 2020:", max(sample_high_end_resturants$Income_052020_102020))
-paste("Min 2021:", min(sample_high_end_resturants$Income_052021_102021))
-paste("Mean 2021:", mean(sample_high_end_resturants$Income_052021_102021))
-paste("Max 2021:", max(sample_high_end_resturants$Income_052021_102021))
+paste("Min 2019:", min(sample_high_end_resturants$Income_052019_062019))
+paste("Mean 2019:", mean(sample_high_end_resturants$Income_052019_062019))
+paste("Max 2019:", max(sample_high_end_resturants$Income_052019_062019))
+paste("Min 2020:", min(sample_high_end_resturants$Income_052020_062020))
+paste("Mean 2020:", mean(sample_high_end_resturants$Income_052020_062020))
+paste("Max 2020:", max(sample_high_end_resturants$Income_052020_062020))
+paste("Min 2021:", min(sample_high_end_resturants$Income_052021_062021))
+paste("Mean 2021:", mean(sample_high_end_resturants$Income_052021_062021))
+paste("Max 2021:", max(sample_high_end_resturants$Income_052021_062021))
 ```
 
 ```{r four, echo=FALSE}
-plot_Staff <- data.frame(Staff_052019_102019 = sample_high_end_resturants$Number_Of_Staff_Before_Covid, 
-                         Staff_052020_102020 = sample_high_end_resturants$Number_Of_Staff_During_Covid, 
-                          Staff_052021_102021 = sample_high_end_resturants$Number_Of_Staff_During_Reopen)
+plot_Staff <- data.frame(Staff_052019_062019 = sample_high_end_resturants$Number_Of_Staff_Before_Covid, 
+                         Staff_052020_062020 = sample_high_end_resturants$Number_Of_Staff_During_Covid, 
+                          Staff_052021_062021 = sample_high_end_resturants$Number_Of_Staff_During_Reopen)
 plot_Staff <- gather(plot_Staff)
 
 
