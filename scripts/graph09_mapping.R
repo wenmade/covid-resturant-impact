@@ -1,16 +1,15 @@
 library(ggmap)
+library(sf)
+library(mapview)
 
-all_rest= read.csv('dataset/simulated_resturants.csv', stringsAsFactors = FALSE)
+
+all_rest= read.csv('dataset/all_resturants.csv', stringsAsFactors = FALSE)
 rest_locations <- tibble(
   Lon = all_rest$Long, 
   Lat = all_rest$Lat, 
   ID = all_rest$ID, 
   Name = all_rest$Name)
 
-nrow(simulated_resturants)
-
-library(sf)
-library(mapview)
 
 locations_sf <- st_as_sf(rest_locations, coords = c("Lon", "Lat"), crs = 4326)
 mapview(locations_sf)

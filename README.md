@@ -9,3 +9,8 @@ library(dplyr)
 library(ggplot2)
 library(janitor)
 library(tidyr)
+library(ggmap)
+library(sf)
+library(mapview)
+library(gridExtra)
+
