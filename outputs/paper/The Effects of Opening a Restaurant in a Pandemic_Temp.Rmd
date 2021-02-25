@@ -9,7 +9,6 @@ abstract: In May and June of 2021, a random selection of Toronto restaurants wer
 bibliography: restaurant_references.bib
 toc: yes
 ---
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 knitr::opts_chunk$set(message = FALSE)
@@ -29,6 +28,7 @@ library(ggmap)
 library(sf)
 library(mapview)
 library(gridExtra)
+
 ```
 
 \pagebreak
@@ -77,7 +77,7 @@ After completion of the study, Petit Poll analyzed the survey responses and pres
 
 ## Dataset
 
-This dataset was pulled from the City of Toronto’s Open Data Portal – Dinesafe [@Dinesafe]. The Open Data Portal is a regularly updated and open-sourced data delivery tool which allows users to “generate insights, analyses, and/or…develop web/mobile applications” [@CityOfToronto1, @CityOfToronto2]. The dataset was analyzed using `R` [@R]. Various packages were used to analyze the data. First, `Opendatatoronto` [@opendatatoronto] was used to get the dataset from the open data portal. Next, the `Here` package [@here] was used for easily saving and locating files. The `Tidyverse` package [@tidyverse] was used for general analysis of the dataset. `Ggplot2` [@ggplot2], `knitr` [@knitr], and `kableExtra` [@kableExtra] were used to create figures. The `generator` package [@generator] was used to help simulate data. The `stringi` [@stringi] package was used to process strings in the dataset. The `janitor` package [@janitor] was used to clean the dataset. `TinyTex` [@tinytex] was used to help write the output to PDF. Finally, `bookdown` [@bookdown] was used to build the pdf and `bibtex` [@bibtex] was used to create references. 
+This dataset was pulled from the City of Toronto’s Open Data Portal – Dinesafe [@Dinesafe]. The Open Data Portal is a regularly updated and open-sourced data delivery tool which allows users to “generate insights, analyses, and/or…develop web/mobile applications” (@CityOfToronto1, @CityOfToronto2). The dataset was analyzed using `R` [@R]. Various packages were used to analyze the data. First, `Opendatatoronto` [@opendatatoronto] and `sf` (@sf) were used to get the dataset from the open data portal. Next, the `Here` package [@here] was used for easily saving and locating files. The `Tidyverse` package [@tidyverse] was used for general analysis of the dataset. `Ggplot2` [@ggplot2], `knitr` [@knitr], `kableExtra` [@kableExtra], and `gridExtra` (@gridExtra) were used to create plots, tables, and figures. `Ggmap` (@ggmap) and `mapview` (@mapview) were used to create a map of the GTA and its respective restaurants. The `generator` package [@generator] was used to help simulate data. The `stringi` [@stringi] package was used to process strings in the dataset. The `janitor` package [@janitor] was used to clean the dataset. `TinyTex` [@tinytex] was used to help write the output to PDF. Finally, `bookdown` [@bookdown] was used to build the pdf and `bibtex` [@bibtex] was used to create references. 
 
 &nbsp; 
 
