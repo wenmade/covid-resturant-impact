@@ -92,14 +92,15 @@ kbl(average_staff, booktabs = T) %>%
 ```
 
 ```{r three, echo=FALSE}
-plot_profit <- data.frame(Profit_052019_062019 = all_resturants$Profit_052019_062019, 
+all_pop_plot_profit <- data.frame(Profit_052019_062019 = all_resturants$Profit_052019_062019, 
                                   Profit_052020_062020 = all_resturants$Profit_052020_062020, 
                                   Profit_052021_062021 = all_resturants$Profit_052021_062021)
-plot_profit <- gather(plot_profit)
+all_pop_plot_profit <- gather(all_pop_plot_profit)
 
 
-ggplot(plot_profit, aes(x = value, fill = key)) +
-  geom_density(kernel = "gaussian", alpha = 0.2)
+ggplot(all_pop_plot_profit, aes(x = value, fill = key)) +
+  geom_density(kernel = "gaussian", alpha = 0.2) + guides(fill=guide_legend(title="Control resturants profit"))+ 
+  theme(legend.title = element_text(size = 5), legend.text = element_text(size = 5), legend.position = c(0.82, 0.9))
 
 
 ```
@@ -151,3 +152,134 @@ plot_Staff <- gather(plot_Staff)
 ggplot(plot_Staff, aes(x = value, fill = key)) +
   geom_density(kernel = "gaussian", alpha = 0.2)
 ```
+
+
+```{r}
+all_pop_resturants = read.csv('../../dataset/all_resturants.csv', stringsAsFactors = FALSE)
+#Business operation year freq table
+kbl(tabyl(all_pop_resturants$Business_Operation_Year, sort = TRUE), booktabs = T) %>%
+  kable_styling(latex_options = c("striped", "scale-down"))
+# 1-5 years owns takes 36% of dataset
+
+#Frachaise
+kbl(tabyl(all_pop_resturants$Franchise, sort = TRUE), booktabs = T) %>%
+  kable_styling(latex_options = c("striped", "scale-down"))
+#Even split - 59% Non frachaise vs. 41% frachaise
+
+#Own / Lease
+kbl(tabyl(all_pop_resturants$Own_Lease, sort = TRUE), booktabs = T) %>%
+  kable_styling(latex_options = c("striped", "scale-down"))
+#Lease 50%, own 40%, lease to own 10%
+
+
+#Pricepoint
+kbl(tabyl(all_pop_resturants$Price_Point_Target, sort = TRUE), booktabs = T) %>%
+  kable_styling(latex_options = c("striped", "scale-down"))
+#Average 39%, Low-end 40%, High-end 21%
+
+#Dine-in Service
+kbl(tabyl(all_pop_resturants$Dine_In_Service, sort = TRUE), booktabs = T) %>%
+  kable_styling(latex_options = c("striped", "scale-down"))
+#70% Y 30% N
+
+
+#Helpfulness
+kbl(tabyl(all_pop_resturants$Helpfulness_Factor, sort = TRUE), booktabs = T) %>%
+  kable_styling(latex_options = c("striped", "scale-down"))
+#average split of 33%
+
+
+
+
+
+#Average of everything table
+ave_Income2019 <- mean(all_pop_resturants$Income_052019_062019)
+ave_Income2020 <- mean(all_pop_resturants$Income_052020_062020)
+ave_Income2021 <- mean(all_pop_resturants$Income_052021_062021)
+ave_Profit2019 <- mean(all_pop_resturants$Profit_052019_062019)
+ave_Profit2020 <- mean(all_pop_resturants$Profit_052020_062020)
+ave_Profit2021 <- mean(all_pop_resturants$Profit_052021_062021)
+ave_Staff2019 <- mean(all_pop_resturants$Number_Of_Staff_Before_Covid)
+ave_Staff2020 <- mean(all_pop_resturants$Number_Of_Staff_During_Covid)
+ave_Staff2021 <- mean(all_pop_resturants$Number_Of_Staff_During_Reopen)
+
+average_table <- data.frame("ave_Income2019" = ave_Income2019, 
+                            "ave_Income2020" = ave_Income2020, 
+                            "ave_Income2021" = ave_Income2021, 
+                            "ave_Profit2019" = ave_Profit2019, 
+                            "ave_Profit2020" = ave_Profit2020, 
+                            "ave_Profit2021" = ave_Profit2021)
+
+average_staff <- data.frame(
+                              "ave_Staff2019" = ave_Staff2019, 
+                            "ave_Staff2020" = ave_Staff2020, 
+                            "ave_Staff2021" = ave_Staff2021
+)
+kbl(average_table, booktabs = T) %>%
+  kable_styling(latex_options = c("striped", "scale-down"))
+
+kbl(average_staff, booktabs = T) %>%
+  kable_styling(latex_options = c("striped", "scale-down"))
+
+
+
+#Profit for all population graph
+all_pop_plot_profit <- data.frame(Profit_05_062019 = all_pop_resturants$Profit_052019_062019, 
+                                  Profit_05_062020 = all_pop_resturants$Profit_052020_062020, 
+                                  Profit_05_062021 = all_pop_resturants$Profit_052021_062021)
+all_pop_plot_profit <- gather(all_pop_plot_profit)
+
+
+ggplot(all_pop_plot_profit, aes(x = value, fill = key)) +
+  geom_density(kernel = "gaussian", alpha = 0.2) + guides(fill=guide_legend(title="Surveyed resturants profit"))+ 
+  theme(legend.title = element_text(size = 5), legend.text = element_text(size = 5), legend.position = c(0.82, 0.9))
+
+paste("Min 2019:", min(all_pop_resturants$Profit_052019_062019))
+paste("Mean 2019:", mean(all_pop_resturants$Profit_052019_062019))
+paste("Max 2019:", max(all_pop_resturants$Profit_052019_062019))
+paste("Min 2020:", min(all_pop_resturants$Profit_052020_062020))
+paste("Mean 2020:", mean(all_pop_resturants$Profit_052020_062020))
+paste("Max 2020:", max(all_pop_resturants$Profit_052020_062020))
+paste("Min 2021:", min(all_pop_resturants$Profit_052021_062021))
+paste("Mean 2021:", mean(all_pop_resturants$Profit_052021_062021))
+paste("Max 2021:", max(all_pop_resturants$Profit_052021_062021))
+
+
+
+#Income for all population graph
+
+all_pop_plot_income <- data.frame(Income_05_062019 = all_pop_resturants$Income_052019_062019, 
+                          Income_05_062020 = all_pop_resturants$Income_052020_062020, 
+                           Income_05_062021 = all_pop_resturants$Income_052021_062021)
+all_pop_plot_income <- gather(all_pop_plot_income)
+
+
+ggplot(all_pop_plot_income, aes(x = value, fill = key)) +
+  geom_density(kernel = "gaussian", alpha = 0.2) + guides(fill=guide_legend(title="Surveyed resturants profit"))+ 
+  theme(legend.title = element_text(size = 5), legend.text = element_text(size = 5), legend.position = c(0.82, 0.9))
+
+paste("Min 2019:", min(all_pop_resturants$Income_052019_062019))
+paste("Mean 2019:", mean(all_pop_resturants$Income_052019_062019))
+paste("Max 2019:", max(all_pop_resturants$Income_052019_062019))
+paste("Min 2020:", min(all_pop_resturants$Income_052020_062020))
+paste("Mean 2020:", mean(all_pop_resturants$Income_052020_062020))
+paste("Max 2020:", max(all_pop_resturants$Income_052020_062020))
+paste("Min 2021:", min(all_pop_resturants$Income_052021_062021))
+paste("Mean 2021:", mean(all_pop_resturants$Income_052021_062021))
+paste("Max 2021:", max(all_pop_resturants$Income_052021_062021))
+
+
+
+#Staff for all population graph
+
+all_pop_plot_Staff <- data.frame(Staff_05_062019 = all_pop_resturants$Number_Of_Staff_Before_Covid, 
+                         Staff_05_062020 = all_pop_resturants$Number_Of_Staff_During_Covid, 
+                          Staff_05_062021 = all_pop_resturants$Number_Of_Staff_During_Reopen)
+all_pop_plot_Staff <- gather(all_pop_plot_Staff)
+
+
+ggplot(all_pop_plot_Staff, aes(x = value, fill = key)) +
+  geom_density(kernel = "gaussian", alpha = 0.2) + guides(fill=guide_legend(title="Surveyed resturants staff"))+ 
+  theme(legend.title = element_text(size = 5), legend.text = element_text(size = 5), legend.position = c(0.82, 0.9))
+```
+
