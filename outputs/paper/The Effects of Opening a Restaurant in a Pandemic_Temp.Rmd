@@ -365,7 +365,7 @@ After completion of the study, Petit Poll analyzed the survey responses and pres
 
 ## Dataset
 
-This dataset was pulled from the City of Toronto’s Open Data Portal – Dinesafe [@Dinesafe]. The Open Data Portal is a regularly updated and open-sourced data delivery tool which allows users to “generate insights, analyses, and/or…develop web/mobile applications” (@CityOfToronto1, @CityOfToronto2). The dataset was analyzed using `R` [@R]. Various packages were used to analyze the data. First, `opendatatoronto` [@opendatatoronto] and `sf` (@sf) were used to get the dataset from the open data portal. Next, the `here` package [@here] was used for easily saving and locating files. The `tidyverse` package [@tidyverse] was used for general analysis of the dataset. `Ggplot2` [@ggplot2], `knitr` [@knitr], `kableExtra` [@kableExtra], and `gridExtra` (@gridExtra) were used to create plots, tables, and figures. `Ggmap` (@ggmap) and `mapview` (@mapview) were used to create a map of the GTA and its respective restaurants. The `generator` package [@generator] was used to help simulate data. The `stringi` [@stringi] package was used to process strings in the dataset. The `janitor` package [@janitor] was used to clean the dataset. `TinyTex` [@tinytex] was used to help write the output to PDF. Finally, `bookdown` [@bookdown] was used to build the pdf and `bibtex` [@bibtex] was used to create references. 
+This dataset was pulled from the City of Toronto’s Open Data Portal – Dinesafe [@Dinesafe]. The Open Data Portal is a regularly updated and open-sourced data delivery tool which allows users to “generate insights, analyses, and/or…develop web/mobile applications” (@CityOfToronto1, @CityOfToronto2). The dataset was analyzed using `R` [@R]. Various packages were used to analyze the data. First, `opendatatoronto` [@opendatatoronto] and `sf` (@sf) were used to get the dataset from the open data portal. Next, the `here` package [@here] was used for easily saving and locating files. The `tidyverse` package [@tidyverse] was used for general analysis of the dataset. `Ggplot2` [@ggplot2], `knitr` [@knitr], `kableExtra` [@kableExtra], and `gridExtra` (@gridExtra) were used to create plots, tables, and figures. `Float` (@float) was used to lock tables in place. `Ggmap` (@ggmap) and `mapview` (@mapview) were used to create a map of the GTA and its respective restaurants. The `generator` package [@generator] was used to help simulate data. The `stringi` [@stringi] package was used to process strings in the dataset. The `janitor` package [@janitor] was used to clean the dataset. `TinyTex` [@tinytex] was used to help write the output to PDF. Finally, `bookdown` [@bookdown] was used to build the pdf and `bibtex` [@bibtex] was used to create references. 
 
 &nbsp; 
 
@@ -410,14 +410,14 @@ kbl(average_table, booktabs = T, col.names = c("Income 2019 ($)", "Income 2020 (
     align = c("l", "l", "l", "l"), 
     caption = "Average income and profit for all restaurants in the survey 
     over a two month period between May and June") %>%
-  kableExtra::kable_styling(latex_options = "hold_position") %>% 
-  kable_styling(latex_options = c("striped", "scale-down"), "HOLD_position")
+  kableExtra::kable_styling(latex_options = "HOLD_position") %>% #lock table in place
+  kable_styling(latex_options = c("striped", "scale-down"))
 
 ```
 
-Table 1 shows the devastating effects of the lockdown on the restaurant industry. For restaurants whose income was less than the mean, these types of losses could quickly result in closure if intervention of subsidies are not put in place. Figure \@ref(fig:2020decfig) further represents this income reduction.  
+Table \@ref(tab:2020dec) shows the devastating effects of the lockdown on the restaurant industry. For restaurants whose income was less than the mean, these types of losses could quickly result in closure if intervention of subsidies are not put in place. Figure 1 further represents this income reduction. 
 
-```{r 2020decfig, fig.cap="Graph of average income and profit for all restaurants in the survey over a two month period between May and June", echo=FALSE, message=FALSE, warning=FALSE}
+```{r figurepls, fig.cap="Graph of average income and profit for all restaurants in the survey over a two month period between May and June", echo=FALSE, message=FALSE, warning=FALSE}
 
 #remove scientific notation
 options(scipen = 999) 
@@ -459,13 +459,15 @@ ggplot(all_pop_plot_income, aes(x = value, fill = key)) +
          y = "Density of Restaurants")
 
   
-income_and_profit_graphs <- 
-  grid.arrange(all_income_graph, all_profit_graph, 
-               ncol = 1, 
+income_and_profit_graphs <-
+  grid.arrange(all_income_graph, all_profit_graph,
+               ncol = 1,
                top = "Comparing Income and Profit Between years 2019 and 2020
                ")
 ```
-Figure \@ref(fig:2020decfig) shows that businesses in the months of May and June 2019 (red) saw a distributed income from \$100,000 to \$800,000. In 2020 (blue), these numbers were drastically different. Nearly all restaurants earned less than \$200,000, with most clustering between \$0 and \$100,000. The profit graph shows the same trend. In May and June 2019, restaurants were profiting somewhere between \$5,000 and \$30,000. However, in the same months of 2020, they were profiting close to or less than \$1000 and very few earning more than \$5000. COVID-19 hit the restaurant industry hard. 
+&nbsp;
+
+Figure \@ref(fig:figurepls) shows that businesses in the months of May and June 2019 (red) saw a distributed income from \$100,000 to \$800,000. In 2020 (blue), these numbers were drastically different. Nearly all restaurants earned less than \$200,000, with most clustering between \$0 and \$100,000. The profit graph shows the same trend. In May and June 2019, restaurants were profiting somewhere between \$5,000 and \$30,000. However, in the same months of 2020, they were profiting close to or less than \$1000 and very few earning more than \$5000. COVID-19 hit the restaurant industry hard. 
 
 &nbsp; 
 
@@ -479,13 +481,14 @@ average_staff <- data.frame("ave_Staff2019" = round(ave_Staff2019),
                             "ave_Staff2020" = round(ave_Staff2020))
 
 kbl(average_staff, booktabs = T, col.names = c("Number of Staff 2019", "Number of Staff 2020"), align = c("l", "l"), caption = "Average number of staff between May and June of 2019 and 2020") %>%
+  kableExtra::kable_styling(latex_options = "HOLD_position") %>%
   kable_styling(latex_options = c("striped", "scale-down"))
 
 ```
 
 &nbsp; 
 
-Table \@ref(tab:staff) shows a decrease in staff of more than 70%. These losses indicate mass unemployment in the restaurant industry and the far reaching implications of COVID-19, which will be discussed in depth in Section 3. Figure \@ref(fig:stafffig) gives a visual representation of the change in staffing. 
+Table \@ref(tab:staff) shows a decrease in staff of more than 70%. These losses indicate mass unemployment in the restaurant industry and the far reaching implications of COVID-19, which will be discussed in depth in Section 3. Figure 2 gives a visual representation of the change in staffing. 
 
 &nbsp; 
 
@@ -514,7 +517,7 @@ ggplot(all_pop_plot_Staff, aes(x = value, fill = key)) +
 
 &nbsp; 
 
-Figure \@ref(fig:stafffig) shows that May and June of 2020, nearly all restaurants employed fewer than 20 staff. This is compared to 2019 where there is a greater number of staff employed, with some restaurants employing over 60 people. Not only did COVID-19 affect restaurants income and profit, it also affected the livelihoods of people who worked in the foodservice industry. 
+Figure 2 shows that in May and June of 2020, nearly all restaurants employed fewer than 20 staff. This is compared to 2019 where there is a greater number of staff employed, with some restaurants employing over 60 people. Not only did COVID-19 affect restaurants income and profit, it also affected the livelihoods of people who worked in the foodservice industry. 
 
 &nbsp;
 
@@ -526,6 +529,7 @@ To understand the demographics of the surveyed businesses, we pulled information
 
 #Franchise
 kbl(tabyl(all_pop_resturants$Franchise, sort = TRUE), booktabs = T, col.names = c("Franchise (Y/N)", "Number of Restaurants", "Percent of Restaurants"), align = c("l", "l", "l"), caption = "Number of restaurants franchised") %>%
+  kableExtra::kable_styling(latex_options = "HOLD_position") %>%
   kable_styling(latex_options = c("striped", "scale-down"))
 #Even split - 59% Non franchise vs. 41% franchise
 
@@ -536,6 +540,7 @@ kbl(tabyl(all_pop_resturants$Franchise, sort = TRUE), booktabs = T, col.names = 
 
 #Business operation year freq table
 kbl(tabyl(all_pop_resturants$Business_Operation_Year, sort = TRUE), booktabs = T, col.names = c("Years in Business", "Number of Restaurants", "Percent of Restaurants"), align = c("l", "l", "l"), caption = "Number of years in operation") %>%
+  kableExtra::kable_styling(latex_options = "HOLD_position") %>%
   kable_styling(latex_options = c("striped", "scale-down"))
 # 1-5 years owns takes 36% of dataset
 
@@ -546,6 +551,7 @@ kbl(tabyl(all_pop_resturants$Business_Operation_Year, sort = TRUE), booktabs = T
 
 #Own / Lease
 kbl(tabyl(all_pop_resturants$Own_Lease, sort = TRUE), booktabs = T, col.names = c("Restaurant Ownership", "Number of Restaurants", "Percent of Restaurants"), align = c("l", "l", "l"), caption = "Number of restaurants who own the property") %>%
+  kableExtra::kable_styling(latex_options = "HOLD_position") %>%
   kable_styling(latex_options = c("striped", "scale-down"))
 #Lease 50%, own 40%, lease to own 10%
 
@@ -558,7 +564,9 @@ It is apparent that the majority of businesses were non-franchised, and were ope
 ```{r demprice, fig.cap="Price-Point of Restaurants", echo=FALSE, message=FALSE, warning=FALSE}
 
 #Pricepoint
-kbl(tabyl(all_pop_resturants$Price_Point_Target, sort = TRUE), booktabs = T, col.names = c("Price-Point", "Number of Restaurants", "Percent of Restaurants"), align = c("l", "l", "l"), caption = "Price-point of restaurants") %>%
+kbl(tabyl(all_pop_resturants$Price_Point_Target, sort = TRUE), booktabs = T, col.names = c("Price-Point", "Number of Restaurants", "Percent of Restaurants"), 
+    align = c("l", "l", "l"), caption = "Price-point of restaurants") %>%
+  kableExtra::kable_styling(latex_options = "HOLD_position") %>%
   kable_styling(latex_options = c("striped", "scale-down"))
 #Average 39%, Low-end 40%, High-end 21%
 
@@ -650,22 +658,30 @@ write_csv(control_high_end_rest, "../../dataset/sample_high_end_resturants.csv")
 
 ## Low-End Restaurants 
 
-Within the low-end restaurants, reopening for a two month period showed significant improvements. Restaurants in the treatment group earned roughly 188% more than the control (Figure \@ref(fig:lowincome)). Employment showed more significant improvements with an almost 247% increase in staff (Figure \@ref(fig:lowstaff)). In the end, treated restaurants were torn on the helpfulness scale, with the average response at 3.36. Although 34% of respondents scored a five, 21% still scored a one (Table \@ref(tab:lowscore)). This could be due to the effort that it takes to prepare a restaurant to open for a two month period, especially in the wake of COVID-19. The amount of personal protective equipment (PPE), training and sanitizing equipment needed could outweigh the benefits of opening.
+Within the low-end restaurants, reopening for a two month period showed significant improvements. Figure \@ref(fig:lowprofit) shows the effect of reopening on these businesses. 
 
-```{r lowincome, fig.cap="Profit of control and treatment groups of low-end restaurants between May and June of 2021", echo=FALSE, message=FALSE, warning=FALSE}
+```{r lowprofit, fig.cap="Profit of control and treatment groups of low-end restaurants between May and June of 2021", echo=FALSE, message=FALSE, warning=FALSE}
 
 
 #read in the results from the local .csv
 control_resturants = read.csv('../../dataset/control_resturants.csv', stringsAsFactors = FALSE)
 sample_resturants = read.csv('../../dataset/sample_resturants.csv', stringsAsFactors = FALSE)
 
-control_low_end_rest = read.csv('../../dataset/control_low_end_resturants.csv', stringsAsFactors = FALSE)
-control_average_rest = read.csv('../../dataset/control_average_resturants.csv', stringsAsFactors = FALSE)
-control_high_end_rest = read.csv('../../dataset/control_high_end_resturants.csv', stringsAsFactors = FALSE)
+control_low_end_rest = read.csv('../../dataset/control_low_end_resturants.csv', 
+                                stringsAsFactors = FALSE)
+control_average_rest = read.csv('../../dataset/control_average_resturants.csv', 
+                                stringsAsFactors = FALSE)
+control_high_end_rest = read.csv('../../dataset/control_high_end_resturants.csv', 
+                                 stringsAsFactors = FALSE)
 
-sample_low_end_rest = read.csv('../../dataset/sample_low_end_resturants.csv', stringsAsFactors = FALSE)
-sample_average_rest = read.csv('../../dataset/sample_average_resturants.csv', stringsAsFactors = FALSE)
-sample_high_end_rest = read.csv('../../dataset/sample_high_end_resturants.csv', stringsAsFactors = FALSE)
+sample_low_end_rest = read.csv('../../dataset/sample_low_end_resturants.csv', 
+                               stringsAsFactors = FALSE)
+sample_average_rest = read.csv('../../dataset/sample_average_resturants.csv', 
+                               stringsAsFactors = FALSE)
+sample_high_end_rest = read.csv('../../dataset/sample_high_end_resturants.csv', 
+                                stringsAsFactors = FALSE)
+
+
 
 #Plot low end control restaurants - profit
 control_resturants_low_plot_profit <- data.frame(Profit_05_062019 = control_low_end_rest$Profit_052019_062019, 
@@ -674,27 +690,48 @@ control_resturants_low_plot_profit <- data.frame(Profit_05_062019 = control_low_
 control_resturants_low_plot_profit <- gather(control_resturants_low_plot_profit)
 
 
-#create the graph (income)
-profit_control_low_end <- ggplot(control_resturants_low_plot_profit, aes(x = value, fill = key)) +
-  geom_density(kernel = "gaussian", alpha = 0.1) + guides(fill=guide_legend(title="Control Low-End Resturants Profit"))+ 
-  theme(legend.title = element_text(size = 5), legend.text = element_text(size = 5), legend.position = c(0.82, 0.9))+
-  scale_fill_discrete(labels = c("Profit May-June 2019", "Profit May-June 2020", "Profit May-June 2021"))
+#create the graph (profit)
+profit_control_low_end <- 
+  ggplot(control_resturants_low_plot_profit, aes(x = value, fill = key)) +
+  geom_density(kernel = "gaussian", alpha = 0.1) + 
+  guides(fill=guide_legend(title="Control Low-End Resturants"))+ 
+  theme_minimal() +
+  theme(legend.title = element_text(size = 9), 
+        legend.text = element_text(size = 9), 
+        legend.position = c(0.72, 0.9))+
+  scale_fill_discrete(labels = c("Profit May-June 2019", 
+                                 "Profit May-June 2020", 
+                                 "Profit May-June 2021"))+
+    labs(x = "Profit",
+         y = "Density of Restaurants")
+
+
 
 #Plot low end  sample restaurants - profit
-
 sample_resturants_low_plot_profit <- data.frame(Profit_05_062019 = sample_low_end_rest$Profit_052019_062019, 
                                             Profit_05_062020 = sample_low_end_rest$Profit_052020_062020, 
                                             Profit_05_062021 = sample_low_end_rest$Profit_052021_062021)
 sample_resturants_low_plot_profit <- gather(sample_resturants_low_plot_profit)
 
-profit_sample_low_end <-ggplot(sample_resturants_low_plot_profit, aes(x = value, fill = key)) +
-  geom_density(kernel = "gaussian", alpha = 0.1) + guides(fill=guide_legend(title="Treatment Low-End Resturants Profit"))+ 
-  theme(legend.title = element_text(size = 5), legend.text = element_text(size = 5), legend.position = c(0.82, 0.9))+
-  scale_fill_discrete(labels = c("Profit May-June 2019", "Profit May-June 2020", "Profit May-June 2021"))
+profit_sample_low_end <-
+  ggplot(sample_resturants_low_plot_profit, aes(x = value, fill = key)) +
+  geom_density(kernel = "gaussian", alpha = 0.1) + 
+  guides(fill=guide_legend(title="Treatment Low-End Resturants"))+ 
+  theme_minimal() +
+  theme(legend.title = element_text(size = 9), 
+        legend.text = element_text(size = 9), 
+        legend.position = c(0.62, 0.9))+
+  scale_fill_discrete(labels = c("Profit May-June 2019", "Profit May-June 2020", "Profit May-June 2021"))+
+  labs(x = "Profit",
+       y = "Density of Restaurants")
 
-grid.arrange(profit_control_low_end, profit_sample_low_end, ncol=2, top = "Profit Comparision Between Low-End Resturants in Control and Treatment Group")
+grid.arrange(profit_control_low_end, profit_sample_low_end, 
+             ncol=2, 
+             top = "Profit Comparision Between Low-End Resturants in Control and Treatment Group
+             ")
 
 ```
+Restaurants in the treatment group earned roughly 188% more than the control (Figure \@ref(fig:lowprofit)), proving that re-opening was extremely beneficial. Employment had an even more significant trend, showed in Figure \@ref(fig:lowstaff).
 
 ```{r lowstaff, fig.cap="Number of staff of control and treatment groups of low-end restaurants between May and June of 2021", echo=FALSE, message=FALSE, warning=FALSE}
 
@@ -705,10 +742,17 @@ control_resturants_low_end_plot_staff <- data.frame(Staff_05_062019 = control_lo
                                             Staff_05_062021 = control_low_end_rest$Number_Of_Staff_During_Reopen)
 control_resturants_low_end_plot_staff <- gather(control_resturants_low_end_plot_staff)
 
-control_low_end_staff <- ggplot(control_resturants_low_end_plot_staff, aes(x = value, fill = key)) +
-  geom_density(kernel = "gaussian", alpha = 0.1) + guides(fill=guide_legend(title="Control Low-End Resturants' Staff"))+ 
-  theme(legend.title = element_text(size = 5), legend.text = element_text(size = 5), legend.position = c(0.82, 0.9))+
-  scale_fill_discrete(labels = c("# of Staff May-June 2019", "# of Staff May-June 2020", "# of Staff May-June 2021"))
+control_low_end_staff <- 
+  ggplot(control_resturants_low_end_plot_staff, aes(x = value, fill = key)) +
+  geom_density(kernel = "gaussian", alpha = 0.1) + 
+  guides(fill=guide_legend(title="Control Low-End Resturants"))+ 
+  theme_minimal() +
+  theme(legend.title = element_text(size = 9), 
+        legend.text = element_text(size = 9), 
+        legend.position = c(0.72, 0.9))+
+  scale_fill_discrete(labels = c("# of Staff May-June 2019", "# of Staff May-June 2020", "# of Staff May-June 2021"))+
+  labs(x = "Number of Staff",
+       y = "Density of Restaurants")
 
 
 #Plot all low-end sample restaurants - staff
@@ -718,33 +762,44 @@ sample_resturants_low_end_plot_staff <- data.frame(Staff_05_062019 = sample_low_
                                            Staff_05_062021 = sample_low_end_rest$Number_Of_Staff_During_Reopen)
 sample_resturants_low_end_plot_staff <- gather(sample_resturants_low_end_plot_staff)
 
-sample_low_end_staff <-ggplot(sample_resturants_low_end_plot_staff, aes(x = value, fill = key)) +
-  geom_density(kernel = "gaussian", alpha = 0.1) + guides(fill=guide_legend(title="Treatment Low-End Resturants' Staff"))+ 
-  theme(legend.title = element_text(size = 5), legend.text = element_text(size = 5), legend.position = c(0.82, 0.9))+
-  scale_fill_discrete(labels = c("# of Staff May-June 2019", "# of Staff May-June 2020", "# of Staff May-June 2021"))
+sample_low_end_staff <-
+  ggplot(sample_resturants_low_end_plot_staff, aes(x = value, fill = key)) +
+  geom_density(kernel = "gaussian", alpha = 0.1) + 
+  guides(fill=guide_legend(title="Treatment Low-End Resturants"))+ 
+  theme_minimal() +
+  theme(legend.title = element_text(size = 9), 
+        legend.text = element_text(size = 9), 
+        legend.position = c(0.67, 0.9))+
+  scale_fill_discrete(labels = c("# of Staff May-June 2019", "# of Staff May-June 2020", "# of Staff May-June 2021"))+
+  labs(x = "Number of Staff",
+       y = "Density of Restaurants")
 
 
-grid.arrange(control_low_end_staff, sample_low_end_staff, ncol=2, top = "Staff Comparision Between Low-End Resturants in Control and Treatment Group")
+grid.arrange(control_low_end_staff, sample_low_end_staff, 
+             ncol=2, 
+             top = "Staff Comparision Between Low-End Resturants in Control and Treatment Group
+             ")
 
 ```
+Employment showed an almost 247% increase in staff (Figure \@ref(fig:lowstaff)). Employment was almost back to 2019 levels when restaurant re-opened. However, in the end, treated restaurants were torn on the helpfulness scale, shown in Table \@ref(tab:lowscore).  
 
 ```{r lowscore, fig.cap="Helpfulness score of low-end restaurants based on a 5-point scale", echo=FALSE, message=FALSE, warning=FALSE}
 
 #Helpfulness of low end
 kbl(tabyl(sample_low_end_rest$Helpfulness, sort = TRUE), booktabs = T, col.names = c("Helpfulness on 5-Point Scale", "Number of Restaurants", "Percent of Restaurants"), align = c("l", "l", "l"), caption = "Low-end restaurant responses to helpfulness on a 5-point scale") %>%
+  kableExtra::kable_styling(latex_options = "HOLD_position") %>%
   kable_styling(latex_options = c("striped", "scale-down"))
 
 
 ```
-
+Table \@ref(tab:lowscore) shows an average response of 3.36. Although 34% of respondents scored a five, 21% still scored a one. This could be due to the effort that it takes to prepare a restaurant to open for a two month period, especially in the wake of COVID-19. The amount of personal protective equipment (PPE), training and sanitizing equipment needed could outweigh the benefits of opening.
 
 
 ## Middle-End Restaurants
 
-Middle-end restaurants experienced fairly similar income outcomes compared to low-end restaurants. Restaurants in the treatment group saw a 179% increase in income in contrast to the control group (Figure \@ref(fig:midincome)). With this improvement, 38% of the restaurants categorized helpfulness as a five on the five point scale (Table \@ref(tab:midscore)). Although an additional 19% of restaurants scored a four, there were still almost 19% that scored a one. In addition, employment experienced a 254% increase in staff, which are similar numbers compared to low-end restaurants (Figure \@ref(fig:midstaff)). 
+Middle-end restaurants experienced fairly similar profit outcomes compared to low-end restaurants, as seen in Figure \@ref(fig:midprofit). 
 
-
-```{r midincome, fig.cap="Profit of control and treatment groups of middle-end restaurants between May and June of 2021", echo=FALSE, message=FALSE, warning=FALSE}
+```{r midprofit, fig.cap="Profit of control and treatment groups of middle-end restaurants between May and June of 2021", echo=FALSE, message=FALSE, warning=FALSE}
 
 #Plot average control resturants - profit
 
@@ -753,26 +808,44 @@ control_resturants_average_profit <- data.frame(Profit_05_062019 = control_avera
                                                  Profit_05_062021 = control_average_rest$Profit_052021_062021)
 control_resturants_average_profit <- gather(control_resturants_average_profit)
 
-profit_control_average <- ggplot(control_resturants_average_profit, aes(x = value, fill = key)) +
-  geom_density(kernel = "gaussian", alpha = 0.1) + guides(fill=guide_legend(title="Control Mid-End Resturants' Profit"))+ 
-  theme(legend.title = element_text(size = 5), legend.text = element_text(size = 5), legend.position = c(0.82, 0.9))+
-  scale_fill_discrete(labels = c("Profit May-June 2019", "Profit May-June 2020", "Profit May-June 2021"))
+profit_control_average <- 
+  ggplot(control_resturants_average_profit, aes(x = value, fill = key)) +
+  geom_density(kernel = "gaussian", alpha = 0.1) + 
+  guides(fill=guide_legend(title="Control Mid-End Resturants"))+ 
+  theme_minimal() +
+  theme(legend.title = element_text(size = 9), 
+        legend.text = element_text(size = 9), 
+        legend.position = c(0.72, 0.9))+
+  scale_fill_discrete(labels = c("Profit May-June 2019", "Profit May-June 2020", "Profit May-June 2021"))+
+  labs(x = "Profit",
+       y = "Density of Restaurants")
 
-#Plot average  sample resturants - profit
+#Plot average  sample restaurants - profit
 
 sample_resturants_average_profit <- data.frame(Profit_05_062019 = sample_average_rest$Profit_052019_062019, 
                                                 Profit_05_062020 = sample_average_rest$Profit_052020_062020, 
                                                 Profit_05_062021 = sample_average_rest$Profit_052021_062021)
 sample_resturants_average_profit <- gather(sample_resturants_average_profit)
 
-profit_sample_average <-ggplot(sample_resturants_average_profit, aes(x = value, fill = key)) +
-  geom_density(kernel = "gaussian", alpha = 0.1) + guides(fill=guide_legend(title="Treatment Mid-End Resturants' Profit"))+ 
-  theme(legend.title = element_text(size = 5), legend.text = element_text(size = 5), legend.position = c(0.82, 0.9))+
-  scale_fill_discrete(labels = c("Profit May-June 2019", "Profit May-June 2020", "Profit May-June 2021"))
+profit_sample_average <-
+  ggplot(sample_resturants_average_profit, aes(x = value, fill = key)) +
+  geom_density(kernel = "gaussian", alpha = 0.1) + 
+  guides(fill=guide_legend(title="Treatment Mid-End Resturants"))+
+  theme_minimal() +
+  theme(legend.title = element_text(size = 9), 
+        legend.text = element_text(size = 9), 
+        legend.position = c(0.62, 0.9))+
+  scale_fill_discrete(labels = c("Profit May-June 2019", "Profit May-June 2020", "Profit May-June 2021"))+
+  labs(x = "Profit",
+       y = "Density of Restaurants")
 
-grid.arrange(profit_control_average, profit_sample_average, ncol=2, top = "Profit Comparison Between Middle-End Resturants in Control and Treatment Group")
+grid.arrange(profit_control_average, profit_sample_average, 
+             ncol=2, 
+             top = "Profit Comparison Between Middle-End Resturants in Control and Treatment Group
+             ")
 
 ```
+Restaurants in the treatment group saw a 179% increase in profit in contrast to the control group (Figure \@ref(fig:midprofit)). This was very similar to the low-end group. Employment trends are shown in Figure \@ref(fig:midstaff). 
 
 ```{r midstaff, fig.cap="Number of staff of control and treatment groups of middle-end restaurants between May and June of 2021", echo=FALSE, message=FALSE, warning=FALSE}
 
@@ -783,10 +856,17 @@ control_resturants_average_plot_staff <- data.frame(Staff_05_062019 = control_av
                                                     Staff_05_062021 = control_average_rest$Number_Of_Staff_During_Reopen)
 control_resturants_average_plot_staff <- gather(control_resturants_average_plot_staff)
 
-control_average_staff <- ggplot(control_resturants_average_plot_staff, aes(x = value, fill = key)) +
-  geom_density(kernel = "gaussian", alpha = 0.1) + guides(fill=guide_legend(title="Control Mid-End Resturants' Staff"))+ 
-  theme(legend.title = element_text(size = 5), legend.text = element_text(size = 5), legend.position = c(0.82, 0.9))+
-  scale_fill_discrete(labels = c("# of Staff May-June 2019", "# of Staff May-June 2020", "# of Staff May-June 2021"))
+control_average_staff <- 
+  ggplot(control_resturants_average_plot_staff, aes(x = value, fill = key)) +
+  geom_density(kernel = "gaussian", alpha = 0.1) + 
+  guides(fill=guide_legend(title="Control Mid-End Resturants"))+ 
+  theme_minimal() +
+  theme(legend.title = element_text(size = 9), 
+        legend.text = element_text(size = 9), 
+        legend.position = c(0.72, 0.9))+
+  scale_fill_discrete(labels = c("# of Staff May-June 2019", "# of Staff May-June 2020", "# of Staff May-June 2021"))+
+  labs(x = "Number of Staff",
+       y = "Density of Restaurants")
 
 
 #Plot average sample restaurants - staff
@@ -796,35 +876,47 @@ sample_resturants_average_plot_staff <- data.frame(Staff_05_062019 = sample_aver
                                                    Staff_05_062021 = sample_average_rest$Number_Of_Staff_During_Reopen)
 sample_resturants_average_plot_staff <- gather(sample_resturants_average_plot_staff)
 
-sample_average_staff <-ggplot(sample_resturants_average_plot_staff, aes(x = value, fill = key)) +
-  geom_density(kernel = "gaussian", alpha = 0.1) + guides(fill=guide_legend(title="Treatment Mid-End Resturants' Staff"))+ 
-  theme(legend.title = element_text(size = 5), legend.text = element_text(size = 5), legend.position = c(0.82, 0.9))+
-  scale_fill_discrete(labels = c("# of Staff May-June 2019", "# of Staff May-June 2020", "# of Staff May-June 2021"))
+sample_average_staff <-
+  ggplot(sample_resturants_average_plot_staff, aes(x = value, fill = key)) +
+  geom_density(kernel = "gaussian", alpha = 0.1) + 
+  guides(fill=guide_legend(title="Treatment Mid-End Resturants"))+ 
+  theme_minimal() +
+  theme(legend.title = element_text(size = 9), 
+        legend.text = element_text(size = 9), 
+        legend.position = c(0.62, 0.9))+
+  scale_fill_discrete(labels = c("# of Staff May-June 2019", "# of Staff May-June 2020", "# of Staff May-June 2021"))+
+  labs(x = "Number of Staff",
+       y = "Density of Restaurants")
 
 
-grid.arrange(control_average_staff, sample_average_staff, ncol=2, top = "Staff Comparision Between Middle-End Resturants in Control and Treatment Group")
+grid.arrange(control_average_staff, sample_average_staff, 
+             ncol=2, 
+             top = "Staff Comparision Between Middle-End Resturants in Control and Treatment Group
+             ")
 
 
 ```
+
+For restaurants in the mid-range of price-point, employment experienced a 254% increase in staff, which are similar numbers compared to low-end restaurants. Again, staffing levels were almost back to 2019 levels. Table \@ref(tab:midscore) shows reported helpfulness scores.  
 
 ```{r midscore, fig.cap="Helpfulness score of middle-end restaurants based on a 5-point scale", echo=FALSE, message=FALSE, warning=FALSE}
 
 #Helpfulness of average
 kbl(tabyl(sample_average_rest$Helpfulness, sort = TRUE), booktabs = T, col.names = c("Helpfulness on 5-Point Scale", "Number of Restaurants", "Percent of Restaurants"), align = c("l", "l", "l"), caption = "Middle-end restaurant responses to helpfulness on a 5-point scale") %>%
+  kableExtra::kable_styling(latex_options = "HOLD_position") %>%
   kable_styling(latex_options = c("striped", "scale-down"))
 #average split of 33%
 
 ```
-
+With the improvement in profit and staffing, 38% of the restaurants categorized helpfulness as a five on the five point scale (Table \@ref(tab:midscore)). Although an additional 19% of restaurants scored a four, there were still almost 19% that scored a one.
 
 
 
 ## High-End Restaurants
 
-Finally, high-end restaurants experienced the smallest improvement in earnings, although by a fraction of a difference. The treatment group earned 178% more than the control group between May and June (Figure \@ref(fig:highincome)). The nature of high-end restaurants offering primarily dine-in service would assume that they would see the greatest positive effects of the reopening, yet they did not see as substantial of an increase as other price brackets. This could be due to lingering hesitancies surrounding COVID-19, or the number of people who experienced financial losses at this time. This increase in income could also be a factor in the 251% increase in staff (Figure \@ref(fig:highstaff)). Expectedly, high-end restaurants saw the lowest positive response to the reopening, with 33% scoring a five and over 20% scoring a one (Table \@ref(tab:highscore)).
+Finally, high-end restaurants experienced the smallest improvement in earnings, although by a fraction of a difference. Results are shown in Figure \@ref(fig:highprofit).
 
-
-```{r highincome, fig.cap="Profit of control and treatment groups of high-end restaurants between May and June of 2021", echo=FALSE, message=FALSE, warning=FALSE}
+```{r highprofit, fig.cap="Profit of control and treatment groups of high-end restaurants between May and June of 2021", echo=FALSE, message=FALSE, warning=FALSE}
 
 #Plot high end control restaurants - profit
 
@@ -834,9 +926,15 @@ control_resturants_high_plot_profit <- data.frame(Profit_05_062019 = control_hig
 control_resturants_high_plot_profit <- gather(control_resturants_high_plot_profit)
 
 profit_control_high_end <- ggplot(control_resturants_high_plot_profit, aes(x = value, fill = key)) +
-  geom_density(kernel = "gaussian", alpha = 0.1) + guides(fill=guide_legend(title="Control High-End Resturants' Profit"))+ 
-  theme(legend.title = element_text(size = 5), legend.text = element_text(size = 5), legend.position = c(0.82, 0.9))+
-  scale_fill_discrete(labels = c("Profit May-June 2019", "Profit May-June 2020", "Profit May-June 2021"))
+  geom_density(kernel = "gaussian", alpha = 0.1) + 
+  guides(fill=guide_legend(title="Control High-End Resturants"))+ 
+  theme_minimal() +
+  theme(legend.title = element_text(size = 9), 
+        legend.text = element_text(size = 9), 
+        legend.position = c(0.72, 0.9))+
+  scale_fill_discrete(labels = c("Profit May-June 2019", "Profit May-June 2020", "Profit May-June 2021"))+
+  labs(x = "Profit",
+       y = "Density of Restaurants")
 
 #Plot high end  sample restaurants - profit
 
@@ -846,14 +944,26 @@ sample_resturants_high_plot_profit <- data.frame(Profit_05_062019 = sample_high_
 sample_resturants_high_plot_profit <- gather(sample_resturants_high_plot_profit)
 
 profit_sample_high_end <-ggplot(sample_resturants_high_plot_profit, aes(x = value, fill = key)) +
-  geom_density(kernel = "gaussian", alpha = 0.1) + guides(fill=guide_legend(title="Treatment High-End Resturants' Profit"))+ 
-  theme(legend.title = element_text(size = 5), legend.text = element_text(size = 5), legend.position = c(0.82, 0.9))+
-  scale_fill_discrete(labels = c("Profit May-June 2019", "Profit May-June 2020", "Profit May-June 2021"))
+  geom_density(kernel = "gaussian", alpha = 0.1) + 
+  guides(fill=guide_legend(title="Treatment High-End Resturants"))+ 
+  theme_minimal() +
+  theme(legend.title = element_text(size = 9), 
+        legend.text = element_text(size = 9), 
+        legend.position = c(0.62, 0.9))+
+  scale_fill_discrete(labels = c("Profit May-June 2019", "Profit May-June 2020", "Profit May-June 2021"))+
+  labs(x = "Profit",
+       y = "Density of Restaurants")
 
 
-grid.arrange(profit_control_high_end, profit_sample_high_end, ncol=2, top = "Profit Comparision Between High-End Resturants in Control and Treatment Group")
+grid.arrange(profit_control_high_end, 
+             profit_sample_high_end, ncol=2, 
+             top = "Profit Comparision Between High-End Resturants in Control and Treatment Group
+             ")
 
 ```
+
+The treatment group earned 178% more than the control group between May and June. The nature of high-end restaurants offering primarily dine-in service would assume that they would see the greatest positive effects of the reopening, yet they did not see as substantial of an increase as other price brackets. This could be due to lingering hesitance surrounding COVID-19, or the number of people who experienced financial losses at this time. This increase in profit could also be a factor in the increase in staffing - see Figure \@ref(fig:highstaff). 
+
 
 ```{r highstaff, fig.cap="Number of staff of control and treatment groups of high-end restaurants between May and June of 2021", echo=FALSE, message=FALSE, warning=FALSE}
 
@@ -864,10 +974,17 @@ control_resturants_high_end_plot_staff <- data.frame(Staff_05_062019 = control_h
                                                      Staff_05_062021 = control_high_end_rest$Number_Of_Staff_During_Reopen)
 control_resturants_high_end_plot_staff <- gather(control_resturants_high_end_plot_staff)
 
-control_high_end_staff <- ggplot(control_resturants_high_end_plot_staff, aes(x = value, fill = key)) +
-  geom_density(kernel = "gaussian", alpha = 0.1) + guides(fill=guide_legend(title="Control High-End Resturants' Staff"))+ 
-  theme(legend.title = element_text(size = 5), legend.text = element_text(size = 5), legend.position = c(0.82, 0.9))+
-  scale_fill_discrete(labels = c("# of Staff May-June 2019", "# of Staff May-June 2020", "# of Staff May-June 2021"))
+control_high_end_staff <- 
+  ggplot(control_resturants_high_end_plot_staff, aes(x = value, fill = key)) +
+  geom_density(kernel = "gaussian", alpha = 0.1) + 
+  guides(fill=guide_legend(title="Control High-End Resturants"))+ 
+  theme_minimal() +
+  theme(legend.title = element_text(size = 9), 
+        legend.text = element_text(size = 9), 
+        legend.position = c(0.72, 0.9))+
+  scale_fill_discrete(labels = c("# of Staff May-June 2019", "# of Staff May-June 2020", "# of Staff May-June 2021"))+
+  labs(x = "Number of Staff",
+       y = "Density of Restaurants")
 
 
 #Plot high end sample restaurants - staff
@@ -877,26 +994,40 @@ sample_resturants_high_end_plot_staff <- data.frame(Staff_05_062019 = sample_hig
                                                     Staff_05_062021 = sample_high_end_rest$Number_Of_Staff_During_Reopen)
 sample_resturants_high_end_plot_staff <- gather(sample_resturants_high_end_plot_staff)
 
-sample_high_end_staff <-ggplot(sample_resturants_high_end_plot_staff, aes(x = value, fill = key)) +
-  geom_density(kernel = "gaussian", alpha = 0.1) + guides(fill=guide_legend(title="Treatment High-End Resturants' Staff"),
-                                                          shape = guide_legend(override.aes = list(size = 0.5)))+ 
-  theme(legend.title = element_text(size = 5), legend.text = element_text(size = 5), legend.position = c(0.82, 0.9))+
-  scale_fill_discrete(labels = c("# of Staff May-June 2019", "# of Staff May-June 2020", "# of Staff May-June 2021"))
+sample_high_end_staff <-
+  ggplot(sample_resturants_high_end_plot_staff, aes(x = value, fill = key)) +
+  geom_density(kernel = "gaussian", alpha = 0.1) + 
+  guides(fill=guide_legend(title="Treatment High-End Resturants"),
+         shape = guide_legend(override.aes = list(size = 0.5)))+ 
+  theme_minimal() +
+  theme(legend.title = element_text(size = 9), 
+        legend.text = element_text(size = 9), 
+        legend.position = c(0.67, 0.9))+
+  scale_fill_discrete(labels = c("# of Staff May-June 2019", "# of Staff May-June 2020", "# of Staff May-June 2021"))+
+  labs(x = "Number of Staff",
+       y = "Density of Restaurants")
         
-grid.arrange(control_high_end_staff, sample_high_end_staff, ncol=2, top = "Staff Comparision Between High-End Resturants in Treatment and Control Group")
+grid.arrange(control_high_end_staff, sample_high_end_staff, 
+             ncol=2, 
+             top = "Staff Comparision Between High-End Resturants in Treatment and Control Group
+             ")
 
 
 ```
+
+High-end restaurants saw a 251% increase in staff. Expectedly, high-end restaurants saw the lowest positive response to the reopening - shown in Table \@ref(tab:highscore). 
 
 ```{r highscore, fig.cap="Helpfulness score of high-end restaurants based on a 5-point scale", echo=FALSE, message=FALSE, warning=FALSE}
 
 #Helpfulness of high end
 kbl(tabyl(sample_high_end_rest$Helpfulness, sort = TRUE), booktabs = T, col.names = c("Helpfulness on 5-Point Scale", "Number of Restaurants", "Percent of Restaurants"), align = c("l", "l", "l"), caption = "High-end restaurant esponses to helpfulness on a 5-point scale") %>%
+  kableExtra::kable_styling(latex_options = "HOLD_position") %>%
   kable_styling(latex_options = c("striped", "scale-down"))
 #average split of 33%
 
 ```
 
+In total, 33% of high-end restaurants scoring a five and over 20% scoring a one.
 
 
 # Discussion 

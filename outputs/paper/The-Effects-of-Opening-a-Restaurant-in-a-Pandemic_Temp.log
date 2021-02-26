@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2021.1.28)  26 FEB 2021 00:11
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2021.1.28)  26 FEB 2021 02:26
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -760,26 +760,23 @@ LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 1
 (c:/Users/timst/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ) [4]
-
-LaTeX Warning: Reference `fig:2020decfig' on page 5 undefined on input line 183
-.
-
-<The-Effects-of-Opening-a-Restaurant-in-a-Pandemic_Temp_files/figure-latex/2020
-decfig-1.pdf, id=105, 469.755pt x 325.215pt>
+<The-Effects-of-Opening-a-Restaurant-in-a-Pandemic_Temp_files/figure-latex/figu
+repls-1.pdf, id=106, 469.755pt x 325.215pt>
 File: The-Effects-of-Opening-a-Restaurant-in-a-Pandemic_Temp_files/figure-latex
-/2020decfig-1.pdf Graphic file (type pdf)
+/figurepls-1.pdf Graphic file (type pdf)
 <use The-Effects-of-Opening-a-Restaurant-in-a-Pandemic_Temp_files/figure-latex/
-2020decfig-1.pdf>
+figurepls-1.pdf>
 Package pdftex.def Info: The-Effects-of-Opening-a-Restaurant-in-a-Pandemic_Temp
-_files/figure-latex/2020decfig-1.pdf  used on input line 185.
+_files/figure-latex/figurepls-1.pdf  used on input line 185.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-
-LaTeX Warning: Reference `fig:2020decfig' on page 5 undefined on input line 186
-.
-
 
 Underfull \hbox (badness 10000) in paragraph at lines 185--187
 [][]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 185--187
+
  []
 
 [5pdfTeX warning (ext4): destination with the same identifier (name{table.1}) h
@@ -788,6 +785,10 @@ as been already used, duplicate ignored
                                                   
 l.187 
       ]
+
+LaTeX Warning: Reference `fig:figurepls' on page 6 undefined on input line 188.
+
+
 <The-Effects-of-Opening-a-Restaurant-in-a-Pandemic_Temp_files/figure-latex/staf
 ffig-1.pdf, id=115, 469.755pt x 325.215pt>
 File: The-Effects-of-Opening-a-Restaurant-in-a-Pandemic_Temp_files/figure-latex
@@ -795,313 +796,335 @@ File: The-Effects-of-Opening-a-Restaurant-in-a-Pandemic_Temp_files/figure-latex
 <use The-Effects-of-Opening-a-Restaurant-in-a-Pandemic_Temp_files/figure-latex/
 stafffig-1.pdf>
 Package pdftex.def Info: The-Effects-of-Opening-a-Restaurant-in-a-Pandemic_Temp
-_files/figure-latex/stafffig-1.pdf  used on input line 215.
+_files/figure-latex/stafffig-1.pdf  used on input line 217.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 [6pdfTeX warning (ext4): destination with the same identifier (name{table.2}) h
 as been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
-l.218 
+l.220 
        <./The-Effects-of-Opening-a-Restaurant-in-a-Pandemic_Temp_files/figure-l
-atex/2020decfig-1.pdf>] [7pdfTeX warning (ext4): destination with the same iden
-tifier (name{table.3}) has been already used, duplicate ignored
+atex/figurepls-1.pdf>] [7pdfTeX warning (ext4): destination with the same ident
+ifier (name{figure.1}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
-l.276 
-      pdfTeX warning (ext4): destination with the same identifier (name{figure.
-1}) has been already used, duplicate ignored
+l.261 
+      pdfTeX warning (ext4): destination with the same identifier (name{table.3
+}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
-l.276 
+l.261 
        <./The-Effects-of-Opening-a-Restaurant-in-a-Pandemic_Temp_files/figure-l
 atex/stafffig-1.pdf>]
-<The-Effects-of-Opening-a-Restaurant-in-a-Pandemic_Temp_files/figure-latex/lowi
-ncome-1.pdf, id=158, 469.755pt x 325.215pt>
+
+LaTeX Warning: Reference `fig:lowprofit' on page 8 undefined on input line 301.
+
+
+<The-Effects-of-Opening-a-Restaurant-in-a-Pandemic_Temp_files/figure-latex/lowp
+rofit-1.pdf, id=154, 469.755pt x 325.215pt>
 File: The-Effects-of-Opening-a-Restaurant-in-a-Pandemic_Temp_files/figure-latex
-/lowincome-1.pdf Graphic file (type pdf)
+/lowprofit-1.pdf Graphic file (type pdf)
 <use The-Effects-of-Opening-a-Restaurant-in-a-Pandemic_Temp_files/figure-latex/
-lowincome-1.pdf>
+lowprofit-1.pdf>
 Package pdftex.def Info: The-Effects-of-Opening-a-Restaurant-in-a-Pandemic_Temp
-_files/figure-latex/lowincome-1.pdf  used on input line 303.
+_files/figure-latex/lowprofit-1.pdf  used on input line 303.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
+
+LaTeX Warning: Reference `fig:lowprofit' on page 8 undefined on input line 304.
+
+
+
+LaTeX Warning: Reference `fig:lowstaff' on page 8 undefined on input line 304.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 303--305
+[][]
+ []
+
 [8pdfTeX warning (ext4): destination with the same identifier (name{table.4}) h
 as been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
-l.306 
+l.305 
       pdfTeX warning (ext4): destination with the same identifier (name{table.5
 }) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
-l.306 
+l.305 
       pdfTeX warning (ext4): destination with the same identifier (name{table.6
 }) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
-l.306 
+l.305 
       ]
 <The-Effects-of-Opening-a-Restaurant-in-a-Pandemic_Temp_files/figure-latex/lows
-taff-1.pdf, id=170, 469.755pt x 325.215pt>
+taff-1.pdf, id=163, 469.755pt x 325.215pt>
 File: The-Effects-of-Opening-a-Restaurant-in-a-Pandemic_Temp_files/figure-latex
 /lowstaff-1.pdf Graphic file (type pdf)
 <use The-Effects-of-Opening-a-Restaurant-in-a-Pandemic_Temp_files/figure-latex/
 lowstaff-1.pdf>
 Package pdftex.def Info: The-Effects-of-Opening-a-Restaurant-in-a-Pandemic_Temp
-_files/figure-latex/lowstaff-1.pdf  used on input line 309.
+_files/figure-latex/lowstaff-1.pdf  used on input line 306.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-[9pdfTeX warning (ext4): destination with the same identifier (name{figure.2}) 
-has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  
-l.312 
-       <./The-Effects-of-Opening-a-Restaurant-in-a-Pandemic_Temp_files/figure-l
-atex/lowincome-1.pdf>]
-<The-Effects-of-Opening-a-Restaurant-in-a-Pandemic_Temp_files/figure-latex/midi
-ncome-1.pdf, id=186, 469.755pt x 325.215pt>
+
+LaTeX Warning: Reference `fig:lowstaff' on page 9 undefined on input line 307.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 306--308
+[][]
+ []
+
+[9 <./The-Effects-of-Opening-a-Restaurant-in-a-Pandemic_Temp_files/figure-latex
+/lowprofit-1.pdf>]
+
+LaTeX Warning: Reference `fig:midprofit' on page 10 undefined on input line 331
+.
+
+<The-Effects-of-Opening-a-Restaurant-in-a-Pandemic_Temp_files/figure-latex/midp
+rofit-1.pdf, id=178, 469.755pt x 325.215pt>
 File: The-Effects-of-Opening-a-Restaurant-in-a-Pandemic_Temp_files/figure-latex
-/midincome-1.pdf Graphic file (type pdf)
+/midprofit-1.pdf Graphic file (type pdf)
 <use The-Effects-of-Opening-a-Restaurant-in-a-Pandemic_Temp_files/figure-latex/
-midincome-1.pdf>
+midprofit-1.pdf>
 Package pdftex.def Info: The-Effects-of-Opening-a-Restaurant-in-a-Pandemic_Temp
-_files/figure-latex/midincome-1.pdf  used on input line 337.
+_files/figure-latex/midprofit-1.pdf  used on input line 333.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
+
+LaTeX Warning: Reference `fig:midprofit' on page 10 undefined on input line 334
+.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 333--335
+[][]
+ []
+
 [10pdfTeX warning (ext4): destination with the same identifier (name{table.7}) 
 has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
-l.340 
-      pdfTeX warning (ext4): destination with the same identifier (name{figure.
-3}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  
-l.340 
+l.335 
        <./The-Effects-of-Opening-a-Restaurant-in-a-Pandemic_Temp_files/figure-l
 atex/lowstaff-1.pdf>]
 <The-Effects-of-Opening-a-Restaurant-in-a-Pandemic_Temp_files/figure-latex/mids
-taff-1.pdf, id=203, 469.755pt x 325.215pt>
+taff-1.pdf, id=194, 469.755pt x 325.215pt>
 File: The-Effects-of-Opening-a-Restaurant-in-a-Pandemic_Temp_files/figure-latex
 /midstaff-1.pdf Graphic file (type pdf)
 <use The-Effects-of-Opening-a-Restaurant-in-a-Pandemic_Temp_files/figure-latex/
 midstaff-1.pdf>
 Package pdftex.def Info: The-Effects-of-Opening-a-Restaurant-in-a-Pandemic_Temp
-_files/figure-latex/midstaff-1.pdf  used on input line 343.
+_files/figure-latex/midstaff-1.pdf  used on input line 338.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-[11pdfTeX warning (ext4): destination with the same identifier (name{figure.4})
+[11 <./The-Effects-of-Opening-a-Restaurant-in-a-Pandemic_Temp_files/figure-late
+x/midprofit-1.pdf>]
+<The-Effects-of-Opening-a-Restaurant-in-a-Pandemic_Temp_files/figure-latex/high
+profit-1.pdf, id=211, 469.755pt x 325.215pt>
+File: The-Effects-of-Opening-a-Restaurant-in-a-Pandemic_Temp_files/figure-latex
+/highprofit-1.pdf Graphic file (type pdf)
+<use The-Effects-of-Opening-a-Restaurant-in-a-Pandemic_Temp_files/figure-latex/
+highprofit-1.pdf>
+Package pdftex.def Info: The-Effects-of-Opening-a-Restaurant-in-a-Pandemic_Temp
+_files/figure-latex/highprofit-1.pdf  used on input line 370.
+(pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
+[12pdfTeX warning (ext4): destination with the same identifier (name{figure.2})
  has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
-l.346 
-       <./The-Effects-of-Opening-a-Restaurant-in-a-Pandemic_Temp_files/figure-l
-atex/midincome-1.pdf>]
-<The-Effects-of-Opening-a-Restaurant-in-a-Pandemic_Temp_files/figure-latex/high
-income-1.pdf, id=219, 469.755pt x 325.215pt>
-File: The-Effects-of-Opening-a-Restaurant-in-a-Pandemic_Temp_files/figure-latex
-/highincome-1.pdf Graphic file (type pdf)
-<use The-Effects-of-Opening-a-Restaurant-in-a-Pandemic_Temp_files/figure-latex/
-highincome-1.pdf>
-Package pdftex.def Info: The-Effects-of-Opening-a-Restaurant-in-a-Pandemic_Temp
-_files/figure-latex/highincome-1.pdf  used on input line 371.
-(pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-[12pdfTeX warning (ext4): destination with the same identifier (name{table.8}) 
-has been already used, duplicate ignored
+l.372 \end{figure}
+                  pdfTeX warning (ext4): destination with the same identifier (
+name{table.8}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
-l.374 
-      pdfTeX warning (ext4): destination with the same identifier (name{figure.
-5}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  
-l.374 
-       <./The-Effects-of-Opening-a-Restaurant-in-a-Pandemic_Temp_files/figure-l
-atex/midstaff-1.pdf>]
+l.372 \end{figure}
+                   <./The-Effects-of-Opening-a-Restaurant-in-a-Pandemic_Temp_fi
+les/figure-latex/midstaff-1.pdf>]
 <The-Effects-of-Opening-a-Restaurant-in-a-Pandemic_Temp_files/figure-latex/high
-staff-1.pdf, id=236, 469.755pt x 325.215pt>
+staff-1.pdf, id=227, 469.755pt x 325.215pt>
 File: The-Effects-of-Opening-a-Restaurant-in-a-Pandemic_Temp_files/figure-latex
 /highstaff-1.pdf Graphic file (type pdf)
 <use The-Effects-of-Opening-a-Restaurant-in-a-Pandemic_Temp_files/figure-latex/
 highstaff-1.pdf>
 Package pdftex.def Info: The-Effects-of-Opening-a-Restaurant-in-a-Pandemic_Temp
-_files/figure-latex/highstaff-1.pdf  used on input line 377.
+_files/figure-latex/highstaff-1.pdf  used on input line 378.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-[13pdfTeX warning (ext4): destination with the same identifier (name{figure.6})
+[13pdfTeX warning (ext4): destination with the same identifier (name{figure.3})
  has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
-l.380 
+l.381 
        <./The-Effects-of-Opening-a-Restaurant-in-a-Pandemic_Temp_files/figure-l
-atex/highincome-1.pdf>] [14pdfTeX warning (ext4): destination with the same ide
-ntifier (name{table.9}) has been already used, duplicate ignored
+atex/highprofit-1.pdf>] [14pdfTeX warning (ext4): destination with the same ide
+ntifier (name{figure.4}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
-l.411 
-      pdfTeX warning (ext4): destination with the same identifier (name{figure.
-7}) has been already used, duplicate ignored
+l.416 
+      pdfTeX warning (ext4): destination with the same identifier (name{table.9
+}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
-l.411 
+l.416 
        <./The-Effects-of-Opening-a-Restaurant-in-a-Pandemic_Temp_files/figure-l
 atex/highstaff-1.pdf>]
 <C:/Users/timst/OneDrive/Documents/R/INF2178H/Assignments/Assignment2/2178Paper
-2/inputs/Images/Survey_Page1A.png, id=264, 676.02562pt x 540.51938pt>
+2/inputs/Images/Survey_Page1A.png, id=259, 676.02562pt x 540.51938pt>
 File: C:/Users/timst/OneDrive/Documents/R/INF2178H/Assignments/Assignment2/2178
 Paper2/inputs/Images/Survey_Page1A.png Graphic file (type png)
 <use C:/Users/timst/OneDrive/Documents/R/INF2178H/Assignments/Assignment2/2178P
 aper2/inputs/Images/Survey_Page1A.png>
 Package pdftex.def Info: C:/Users/timst/OneDrive/Documents/R/INF2178H/Assignmen
 ts/Assignment2/2178Paper2/inputs/Images/Survey_Page1A.png  used on input line 4
-38.
+43.
 (pdftex.def)             Requested size: 446.28143pt x 356.82635pt.
 [15]
 <C:/Users/timst/OneDrive/Documents/R/INF2178H/Assignments/Assignment2/2178Paper
-2/inputs/Images/Survey_Page1B.png, id=274, 830.10126pt x 304.13625pt>
+2/inputs/Images/Survey_Page1B.png, id=269, 830.10126pt x 304.13625pt>
 File: C:/Users/timst/OneDrive/Documents/R/INF2178H/Assignments/Assignment2/2178
 Paper2/inputs/Images/Survey_Page1B.png Graphic file (type png)
 <use C:/Users/timst/OneDrive/Documents/R/INF2178H/Assignments/Assignment2/2178P
 aper2/inputs/Images/Survey_Page1B.png>
 Package pdftex.def Info: C:/Users/timst/OneDrive/Documents/R/INF2178H/Assignmen
 ts/Assignment2/2178Paper2/inputs/Images/Survey_Page1B.png  used on input line 4
-40.
+45.
 (pdftex.def)             Requested size: 446.2594pt x 163.50252pt.
 <C:/Users/timst/OneDrive/Documents/R/INF2178H/Assignments/Assignment2/2178Paper
-2/inputs/Images/Survey_Page2A.png, id=275, 641.39626pt x 513.92pt>
+2/inputs/Images/Survey_Page2A.png, id=270, 641.39626pt x 513.92pt>
 File: C:/Users/timst/OneDrive/Documents/R/INF2178H/Assignments/Assignment2/2178
 Paper2/inputs/Images/Survey_Page2A.png Graphic file (type png)
 <use C:/Users/timst/OneDrive/Documents/R/INF2178H/Assignments/Assignment2/2178P
 aper2/inputs/Images/Survey_Page2A.png>
 Package pdftex.def Info: C:/Users/timst/OneDrive/Documents/R/INF2178H/Assignmen
 ts/Assignment2/2178Paper2/inputs/Images/Survey_Page2A.png  used on input line 4
-42.
+47.
 (pdftex.def)             Requested size: 446.27313pt x 357.57721pt.
 [16 <c:/Users/timst/OneDrive/Documents/R/INF2178H/Assignments/Assignment2/2178P
 aper2/inputs/images/Survey_Page1A.png> <c:/Users/timst/OneDrive/Documents/R/INF
 2178H/Assignments/Assignment2/2178Paper2/inputs/images/Survey_Page1B.png>]
 <C:/Users/timst/OneDrive/Documents/R/INF2178H/Assignments/Assignment2/2178Paper
-2/inputs/Images/Survey_Page2B.png, id=282, 633.36626pt x 506.89375pt>
+2/inputs/Images/Survey_Page2B.png, id=277, 633.36626pt x 506.89375pt>
 File: C:/Users/timst/OneDrive/Documents/R/INF2178H/Assignments/Assignment2/2178
 Paper2/inputs/Images/Survey_Page2B.png Graphic file (type png)
 <use C:/Users/timst/OneDrive/Documents/R/INF2178H/Assignments/Assignment2/2178P
 aper2/inputs/Images/Survey_Page2B.png>
 Package pdftex.def Info: C:/Users/timst/OneDrive/Documents/R/INF2178H/Assignmen
 ts/Assignment2/2178Paper2/inputs/Images/Survey_Page2B.png  used on input line 4
-44.
+49.
 (pdftex.def)             Requested size: 446.272pt x 357.15904pt.
 [17 <c:/Users/timst/OneDrive/Documents/R/INF2178H/Assignments/Assignment2/2178P
 aper2/inputs/images/Survey_Page2A.png>]
 <C:/Users/timst/OneDrive/Documents/R/INF2178H/Assignments/Assignment2/2178Paper
-2/inputs/Images/Survey_Page2C.png, id=288, 569.12625pt x 222.33063pt>
+2/inputs/Images/Survey_Page2C.png, id=283, 569.12625pt x 222.33063pt>
 File: C:/Users/timst/OneDrive/Documents/R/INF2178H/Assignments/Assignment2/2178
 Paper2/inputs/Images/Survey_Page2C.png Graphic file (type png)
 <use C:/Users/timst/OneDrive/Documents/R/INF2178H/Assignments/Assignment2/2178P
 aper2/inputs/Images/Survey_Page2C.png>
 Package pdftex.def Info: C:/Users/timst/OneDrive/Documents/R/INF2178H/Assignmen
 ts/Assignment2/2178Paper2/inputs/Images/Survey_Page2C.png  used on input line 4
-46.
+51.
 (pdftex.def)             Requested size: 446.28746pt x 174.34332pt.
 <C:/Users/timst/OneDrive/Documents/R/INF2178H/Assignments/Assignment2/2178Paper
-2/inputs/Images/Survey_Page3A.png, id=289, 541.02126pt x 433.62pt>
+2/inputs/Images/Survey_Page3A.png, id=284, 541.02126pt x 433.62pt>
 File: C:/Users/timst/OneDrive/Documents/R/INF2178H/Assignments/Assignment2/2178
 Paper2/inputs/Images/Survey_Page3A.png Graphic file (type png)
 <use C:/Users/timst/OneDrive/Documents/R/INF2178H/Assignments/Assignment2/2178P
 aper2/inputs/Images/Survey_Page3A.png>
 Package pdftex.def Info: C:/Users/timst/OneDrive/Documents/R/INF2178H/Assignmen
 ts/Assignment2/2178Paper2/inputs/Images/Survey_Page3A.png  used on input line 4
-48.
+53.
 (pdftex.def)             Requested size: 446.282pt x 357.68799pt.
 [18 <c:/Users/timst/OneDrive/Documents/R/INF2178H/Assignments/Assignment2/2178P
 aper2/inputs/images/Survey_Page2B.png> <c:/Users/timst/OneDrive/Documents/R/INF
 2178H/Assignments/Assignment2/2178Paper2/inputs/images/Survey_Page2C.png>]
 <C:/Users/timst/OneDrive/Documents/R/INF2178H/Assignments/Assignment2/2178Paper
-2/inputs/Images/Survey_Page3B.png, id=296, 649.42625pt x 519.44063pt>
+2/inputs/Images/Survey_Page3B.png, id=291, 649.42625pt x 519.44063pt>
 File: C:/Users/timst/OneDrive/Documents/R/INF2178H/Assignments/Assignment2/2178
 Paper2/inputs/Images/Survey_Page3B.png Graphic file (type png)
 <use C:/Users/timst/OneDrive/Documents/R/INF2178H/Assignments/Assignment2/2178P
 aper2/inputs/Images/Survey_Page3B.png>
 Package pdftex.def Info: C:/Users/timst/OneDrive/Documents/R/INF2178H/Assignmen
 ts/Assignment2/2178Paper2/inputs/Images/Survey_Page3B.png  used on input line 4
-50.
+55.
 (pdftex.def)             Requested size: 446.27135pt x 356.9481pt.
 [19 <c:/Users/timst/OneDrive/Documents/R/INF2178H/Assignments/Assignment2/2178P
 aper2/inputs/images/Survey_Page3A.png>]
 <C:/Users/timst/OneDrive/Documents/R/INF2178H/Assignments/Assignment2/2178Paper
-2/inputs/Images/Survey_Page3C.png, id=303, 580.1675pt x 464.23438pt>
+2/inputs/Images/Survey_Page3C.png, id=298, 580.1675pt x 464.23438pt>
 File: C:/Users/timst/OneDrive/Documents/R/INF2178H/Assignments/Assignment2/2178
 Paper2/inputs/Images/Survey_Page3C.png Graphic file (type png)
 <use C:/Users/timst/OneDrive/Documents/R/INF2178H/Assignments/Assignment2/2178P
 aper2/inputs/Images/Survey_Page3C.png>
 Package pdftex.def Info: C:/Users/timst/OneDrive/Documents/R/INF2178H/Assignmen
 ts/Assignment2/2178Paper2/inputs/Images/Survey_Page3C.png  used on input line 4
-52.
+57.
 (pdftex.def)             Requested size: 446.27pt x 357.09322pt.
 [20 <c:/Users/timst/OneDrive/Documents/R/INF2178H/Assignments/Assignment2/2178P
 aper2/inputs/images/Survey_Page3B.png>]
 <C:/Users/timst/OneDrive/Documents/R/INF2178H/Assignments/Assignment2/2178Paper
-2/inputs/Images/Survey_Page3D.png, id=309, 586.19pt x 468.75125pt>
+2/inputs/Images/Survey_Page3D.png, id=304, 586.19pt x 468.75125pt>
 File: C:/Users/timst/OneDrive/Documents/R/INF2178H/Assignments/Assignment2/2178
 Paper2/inputs/Images/Survey_Page3D.png Graphic file (type png)
 <use C:/Users/timst/OneDrive/Documents/R/INF2178H/Assignments/Assignment2/2178P
 aper2/inputs/Images/Survey_Page3D.png>
 Package pdftex.def Info: C:/Users/timst/OneDrive/Documents/R/INF2178H/Assignmen
 ts/Assignment2/2178Paper2/inputs/Images/Survey_Page3D.png  used on input line 4
-54.
+59.
 (pdftex.def)             Requested size: 446.26038pt x 356.85545pt.
 [21 <c:/Users/timst/OneDrive/Documents/R/INF2178H/Assignments/Assignment2/2178P
 aper2/inputs/images/Survey_Page3C.png>]
 <C:/Users/timst/OneDrive/Documents/R/INF2178H/Assignments/Assignment2/2178Paper
-2/inputs/Images/Survey_Page3E.png, id=315, 652.4375pt x 521.44812pt>
+2/inputs/Images/Survey_Page3E.png, id=310, 652.4375pt x 521.44812pt>
 File: C:/Users/timst/OneDrive/Documents/R/INF2178H/Assignments/Assignment2/2178
 Paper2/inputs/Images/Survey_Page3E.png Graphic file (type png)
 <use C:/Users/timst/OneDrive/Documents/R/INF2178H/Assignments/Assignment2/2178P
 aper2/inputs/Images/Survey_Page3E.png>
 Package pdftex.def Info: C:/Users/timst/OneDrive/Documents/R/INF2178H/Assignmen
 ts/Assignment2/2178Paper2/inputs/Images/Survey_Page3E.png  used on input line 4
-56.
+61.
 (pdftex.def)             Requested size: 446.27985pt x 356.68059pt.
 [22 <c:/Users/timst/OneDrive/Documents/R/INF2178H/Assignments/Assignment2/2178P
 aper2/inputs/images/Survey_Page3D.png>]
 <C:/Users/timst/OneDrive/Documents/R/INF2178H/Assignments/Assignment2/2178Paper
-2/inputs/Images/Survey_Page3F.png, id=321, 667.49374pt x 253.44687pt>
+2/inputs/Images/Survey_Page3F.png, id=316, 667.49374pt x 253.44687pt>
 File: C:/Users/timst/OneDrive/Documents/R/INF2178H/Assignments/Assignment2/2178
 Paper2/inputs/Images/Survey_Page3F.png Graphic file (type png)
 <use C:/Users/timst/OneDrive/Documents/R/INF2178H/Assignments/Assignment2/2178P
 aper2/inputs/Images/Survey_Page3F.png>
 Package pdftex.def Info: C:/Users/timst/OneDrive/Documents/R/INF2178H/Assignmen
 ts/Assignment2/2178Paper2/inputs/Images/Survey_Page3F.png  used on input line 4
-58.
+63.
 (pdftex.def)             Requested size: 446.27129pt x 169.44885pt.
 <C:/Users/timst/OneDrive/Documents/R/INF2178H/Assignments/Assignment2/2178Paper
-2/inputs/Images/Survey_Page4A.png, id=322, 651.43375pt x 521.44812pt>
+2/inputs/Images/Survey_Page4A.png, id=317, 651.43375pt x 521.44812pt>
 File: C:/Users/timst/OneDrive/Documents/R/INF2178H/Assignments/Assignment2/2178
 Paper2/inputs/Images/Survey_Page4A.png Graphic file (type png)
 <use C:/Users/timst/OneDrive/Documents/R/INF2178H/Assignments/Assignment2/2178P
 aper2/inputs/Images/Survey_Page4A.png>
 Package pdftex.def Info: C:/Users/timst/OneDrive/Documents/R/INF2178H/Assignmen
 ts/Assignment2/2178Paper2/inputs/Images/Survey_Page4A.png  used on input line 4
-60.
+65.
 (pdftex.def)             Requested size: 446.27911pt x 357.2296pt.
 [23 <c:/Users/timst/OneDrive/Documents/R/INF2178H/Assignments/Assignment2/2178P
 aper2/inputs/images/Survey_Page3E.png> <c:/Users/timst/OneDrive/Documents/R/INF
 2178H/Assignments/Assignment2/2178Paper2/inputs/images/Survey_Page3F.png>]
 <C:/Users/timst/OneDrive/Documents/R/INF2178H/Assignments/Assignment2/2178Paper
-2/inputs/Images/Survey_Page4B.png, id=329, 590.205pt x 472.26437pt>
+2/inputs/Images/Survey_Page4B.png, id=324, 590.205pt x 472.26437pt>
 File: C:/Users/timst/OneDrive/Documents/R/INF2178H/Assignments/Assignment2/2178
 Paper2/inputs/Images/Survey_Page4B.png Graphic file (type png)
 <use C:/Users/timst/OneDrive/Documents/R/INF2178H/Assignments/Assignment2/2178P
 aper2/inputs/Images/Survey_Page4B.png>
 Package pdftex.def Info: C:/Users/timst/OneDrive/Documents/R/INF2178H/Assignmen
 ts/Assignment2/2178Paper2/inputs/Images/Survey_Page4B.png  used on input line 4
-62.
+67.
 (pdftex.def)             Requested size: 446.27298pt x 357.09428pt.
 [24 <c:/Users/timst/OneDrive/Documents/R/INF2178H/Assignments/Assignment2/2178P
 aper2/inputs/images/Survey_Page4A.png>]
 <C:/Users/timst/OneDrive/Documents/R/INF2178H/Assignments/Assignment2/2178Paper
-2/inputs/Images/Survey_Page4C.png, id=335, 591.20876pt x 473.77pt>
+2/inputs/Images/Survey_Page4C.png, id=330, 591.20876pt x 473.77pt>
 File: C:/Users/timst/OneDrive/Documents/R/INF2178H/Assignments/Assignment2/2178
 Paper2/inputs/Images/Survey_Page4C.png Graphic file (type png)
 <use C:/Users/timst/OneDrive/Documents/R/INF2178H/Assignments/Assignment2/2178P
 aper2/inputs/Images/Survey_Page4C.png>
 Package pdftex.def Info: C:/Users/timst/OneDrive/Documents/R/INF2178H/Assignmen
 ts/Assignment2/2178Paper2/inputs/Images/Survey_Page4C.png  used on input line 4
-64.
+69.
 (pdftex.def)             Requested size: 446.27419pt x 357.62549pt.
 [25 <c:/Users/timst/OneDrive/Documents/R/INF2178H/Assignments/Assignment2/2178P
 aper2/inputs/images/Survey_Page4B.png>] [26 <c:/Users/timst/OneDrive/Documents/
@@ -1115,13 +1138,13 @@ demic_Temp.out' has not changed.
 (rerunfilecheck)             Checksum: A0DF41898F325D923286067DCFE1B0D0;1576.
  ) 
 Here is how much of TeX's memory you used:
- 14461 strings out of 481252
- 229065 string characters out of 5914123
- 556519 words of memory out of 5000000
- 30818 multiletter control sequences out of 15000+600000
- 482139 words of font info for 166 fonts, out of 8000000 for 9000
+ 14456 strings out of 481252
+ 229008 string characters out of 5914123
+ 556440 words of memory out of 5000000
+ 30819 multiletter control sequences out of 15000+600000
+ 481973 words of font info for 164 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 71i,9n,74p,1679b,442s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 71i,9n,74p,1745b,442s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/Users/timst/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.e
 nc}{c:/Users/timst/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1
 .enc}<c:/Users/timst/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/l
@@ -1138,10 +1161,10 @@ TeX/texmf-dist/fonts/type1/public/lm/lmr9.pfb><c:/Users/timst/AppData/Roaming/T
 inyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb><c:/Users/timst/AppData/Roam
 ing/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt10.pfb>
 Output written on The-Effects-of-Opening-a-Restaurant-in-a-Pandemic_Temp.pdf (2
-8 pages, 2187903 bytes).
+8 pages, 2185009 bytes).
 PDF statistics:
- 485 PDF objects out of 1000 (max. 8388607)
- 395 compressed objects within 4 object streams
- 99 named destinations out of 1000 (max. 500000)
+ 482 PDF objects out of 1000 (max. 8388607)
+ 392 compressed objects within 4 object streams
+ 97 named destinations out of 1000 (max. 500000)
  45271 words of extra memory for PDF output out of 51595 (max. 10000000)
 
