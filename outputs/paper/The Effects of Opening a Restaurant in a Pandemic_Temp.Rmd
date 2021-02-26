@@ -7,6 +7,7 @@ header-includes:
   - \floatplacement{figure}{H}  #make every figure with caption = h, this was the fix
 output: 
   bookdown::pdf_document2:
+    fig_caption: yes
 thanks: 'Code and data are available at: https://github.com/wenmade/2178Paper2.git.'
 abstract: In May and June of 2021, a random selection of Toronto restaurants were selected to open during the COVID-19 pandemic. ***this needs more*** \newpage
 bibliography: restaurant_references.bib
@@ -417,10 +418,10 @@ kbl(average_table, booktabs = T, col.names = c("Income 2019 ($)", "Income 2020 (
 
 Table \@ref(tab:2020dec) shows the devastating effects of the lockdown on the restaurant industry. For restaurants whose income was less than the mean, these types of losses could quickly result in closure if intervention of subsidies are not put in place. Figure 1 further represents this income reduction. 
 
-```{r figurepls, fig.cap="Graph of average income and profit for all restaurants in the survey over a two month period between May and June", echo=FALSE, message=FALSE, warning=FALSE}
+```{r figsetupprofitandincome, fig.cap="Graph of average income and profit for all restaurants in the survey over a two month period between May and June", echo=FALSE, message=FALSE, warning=FALSE}
 
 #remove scientific notation
-options(scipen = 999) 
+options(scipen = 999)
 
 #Profit for all population graph
 all_pop_plot_profit <- data.frame(Profit_05_062019 = all_pop_resturants$Profit_052019_062019, 
@@ -458,16 +459,20 @@ ggplot(all_pop_plot_income, aes(x = value, fill = key)) +
   labs(x = "Income ($)", 
          y = "Density of Restaurants")
 
-  
+```
+
+```{r incproffig, fig.cap="Graph of average income and profit for all restaurants in the survey over a two month period between May and June", echo=FALSE, message=FALSE, warning=FALSE}
 income_and_profit_graphs <-
   grid.arrange(all_income_graph, all_profit_graph,
                ncol = 1,
                top = "Comparing Income and Profit Between years 2019 and 2020
                ")
 ```
+
+
 &nbsp;
 
-Figure \@ref(fig:figurepls) shows that businesses in the months of May and June 2019 (red) saw a distributed income from \$100,000 to \$800,000. In 2020 (blue), these numbers were drastically different. Nearly all restaurants earned less than \$200,000, with most clustering between \$0 and \$100,000. The profit graph shows the same trend. In May and June 2019, restaurants were profiting somewhere between \$5,000 and \$30,000. However, in the same months of 2020, they were profiting close to or less than \$1000 and very few earning more than \$5000. COVID-19 hit the restaurant industry hard. 
+Figure \@ref(fig:incproffig) shows that businesses in the months of May and June 2019 (red) saw a distributed income from \$100,000 to \$800,000. In 2020 (blue), these numbers were drastically different. Nearly all restaurants earned less than \$200,000, with most clustering between \$0 and \$100,000. The profit graph shows the same trend. In May and June 2019, restaurants were profiting somewhere between \$5,000 and \$30,000. However, in the same months of 2020, they were profiting close to or less than \$1000 and very few earning more than \$5000. COVID-19 hit the restaurant industry hard. 
 
 &nbsp; 
 
@@ -660,7 +665,7 @@ write_csv(control_high_end_rest, "../../dataset/sample_high_end_resturants.csv")
 
 Within the low-end restaurants, reopening for a two month period showed significant improvements. Figure \@ref(fig:lowprofit) shows the effect of reopening on these businesses. 
 
-```{r lowprofit, fig.cap="Profit of control and treatment groups of low-end restaurants between May and June of 2021", echo=FALSE, message=FALSE, warning=FALSE}
+```{r lowprofitsetup, fig.cap="Profit of control and treatment groups of low-end restaurants between May and June of 2021", echo=FALSE, message=FALSE, warning=FALSE}
 
 
 #read in the results from the local .csv
@@ -725,15 +730,21 @@ profit_sample_low_end <-
   labs(x = "Profit",
        y = "Density of Restaurants")
 
+```
+
+```{r lowprofit, fig.cap="Profit of control and treatment groups of low-end restaurants between May and June of 2021", echo=FALSE, message=FALSE, warning=FALSE}
+
 grid.arrange(profit_control_low_end, profit_sample_low_end, 
              ncol=2, 
              top = "Profit Comparision Between Low-End Resturants in Control and Treatment Group
              ")
 
 ```
+
+
 Restaurants in the treatment group earned roughly 188% more than the control (Figure \@ref(fig:lowprofit)), proving that re-opening was extremely beneficial. Employment had an even more significant trend, showed in Figure \@ref(fig:lowstaff).
 
-```{r lowstaff, fig.cap="Number of staff of control and treatment groups of low-end restaurants between May and June of 2021", echo=FALSE, message=FALSE, warning=FALSE}
+```{r lowstaffsetup, fig.cap="Number of staff of control and treatment groups of low-end restaurants between May and June of 2021", echo=FALSE, message=FALSE, warning=FALSE}
 
 #Plot low end control restaurants - staff
 
@@ -774,6 +785,9 @@ sample_low_end_staff <-
   labs(x = "Number of Staff",
        y = "Density of Restaurants")
 
+```
+
+```{r lowstaff, fig.cap="Number of staff of control and treatment groups of low-end restaurants between May and June of 2021", echo=FALSE, message=FALSE, warning=FALSE}
 
 grid.arrange(control_low_end_staff, sample_low_end_staff, 
              ncol=2, 
@@ -781,6 +795,8 @@ grid.arrange(control_low_end_staff, sample_low_end_staff,
              ")
 
 ```
+
+
 Employment showed an almost 247% increase in staff (Figure \@ref(fig:lowstaff)). Employment was almost back to 2019 levels when restaurant re-opened. However, in the end, treated restaurants were torn on the helpfulness scale, shown in Table \@ref(tab:lowscore).  
 
 ```{r lowscore, fig.cap="Helpfulness score of low-end restaurants based on a 5-point scale", echo=FALSE, message=FALSE, warning=FALSE}
@@ -790,7 +806,6 @@ kbl(tabyl(sample_low_end_rest$Helpfulness, sort = TRUE), booktabs = T, col.names
   kableExtra::kable_styling(latex_options = "HOLD_position") %>%
   kable_styling(latex_options = c("striped", "scale-down"))
 
-
 ```
 Table \@ref(tab:lowscore) shows an average response of 3.36. Although 34% of respondents scored a five, 21% still scored a one. This could be due to the effort that it takes to prepare a restaurant to open for a two month period, especially in the wake of COVID-19. The amount of personal protective equipment (PPE), training and sanitizing equipment needed could outweigh the benefits of opening.
 
@@ -799,7 +814,7 @@ Table \@ref(tab:lowscore) shows an average response of 3.36. Although 34% of res
 
 Middle-end restaurants experienced fairly similar profit outcomes compared to low-end restaurants, as seen in Figure \@ref(fig:midprofit). 
 
-```{r midprofit, fig.cap="Profit of control and treatment groups of middle-end restaurants between May and June of 2021", echo=FALSE, message=FALSE, warning=FALSE}
+```{r midprofitsetup, fig.cap="Profit of control and treatment groups of middle-end restaurants between May and June of 2021", echo=FALSE, message=FALSE, warning=FALSE}
 
 #Plot average control resturants - profit
 
@@ -839,15 +854,21 @@ profit_sample_average <-
   labs(x = "Profit",
        y = "Density of Restaurants")
 
+```
+
+```{r midprofit, fig.cap="Profit of control and treatment groups of middle-end restaurants between May and June of 2021", echo=FALSE, message=FALSE, warning=FALSE}
+
 grid.arrange(profit_control_average, profit_sample_average, 
              ncol=2, 
              top = "Profit Comparison Between Middle-End Resturants in Control and Treatment Group
              ")
 
 ```
+
+
 Restaurants in the treatment group saw a 179% increase in profit in contrast to the control group (Figure \@ref(fig:midprofit)). This was very similar to the low-end group. Employment trends are shown in Figure \@ref(fig:midstaff). 
 
-```{r midstaff, fig.cap="Number of staff of control and treatment groups of middle-end restaurants between May and June of 2021", echo=FALSE, message=FALSE, warning=FALSE}
+```{r midstaffsetup, fig.cap="Number of staff of control and treatment groups of middle-end restaurants between May and June of 2021", echo=FALSE, message=FALSE, warning=FALSE}
 
 #Plot average control restaurants - staff
 
@@ -888,14 +909,17 @@ sample_average_staff <-
   labs(x = "Number of Staff",
        y = "Density of Restaurants")
 
+```
+
+```{r midstaff, fig.cap="Number of staff of control and treatment groups of middle-end restaurants between May and June of 2021", echo=FALSE, message=FALSE, warning=FALSE}
 
 grid.arrange(control_average_staff, sample_average_staff, 
              ncol=2, 
              top = "Staff Comparision Between Middle-End Resturants in Control and Treatment Group
              ")
 
-
 ```
+
 
 For restaurants in the mid-range of price-point, employment experienced a 254% increase in staff, which are similar numbers compared to low-end restaurants. Again, staffing levels were almost back to 2019 levels. Table \@ref(tab:midscore) shows reported helpfulness scores.  
 
@@ -916,7 +940,7 @@ With the improvement in profit and staffing, 38% of the restaurants categorized 
 
 Finally, high-end restaurants experienced the smallest improvement in earnings, although by a fraction of a difference. Results are shown in Figure \@ref(fig:highprofit).
 
-```{r highprofit, fig.cap="Profit of control and treatment groups of high-end restaurants between May and June of 2021", echo=FALSE, message=FALSE, warning=FALSE}
+```{r highprofitsetup, fig.cap="Profit of control and treatment groups of high-end restaurants between May and June of 2021", echo=FALSE, message=FALSE, warning=FALSE}
 
 #Plot high end control restaurants - profit
 
@@ -954,6 +978,9 @@ profit_sample_high_end <-ggplot(sample_resturants_high_plot_profit, aes(x = valu
   labs(x = "Profit",
        y = "Density of Restaurants")
 
+```
+
+```{r highprofit, fig.cap="Profit of control and treatment groups of high-end restaurants between May and June of 2021", echo=FALSE, message=FALSE, warning=FALSE}
 
 grid.arrange(profit_control_high_end, 
              profit_sample_high_end, ncol=2, 
@@ -962,10 +989,11 @@ grid.arrange(profit_control_high_end,
 
 ```
 
+
 The treatment group earned 178% more than the control group between May and June. The nature of high-end restaurants offering primarily dine-in service would assume that they would see the greatest positive effects of the reopening, yet they did not see as substantial of an increase as other price brackets. This could be due to lingering hesitance surrounding COVID-19, or the number of people who experienced financial losses at this time. This increase in profit could also be a factor in the increase in staffing - see Figure \@ref(fig:highstaff). 
 
 
-```{r highstaff, fig.cap="Number of staff of control and treatment groups of high-end restaurants between May and June of 2021", echo=FALSE, message=FALSE, warning=FALSE}
+```{r highstaffsetup, fig.cap="Number of staff of control and treatment groups of high-end restaurants between May and June of 2021", echo=FALSE, message=FALSE, warning=FALSE}
 
 #Plot high end control resturants - staff
 
@@ -1007,13 +1035,17 @@ sample_high_end_staff <-
   labs(x = "Number of Staff",
        y = "Density of Restaurants")
         
+```
+
+```{r highstaff, fig.cap="Number of staff of control and treatment groups of high-end restaurants between May and June of 2021", echo=FALSE, message=FALSE, warning=FALSE}
+
 grid.arrange(control_high_end_staff, sample_high_end_staff, 
              ncol=2, 
              top = "Staff Comparision Between High-End Resturants in Treatment and Control Group
              ")
 
-
 ```
+
 
 High-end restaurants saw a 251% increase in staff. Expectedly, high-end restaurants saw the lowest positive response to the reopening - shown in Table \@ref(tab:highscore). 
 
