@@ -20,8 +20,8 @@ Folder structure:
 Dataset:  
 All the imported and exported datasets used in this research  
 Inputs:  
-Include images and literature used in this research
+Include images and literature used in this research  
 Outputs:  
-Inlucde graphs and final report of this research
+Inlucde graphs and final report of this research  
 Scripts:  
-Test and trails to complete this research
+Test and trails to complete this research  
