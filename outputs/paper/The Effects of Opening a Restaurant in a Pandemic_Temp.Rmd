@@ -50,13 +50,7 @@ At the beginning of the pandemic, nearly a sixth of all Canadians applied for em
 
 &nbsp;
 
-In an effort to avoid further devastation to the restaurant community, Petit Poll has collaborated with the Ontario Government to examine the effects of COVID-19 on restaurants in Toronto and understand what provisions can be made. In this study, we reopened randomly selected restaurants in the Greater Toronto Area (GTA). The segment included restaurants of varying price points and those who had previously offered dine-in services. We then released a survey and compared the results to restaurants who did not have the opportunity to open and instead, remained closed. All restaurants were able to continue curb-side pickup and delivery services.
-
-&nbsp;
-
-This paper will first explore….
-
-
+In an effort to avoid further devastation to the restaurant community, Petit Poll has collaborated with the Ontario Government to examine the effects of COVID-19 on restaurants in Toronto and understand what provisions can be made. This paper will first explore the effects of COVID-19 on the restaurant industry from 2019-2020 using Dinesafe data from the City of Toronto. We will then continue to investigate specific findings from the survey by comparing data from the control and treatment groups. We will finally end on a discussion about the greater implications of our study, limitations and possible expansions. 
 
 
 # Data 
@@ -375,7 +369,7 @@ The Dinesafe dataset was published by Toronto Public Health. Its main purpose is
 
 &nbsp;
 
-For the purposes of this study, we kept information about the business’ name, location, and type. Location included street address, latitude, and longitude. Information about inspections was removed from the dataset, as it fell outside the scope of this analysis. There were many variables from the survey that were added to the dataset. First, the restaurant ID was added, starting at 1 and increasing incrementally. The rest of the variables were randomly generating in R [@R]. Those variables were: Phone number 1, phone number 2, email, website, number of years in operation, franchise (y/n), own or lease, number of employees before the first lockdown, number of employees at the end of the first lockdown, number of employees during re-opening, the total number of weekly hours the restaurant was open before the lockdown, weekly hours during the lockdown, weekly hours during the temporary re-opening, delivery (y/n), curbside pickup (y/n), dine-in service (y/n), patio service (y/n), type of cuisine, serves alcohol (y/n), target pricepoint (low, average, high), income and profit for the months of May and June in 2019, 2020, 2021 (each with their own column), was the restaurant selected to re-open (y/n), and finally, helpfulness of the re-opening on a scale of 1 to 5. 
+For the purposes of this study, we kept information about the business’ name, location, and type. Location included street address, latitude, and longitude. Information about inspections was removed from the dataset, as it fell outside the scope of this analysis. There were many variables from the survey that were added to the dataset. First, the restaurant ID was added, starting at 1 and increasing incrementally. The rest of the variables were randomly generating in `R` [@R]. Those variables were: Phone number 1, phone number 2, email, website, number of years in operation, franchise (y/n), own or lease, number of employees before the first lockdown, number of employees at the end of the first lockdown, number of employees during re-opening, the total number of weekly hours the restaurant was open before the lockdown, weekly hours during the lockdown, weekly hours during the temporary re-opening, delivery (y/n), curbside pickup (y/n), dine-in service (y/n), patio service (y/n), type of cuisine, serves alcohol (y/n), target pricepoint (low, average, high), income and profit for the months of May and June in 2019, 2020, 2021 (each with their own column), was the restaurant selected to re-open (y/n), and finally, helpfulness of the re-opening on a scale of 1 to 5. 
 
 &nbsp; 
 
