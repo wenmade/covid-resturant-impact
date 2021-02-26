@@ -130,6 +130,8 @@ ggplot(plot_income, aes(x = value, fill = key)) +
   geom_density(kernel = "gaussian", alpha = 0.2)
 
 ```
+
+
 ```{r wersdf, echo=FALSE}
 paste("Min 2019:", min(all_resturants$Income_052019_062019))
 paste("Mean 2019:", mean(all_resturants$Income_052019_062019))

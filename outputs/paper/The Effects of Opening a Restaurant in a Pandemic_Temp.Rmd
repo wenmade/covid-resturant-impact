@@ -1,12 +1,14 @@
 ---
-title: |
-  \vspace{5cm} \LARGE "The Effects of Opening a Restaurant During a Pandemic"
+title: "The Effects of Opening a Restaurant During a Pandemic"
 author: "Wen Ma, Reem Alasadi,  Rachael Lam, Tim Stephens"
 date: "`r format(Sys.time(), '%d %B %Y')`"
+header-includes:
+  - \usepackage{float}
+  - \floatplacement{figure}{H}  #make every figure with caption = h, this was the fix
 output: 
   bookdown::pdf_document2:
 thanks: 'Code and data are available at: https://github.com/wenmade/2178Paper2.git.'
-abstract: In May and June of 2021, a random selection of Toronto restaurants were selected to open during the COVID-19 pandemic.\newpage
+abstract: In May and June of 2021, a random selection of Toronto restaurants were selected to open during the COVID-19 pandemic. ***this needs more*** \newpage
 bibliography: restaurant_references.bib
 toc: yes
 ---
@@ -15,7 +17,10 @@ knitr::opts_chunk$set(echo = TRUE)
 knitr::opts_chunk$set(message = FALSE)
 library(bookdown)
 library(knitr)
+library(tinytex)
+library(float)
 
+#install.packages("float")
 
 library(tidyverse)
 library(generator)
@@ -56,11 +61,12 @@ This paper will first explore….
 
 ```{r dataRandomization, echo=FALSE, message=FALSE, include=FALSE}
 
-#### copy over column in data ####
+#***GENERATE DATASET***#  
 
+#read in local .csv file 
 dinesafeCSV <- read.csv('../../dataset/dinesafeCSV.csv', header=TRUE, sep=",")
 
-#only keeping categories that is classified as Resturants
+#only keeping categories that are classified as Restaurants
 dinesafeCSV <- dinesafeCSV[dinesafeCSV$TYPE == 'Restaurant',]
 
 
@@ -68,80 +74,109 @@ dinesafeCSV <- dinesafeCSV[dinesafeCSV$TYPE == 'Restaurant',]
 totalobs <- nrow(dinesafeCSV)
 
 
-#### Establish some verctors ####
+#### Establish some vectors ####
 
-top_cuisine_list <- c("Chinese", "Mexican", "Italian", "Japanese", "Greek", "Korean", "Thai", "Vietnamese", "American",
-                      "Indian", "Mediterranean", "Others");
-
+top_cuisine_list <- c("Chinese", "Mexican", "Italian", "Japanese", "Greek", "Korean", "Thai", "Vietnamese", "American", "Indian", "Mediterranean", "Others");
 
 business_op_list <- c("Under 1 year", "1-5 years", "6-10 years", "11-20 years", "Over 20 years");
+
 business_owner_list <- c("Under 1 year", "1-5 years", "6-10 years", "11-20 years", "Over 20 years");
+
 price_point_target <- c("Low-end", "Average", "High-end");
+
 rating_list <- c("1", "2", "3", "4", "5");
 
-#### Raw Survey Data Radomization ####
 
+#### Raw Survey Data Randomization ####
+
+#generate the tibble
 simulated_resturants <-
   tibble(
-    ID = seq(1, totalobs), #auto generate index for each row of dataset
+    ID = seq(1, totalobs), #auto generate index for each row of the dataset
     Name = dinesafeCSV$NAME,
     Owner = r_full_names(totalobs),
     Mailing_Address = dinesafeCSV$ADDRESS, #from dinesafe
     Phone_1 = r_phone_numbers(totalobs), 
     Phone_2 = r_phone_numbers(totalobs),
     Email = r_email_addresses(totalobs),
-    Website = paste(stri_rand_strings(totalobs, sample(8:16, 1, replace=TRUE), pattern = '[a-zA-Z0-9]'), "@", 
-                    stri_rand_strings(totalobs, sample(3:5, 1, replace=TRUE), pattern = '[a-z]'), ".com"),
+    Website = paste(stri_rand_strings(totalobs, sample(8:16, 1, replace=TRUE), 
+                                      pattern = '[a-zA-Z0-9]'), "@", 
+    
+                    stri_rand_strings(totalobs, sample(3:5, 1, replace=TRUE), 
+                                      pattern = '[a-z]'), ".com"),
+    
     Business_Operation_Year = sample(x = business_op_list, 
                                      size = totalobs,
                                      replace=TRUE,
                                      prob=c(0.2, 0.35, 0.15, 0.2, 0.1)),
+    
     Franchise = sample(x = c ("Y", "N"), 
                        size=totalobs,
                        replace=TRUE,
                        prob=c(0.4, 0.6)), 
+    
     Own_Lease = sample(x=c("Own", "Lease", "Lease, want to purchase"), 
                        size=totalobs,
                        replace=TRUE,
                        prob=c(0.4, 0.5, 0.1)),
+    
     Number_Of_Staff_Before_Covid = runif(totalobs, min=5, max=70) %>% as.integer(), 
-    Number_Of_Staff_During_Covid = runif(totalobs, min=1, max=20) %>% as.integer(), #cap staff to 20 max
-    Number_Of_Staff_During_Reopen = runif(totalobs, min=1, max=70) %>% as.integer(), #cap staff to 70 max
+    
+    Number_Of_Staff_During_Covid = runif(totalobs, min=1, max=20) %>% as.integer(), #cap staff at 20 
+    
+    Number_Of_Staff_During_Reopen = runif(totalobs, min=1, max=70) %>% as.integer(), #cap staff at 70 
+    
     Total_Hours_Per_Week_Before_Covid = runif(totalobs, min=70, max=168) %>% as.integer(), 
-    Total_Hours_Per_Week_During_Covid = runif(totalobs, min=0, max=70) %>% as.integer(),  #cap operation hours to 70 max
-    Total_Hours_Per_Week_During_Reopen = runif(totalobs, min=40, max=98) %>% as.integer(), #cap oepration hours to 98 max
+    
+    Total_Hours_Per_Week_During_Covid = runif(totalobs, min=0, max=70) %>% as.integer(),  
+    #cap operation hours at 70 during COVID
+    
+    Total_Hours_Per_Week_During_Reopen = runif(totalobs, min=40, max=98) %>% as.integer(), 
+    #cap operation hours at 98 
+    
     Delivery = sample(x = c ("Y", "N"),
                       size=totalobs,
                       replace=TRUE,
                       prob=c(0.8, 0.2)),
+    
     Curbside_Pickup = sample(x = c ("Y", "N"),
                              size=totalobs,
                              replace=TRUE,
                              prob=c(0.6, 0.4)),
+    
     Dine_In_Service = sample(x = c ("Y", "N"),
                              size=totalobs,
                              replace=TRUE,
                              prob=c(0.7, 0.3)), 
+    
     Patio_Service = sample(x = c ("Y", "N"),
                            size=totalobs,
                            replace=TRUE,
                            prob=c(0.15, 0.85)), 
+    
     Cuisine = sample(x = top_cuisine_list, 
                      size = totalobs,
                      replace = TRUE,
-                     prob = c(0.1, 0.12, 0.07, 0.1, 0.15, 0.05, 0.05, 0.08, 0.05, 0.07, 0.08, 0.08)), 
+                     prob = c(0.1, 0.12, 0.07, 0.1, 0.15, 0.05, 0.05, 0.08, 
+                              0.05, 0.07, 0.08, 0.08)), 
+    
     Offer_Alcohol = sample(x = c ("Y", "N"),
                            size=totalobs,
                            replace=TRUE,
                            prob=c(0.4, 0.6)), 
+    
     Price_Point_Target = sample(x=price_point_target, 
                                 size=totalobs,
                                 replace=TRUE,
                                 prob=c(0.4, 0.4, 0.2)),
-    Income_052019_062019 = runif(totalobs, min=120000, max=800000) %>% as.integer(), #Income_052019_062019
+    
+    #generate incomes for different time periods, between different ranges
+    Income_052019_062019 = runif(totalobs, min=120000, max=800000) %>% as.integer(), 
     Income_052020_062020 = runif(totalobs, min=60000, max=160000) %>% as.integer(),
     Income_052021_062021 = runif(totalobs, min=120000, max=800000) %>% as.integer(),
-    Profit_052019_062019 = runif(totalobs, min=3600, max=24000) %>% as.integer(), #data filling using 0.03 from income
+    
+    #generate profits, based on the fact restaurant profit margins are around 3%
+    Profit_052019_062019 = runif(totalobs, min=3600, max=24000) %>% as.integer(), 
     Profit_052020_062020 = runif(totalobs, min=1800, max=4800) %>% as.integer(), 
     Profit_052021_062021 = runif(totalobs, min=3600, max=24000) %>% as.integer(),
 
@@ -162,71 +197,91 @@ simulated_resturants <-
 
 #Some data simulation to make it more realistic - all assumptions
 
-#1. If resturant is selected to reopen, we allow assumptions to have profit from may-jun 2021,
-#staff number for not reopened resturants stay the same as 2020, 1-20.
+#1. If a restaurant is selected to reopen, we allow assumptions to have profit from may-jun 2021,
+#staff number for closed restaurants stay the same as 2020, 1-20.
 indexSY <- which(simulated_resturants$Selected_Open == "Y")
 simulated_resturants$Profit_052021_062021[indexSY] <- runif(length(indexSY), min=3600, max=24000) %>% as.integer()
 indexSN <- which(simulated_resturants$Selected_Open == "N")
 simulated_resturants$Profit_052021_062021[indexSN] <- runif(length(indexSN), min=1800, max=4800) %>% as.integer()
 simulated_resturants$Number_Of_Staff_During_Reopen[indexSN] <- runif(length(indexSN), min=1, max=20) %>% as.integer()
 
-#2. If resturant is highend, we allow Income to be ---, if average, we allow income to be ---, if lowend, we allow income to be ----.
-# For every raise in pricepoint, we cutdown half for the min, and 1.5million for the max. (2019)
+#2. If the restaurant is high-end, we allow max income (for months of may and jun) 
+#to be 800,000. If average, we allow max income to be 523,333, if low-end, we 
+#allow income to be 276,667.
+
+# For every raise in price point, we cut down half for the min, and 1.5million for the max. (2019)
 indexIL <- which(simulated_resturants$Price_Point_Target == "Low-end")
 simulated_resturants$Income_052019_062019[indexIL] <- runif(length(indexIL), min=120000, max=276667) %>% as.integer()
 simulated_resturants$Income_052021_062021[indexIL] <- runif(length(indexIL), min=120000, max=276667) %>% as.integer()
+
 indexIA <- which(simulated_resturants$Price_Point_Target == "Average")
 simulated_resturants$Income_052019_062019[indexIA] <- runif(length(indexIA), min=176667, max=523333) %>% as.integer()
 simulated_resturants$Income_052021_062021[indexIA] <- runif(length(indexIA), min=176667, max=523333) %>% as.integer()
+
 indexIH <- which(simulated_resturants$Price_Point_Target == "High-end")
 simulated_resturants$Income_052019_062019[indexIH] <- runif(length(indexIH), min=403333, max=800000) %>% as.integer()
 simulated_resturants$Income_052021_062021[indexIH] <- runif(length(indexIH), min=403333, max=800000) %>% as.integer()
 
-#cap resturants incomes assuming no resturant will make more profit/income than 2019. with random of 90% - 50% income
+#For restaurants who re-opened in 2021, assume no restaurant will make more 
+#profit/income than 2019. Random chance of making 90% - 50% income.
+
 reduction2021 <- runif(totalobs, min=0.5, max=0.9)
 simulated_resturants$Income_052021_062021[indexIL] <- floor(simulated_resturants$Income_052021_062021[indexIL]*reduction2021)
+
 simulated_resturants$Income_052021_062021[indexIA] <- floor(simulated_resturants$Income_052021_062021[indexIA]*reduction2021)
+
 simulated_resturants$Income_052021_062021[indexIH] <- floor(simulated_resturants$Income_052021_062021[indexIH]*reduction2021)
 
-#2a. We assume that all resturants will receive lower income during covid, therefore, the max income from 052020 - 102020 will be based on the 052019-102019 minus a random 
-# percentage from 30% - 70% 
+#2a. We assume that all restaurants will receive lower income during covid, 
+#therefore, the max income from 052020 - 062020 will be based on the 052019-062019 
+#minus a random percentage from 30% - 70% 
 reduction <- runif(totalobs, min=0.3, max=0.7)
 calculatedmax = floor(simulated_resturants$Income_052019_062019*reduction)
 simulated_resturants$Income_052020_062020 <- runif(totalobs, min=0, max=calculatedmax) %>% as.integer()
 
-#2aa. If the resturant is not selected to open, 2021 income and profit goes down by 30% - 70% based on their 2019 data. 
+#2aa. If the restaurant is not selected to open, 2021 income and profit 
+#goes down by 30% - 70% based on their 2019 data. Essentially, their income 
+#stays the same in 2021 compared to 2020. We re-ran the randomization to
+#take into account that income will not be exactly the same over both years.
+
 # Profit is capped
 indexIncProf <- which(simulated_resturants$Selected_Open == "N")
 reductionIncProf <- runif(length(indexIncProf), min=0.85, max=1.15)
 simulated_resturants$Income_052021_062021[indexIncProf] <- floor(simulated_resturants$Income_052020_062020[indexIncProf]*reductionIncProf)
 
 
-#2b. If resturant is highend, we allow Profit to be 20000 - 40000, if average, we allow profit to be 10000 - 25000, if low-end, we allow profit to be 0-10000.
-# For every raise in pricepoint, we cutdown half for the min, and 15000 for the max. (2019)
+#2b. If restaurant is high-end, we allow Profit to be 20000 - 40000, 
+#if average, we allow profit to be 10000 - 25000, 
+#if low-end, we allow profit to be 0-10000.
+
+#For every raise in price point, we cut down half for the min, and 15000 for the max. (2019)
 profitpercentage <- runif(totalobs, min=0.02, max=0.045)
 
 indexPL <- which(simulated_resturants$Price_Point_Target == "Low-end")
 simulated_resturants$Profit_052019_062019[indexPL] <- floor(simulated_resturants$Income_052019_062019[indexPL]*profitpercentage)
 simulated_resturants$Profit_052021_062021[indexPL] <- floor(simulated_resturants$Income_052021_062021[indexPL]*profitpercentage)
+
 indexPA <- which(simulated_resturants$Price_Point_Target == "Average")
 simulated_resturants$Profit_052019_062019[indexPA] <- floor(simulated_resturants$Income_052019_062019[indexPA]*profitpercentage)
 simulated_resturants$Profit_052021_062021[indexPA] <- floor(simulated_resturants$Income_052021_062021[indexPA]*profitpercentage)
+
 indexPH <- which(simulated_resturants$Price_Point_Target == "High-end")
 simulated_resturants$Profit_052019_062019[indexPH] <- floor(simulated_resturants$Income_052019_062019[indexPH]*profitpercentage)
 simulated_resturants$Profit_052021_062021[indexPH] <- floor(simulated_resturants$Income_052021_062021[indexPH]*profitpercentage)
 
 
 
-#2c. We assume that all resturants will receive lower profit during covid, therefore, the max profit from 052020 - 102020 will be based on the 052019-102019 minus a random 
-# percentage from 30% - 70% with cap of 25000
+#2c. We assume that all restaurants will receive lower profit during covid. 
+# Therefore, the max profit from 052020 - 062020 will be based on the 052019-062019 
+# minus a random percentage from 30% - 70% with cap of 25000
 reductionP <- runif(totalobs, min=0.3, max=0.7)
 calculatedmaxP <- floor(simulated_resturants$Profit_052019_062019 - simulated_resturants$Profit_052019_062019*reductionP)
 simulated_resturants$Profit_052020_062020 <- runif(totalobs, min=0, max=calculatedmaxP) %>% as.integer()
 
 
 
-#2d. If the resturant is not selected to open and not offering curb-side pick up or delivery, 
-#we assume the profit and income would be 0.(2020 and 2021)
+#2d. If the restaurant is not selected to open and not offering curb-side pick up or delivery, 
+#we assume the profit and income would be 0 (in 2020 and 2021).
 indexNCND <- which(simulated_resturants$Selected_Open == "N" && 
                      simulated_resturants$Curbside_Pickup == "N" && 
                      simulated_resturants$Delivery == "N")
@@ -236,41 +291,48 @@ simulated_resturants$Profit_052020_062020[indexNCND] <- 0
 simulated_resturants$Income_052020_062020[indexNCND] <- 0
 simulated_resturants$Total_Hours_Per_Week_During_Reopen[indexNCND] <- 0
 
-#3. If the resturant offers dine-in service, 
-#we make assumption to reduce the income and profit by 30% - 50% of its current number (2021).
-indexDIS <- which(simulated_resturants$Dine_In_Service == "Y" && simulated_resturants$Selected_Open == "N")
+#3. If the restaurant offers dine-in service, 
+#we make the assumption to reduce the income and profit by 30% - 50% of its current number (2021).
+indexDIS <- which(simulated_resturants$Dine_In_Service == "Y" && 
+                    simulated_resturants$Selected_Open == "N")
 reductionDIS <- runif(length(indexDIS), min=0.5, max=0.7)
 simulated_resturants$Income_052021_062021[indexDIS] <- floor(simulated_resturants$Income_052021_062021[indexDIS]*reductionDIS)
 simulated_resturants$Profit_052021_062021[indexDIS] <- floor(simulated_resturants$Profit_052021_062021[indexDIS]*reductionDIS)
 
 
-#4. If resturant is selected to open, helpfulness is under assumption of 1-5, otherwise, fill in 0
+#4. If restaurant is selected to open, helpfulness is under assumption of 1-5, otherwise, fill in 0
 indexHN <- which(simulated_resturants$Selected_Open == "N")
 simulated_resturants$Helpfulness[indexHN] <- 0
 
 
-#5. If the resturant is lease, then profit goes down 20% - 40%. (all years)
-indexLe <- which(simulated_resturants$Own_Lease == "Lease" || simulated_resturants$Own_Lease == "Lease, want to purchase")
+#5. If the restaurant is lease, then profit goes down 20% - 40% (all years).
+indexLe <- which(simulated_resturants$Own_Lease == "Lease" || 
+                   simulated_resturants$Own_Lease == "Lease, want to purchase")
 reductionLe <- runif(length(indexLe), min=0.6, max=0.8)
 simulated_resturants$Profit_052019_062019[indexLe] <- floor(simulated_resturants$Profit_052019_062019[indexLe]*reductionLe)
 simulated_resturants$Profit_052020_062020[indexLe] <- floor(simulated_resturants$Profit_052020_062020[indexLe]*reductionLe)
 simulated_resturants$Profit_052021_062021[indexLe] <- floor(simulated_resturants$Profit_052021_062021[indexLe]*reductionLe)
 
-#5. Randomly fill in NA value for website to make it look real(er)
+#5. Randomly fill in NA value for website to make it look more realistic
 index <- which(simulated_resturants$Website %in% sample(simulated_resturants$Website, 456))
 simulated_resturants$Website[index]<- NA
 
-#6. Randomization bug: if curb-side pickup, delivery and dine-in all filled with N, then we assume the resturant does delivery
+#6. Randomization bug: if curb-side pickup, delivery and dine-in all filled with N, then we assume the restaurant does delivery
 indexDineBug <- which(simulated_resturants$Dine_In_Service == "N" && 
                      simulated_resturants$Curbside_Pickup == "N" && 
                      simulated_resturants$Delivery == "N")
 simulated_resturants$Delivery[indexDineBug] <- "Y"
 
 #6. Randomization bug: if income is lower than profit of the year, then set income to profit
+#2019
 indexProfIncBug19 <- which(simulated_resturants$Income_052019_062019 < simulated_resturants$Profit_052019_062019)
 simulated_resturants$Income_052019_062019[indexProfIncBug19] <- simulated_resturants$Profit_052019_062019[indexProfIncBug19]
+
+#2020
 indexProfIncBug20 <- which(simulated_resturants$Income_052020_062020 < simulated_resturants$Profit_052020_062020)
 simulated_resturants$Income_052020_062020[indexProfIncBug20] <- simulated_resturants$Profit_052020_062020[indexProfIncBug20]
+
+#2021
 indexProfIncBug21 <- which(simulated_resturants$Income_052021_062021 < simulated_resturants$Profit_052021_062021)
 simulated_resturants$Income_052021_062021[indexProfIncBug21] <- simulated_resturants$Profit_052021_062021[indexProfIncBug21]
 
@@ -281,7 +343,7 @@ write_csv(simulated_resturants, "../../dataset/raw_data_all_resturants.csv")
 
 ## Description of Study 
 
-At the time of this study, it was assumed that all restaurants in the Greater Toronto Area (GTA) were closed due to COVID-19. However, restaurants could continue to prepare food for curb-side pickup and delivery so their businesses could generate some income. This study looks at the effects of the lockdown on the restaurant industry and inspects the benefits of re-opening a business for a short amount of time during the pandemic. Keeping the restaurant business afloat in Toronto will be a monumental and expensive task. If risk can be mitigated, it could be justifiable to allow some restaurants to (temporarily) re-open. If so, they could generate enough income to survive the pandemic. Otherwise, the government could be looking at subsidies for each business – and with the sheer number of foodservice establishments in the GTA, this could add up quickly. 
+At the time of this study, it was assumed that all restaurants in the GTA were closed due to COVID-19. However, restaurants could continue to prepare food for curb-side pickup and delivery so their businesses could generate some income. This study looks at the effects of the lockdown on the restaurant industry and inspects the benefits of re-opening a business for a short amount of time during the pandemic. Keeping the restaurant business afloat in Toronto will be a monumental and expensive task. If risk can be mitigated, it could be justifiable to allow some restaurants to (temporarily) re-open. If so, they could generate enough income to survive the pandemic. Otherwise, the government could be looking at subsidies for each business – and with the sheer number of foodservice establishments in the GTA, this could add up quickly. 
 
 &nbsp;
 
@@ -293,16 +355,17 @@ The eligible businesses were then contacted by the Ontario Government via email 
 
 &nbsp;
 
-To entice the control group to complete the survey at the end of June, we initially discussed providing financial compensation. However, with over 7,000 eager-to-open restaurants in the GTA [@Dinesafe] this number would quickly escalate to an unrealistic proportion. Therefore, the Ontario Government has allowed the control group to re-open their business for two months as well – if they completed the survey (as compensation for participating). Those in the control group who completed the survey could open for the months of July and August (2021), but would no longer be part of the study. For more information on the survey including a detailed description and screenshots of the questions, see the Appendix. Because of the way this study has been structured, the cost remained relatively low – just a payment to Petit Poll for their work. 
+To entice the control group to complete the survey at the end of June, we initially discussed providing financial compensation. However, with over 7,000 eager-to-open restaurants in the GTA [@Dinesafe] this number would quickly escalate to an unrealistic proportion. Therefore, the Ontario Government has allowed the control group to re-open their business for two months as well – if they completed the survey (as compensation for participating). Those in the control group who completed the survey could open for the months of July and August (2021), but would no longer be part of the study. For more information on the survey (including a detailed description and screenshots of the questions), see the Appendix. Because of the way this study has been structured, the cost remained relatively low – just a payment to Petit Poll for their work. 
+
 &nbsp;
 
-After completion of the study, Petit Poll analyzed the survey responses and presented them to the Ontario Government. Those restaurants who responded to the survey were considered part of the sample. The government must make the final decision if it is worth the risk to re-open businesses during the COVID-19 pandemic. Further studies may be needed to decide how many businesses should be allowed to open, and for how long.  
+After completion of the study, Petit Poll analyzed the survey responses and presented them to the Ontario Government. Those restaurants who responded to the survey were considered part of the sample. Ultimately, the government must make the final decision if it is worth the risk to re-open businesses during the COVID-19 pandemic. Further studies may be needed to decide how many businesses should be allowed to open, and for how long.  
 
 &nbsp;
 
 ## Dataset
 
-This dataset was pulled from the City of Toronto’s Open Data Portal – Dinesafe [@Dinesafe]. The Open Data Portal is a regularly updated and open-sourced data delivery tool which allows users to “generate insights, analyses, and/or…develop web/mobile applications” (@CityOfToronto1, @CityOfToronto2). The dataset was analyzed using `R` [@R]. Various packages were used to analyze the data. First, `Opendatatoronto` [@opendatatoronto] and `sf` (@sf) were used to get the dataset from the open data portal. Next, the `Here` package [@here] was used for easily saving and locating files. The `Tidyverse` package [@tidyverse] was used for general analysis of the dataset. `Ggplot2` [@ggplot2], `knitr` [@knitr], `kableExtra` [@kableExtra], and `gridExtra` (@gridExtra) were used to create plots, tables, and figures. `Ggmap` (@ggmap) and `mapview` (@mapview) were used to create a map of the GTA and its respective restaurants. The `generator` package [@generator] was used to help simulate data. The `stringi` [@stringi] package was used to process strings in the dataset. The `janitor` package [@janitor] was used to clean the dataset. `TinyTex` [@tinytex] was used to help write the output to PDF. Finally, `bookdown` [@bookdown] was used to build the pdf and `bibtex` [@bibtex] was used to create references. 
+This dataset was pulled from the City of Toronto’s Open Data Portal – Dinesafe [@Dinesafe]. The Open Data Portal is a regularly updated and open-sourced data delivery tool which allows users to “generate insights, analyses, and/or…develop web/mobile applications” (@CityOfToronto1, @CityOfToronto2). The dataset was analyzed using `R` [@R]. Various packages were used to analyze the data. First, `opendatatoronto` [@opendatatoronto] and `sf` (@sf) were used to get the dataset from the open data portal. Next, the `here` package [@here] was used for easily saving and locating files. The `tidyverse` package [@tidyverse] was used for general analysis of the dataset. `Ggplot2` [@ggplot2], `knitr` [@knitr], `kableExtra` [@kableExtra], and `gridExtra` (@gridExtra) were used to create plots, tables, and figures. `Ggmap` (@ggmap) and `mapview` (@mapview) were used to create a map of the GTA and its respective restaurants. The `generator` package [@generator] was used to help simulate data. The `stringi` [@stringi] package was used to process strings in the dataset. The `janitor` package [@janitor] was used to clean the dataset. `TinyTex` [@tinytex] was used to help write the output to PDF. Finally, `bookdown` [@bookdown] was used to build the pdf and `bibtex` [@bibtex] was used to create references. 
 
 &nbsp; 
 
@@ -320,23 +383,21 @@ This dataset has strengths and weaknesses. For positives, this dataset is from a
 
 ## When Covid Strikes
 
-A total of 7,221 surveys were collected and analysed to understand the effects of COVID-19 on the restaurant industry and the potential benefits of reopening for 2 months. Of the businesses that participated in the survey, income substantially decreased for all restaurants in a two month period between 2019 and 2020 by more than 75% (Table \@ref(tab:2020dec)), confirming the detrimental consequence of lockdown for the restaurant industry. For restaurants whose income was less than the mean, these types of losses could quickly result in closure if intervention of subsidies are not put in place. Figure \@ref(fig:2020decfig) further represents this income reduction, with the majority of businesses in 2020 profiting close to \$1000 and very few earning more than \$5000. 
-
-&nbsp; 
-
 ```{r, echo=FALSE, message=FALSE, include=FALSE}
 all_pop_resturants = read.csv('../../dataset/all_resturants.csv', stringsAsFactors = FALSE)
 ```
 
+A total of 7,221 surveys were collected and analyzed to understand the effects of COVID-19 on the restaurant industry and the potential benefits of reopening for 2 months. Of the businesses that participated in the survey, income substantially decreased for all restaurants in a two month period between 2019 and 2020 by more than 75% (Table \@ref(tab:2020dec)). 
+
 ```{r 2020dec, fig.cap="Average income and profit for all restaurants in the survey over a two month period between May and June", echo=FALSE, message=FALSE, warning=FALSE}
 
 #Average of income, profit and staff
-ave_Income2019 <- mean(all_pop_resturants$Income_052019_062019)
-ave_Income2020 <- mean(all_pop_resturants$Income_052020_062020)
-ave_Profit2019 <- mean(all_pop_resturants$Profit_052019_062019)
-ave_Profit2020 <- mean(all_pop_resturants$Profit_052020_062020)
-ave_Staff2019 <- mean(all_pop_resturants$Number_Of_Staff_Before_Covid)
-ave_Staff2020 <- mean(all_pop_resturants$Number_Of_Staff_During_Covid)
+ave_Income2019 <- round(mean(all_pop_resturants$Income_052019_062019))
+ave_Income2020 <- round(mean(all_pop_resturants$Income_052020_062020))
+ave_Profit2019 <- round(mean(all_pop_resturants$Profit_052019_062019))
+ave_Profit2020 <- round(mean(all_pop_resturants$Profit_052020_062020))
+ave_Staff2019 <- round(mean(all_pop_resturants$Number_Of_Staff_Before_Covid))
+ave_Staff2020 <- round(mean(all_pop_resturants$Number_Of_Staff_During_Covid))
 
 average_table <- data.frame("ave_Income2019" = ave_Income2019, 
                             "ave_Income2020" = ave_Income2020,
@@ -344,39 +405,89 @@ average_table <- data.frame("ave_Income2019" = ave_Income2019,
                             "ave_Profit2020" = ave_Profit2020)
 
 
-kbl(average_table, booktabs = T, col.names = c("Income 2019", "Income 2020", "Profit 2019", "Income 2020"), align = c("l", "l", "l", "l"), caption = "Average income and profit for all restaurants in the survey over a two month period between May and June") %>%
-  kable_styling(latex_options = c("striped", "scale-down"))
+kbl(average_table, booktabs = T, col.names = c("Income 2019 ($)", "Income 2020 ($)", 
+                                               "Profit 2019 ($)" , "Profit 2020 ($)"), 
+    align = c("l", "l", "l", "l"), 
+    caption = "Average income and profit for all restaurants in the survey 
+    over a two month period between May and June") %>%
+  kableExtra::kable_styling(latex_options = "hold_position") %>% 
+  kable_styling(latex_options = c("striped", "scale-down"), "HOLD_position")
 
 ```
 
+Table 1 shows the devastating effects of the lockdown on the restaurant industry. For restaurants whose income was less than the mean, these types of losses could quickly result in closure if intervention of subsidies are not put in place. Figure \@ref(fig:2020decfig) further represents this income reduction.  
+
 ```{r 2020decfig, fig.cap="Graph of average income and profit for all restaurants in the survey over a two month period between May and June", echo=FALSE, message=FALSE, warning=FALSE}
+
+#remove scientific notation
+options(scipen = 999) 
 
 #Profit for all population graph
 all_pop_plot_profit <- data.frame(Profit_05_062019 = all_pop_resturants$Profit_052019_062019, 
                                   Profit_05_062020 = all_pop_resturants$Profit_052020_062020)
 all_pop_plot_profit <- gather(all_pop_plot_profit)
 
-
+all_profit_graph <- 
 ggplot(all_pop_plot_profit, aes(x = value, fill = key)) +
-  geom_density(kernel = "gaussian", alpha = 0.2) + guides(fill=guide_legend(title="Surveyed Resturants' Profit"))+ 
-  theme(legend.title = element_text(size = 5), legend.text = element_text(size = 5), legend.position = c(0.82, 0.9)) +
-  scale_fill_discrete(labels = c("Profit May-June 2019", "Profit May-June 2020"))
+  geom_density(kernel = "gaussian", alpha = 0.2) + 
+  guides(fill=guide_legend(title="Surveyed Resturants' Profit"))+
+  theme_minimal() + 
+  theme(legend.title = element_text(size = 8), 
+        legend.text = element_text(size = 8), 
+        legend.position = c(0.82, 0.9)) +
+  scale_fill_discrete(labels = c("Profit May-June 2019", "Profit May-June 2020"))+
+  labs(x = "Profit ($)", 
+       y = "Density of Restaurants")
 
+
+
+#profit for all population income
+all_pop_plot_income <- data.frame(Income_052019_062019 = all_pop_resturants$Income_052019_062019, 
+                          Income_052020_062020 = all_pop_resturants$Income_052020_062020)
+all_pop_plot_income <- gather(all_pop_plot_income)
+
+all_income_graph <- 
+ggplot(all_pop_plot_income, aes(x = value, fill = key)) +
+  geom_density(kernel = "gaussian", alpha = 0.2) +
+  guides(fill=guide_legend(title="Surveyed Resturants' Income"))+ 
+  theme_minimal() + 
+  theme(legend.title = element_text(size = 8), 
+        legend.text = element_text(size = 8), 
+        legend.position = c(0.82, 0.9)) +
+  scale_fill_discrete(labels = c("Income May-June 2019", "Income May-June 2020")) + 
+  labs(x = "Income ($)", 
+         y = "Density of Restaurants")
+
+  
+income_and_profit_graphs <- 
+  grid.arrange(all_income_graph, all_profit_graph, 
+               ncol = 1, 
+               top = "Comparing Income and Profit Between years 2019 and 2020
+               ")
 ```
+Figure \@ref(fig:2020decfig) shows that businesses in the months of May and June 2019 (red) saw a distributed income from \$100,000 to \$800,000. In 2020 (blue), these numbers were drastically different. Nearly all restaurants earned less than \$200,000, with most clustering between \$0 and \$100,000. The profit graph shows the same trend. In May and June 2019, restaurants were profiting somewhere between \$5,000 and \$30,000. However, in the same months of 2020, they were profiting close to or less than \$1000 and very few earning more than \$5000. COVID-19 hit the restaurant industry hard. 
 
-In addition, restaurants saw a drastic decrease in the number of staff employed by more than 70% (Table \@ref(tab:staff)). These losses indicate mass unemployment in the restaurant industry and the far reaching implications of COVID-19, which will be discussed in Section 3. All restaurants employed fewer than 20 staff and no restaurant employed more than 25 (Figure \@ref(fig:stafffig)). This is compared to 2020 where there is a greater dispersion of numbers, with some restaurants employing over 60 people.
+&nbsp; 
+
+In addition, restaurants saw a drastic change in the number of working employees. Table \@ref(tab:staff) shows the dramatic decrease in the number of staff employed. 
 
 &nbsp; 
 
 ```{r staff, fig.cap="Average number of staff between May and June of 2019 and 2020", echo=FALSE, message=FALSE, warning=FALSE}
 
-average_staff <- data.frame("ave_Staff2019" = ave_Staff2019, 
-                            "ave_Staff2020" = ave_Staff2020)
+average_staff <- data.frame("ave_Staff2019" = round(ave_Staff2019), 
+                            "ave_Staff2020" = round(ave_Staff2020))
 
 kbl(average_staff, booktabs = T, col.names = c("Number of Staff 2019", "Number of Staff 2020"), align = c("l", "l"), caption = "Average number of staff between May and June of 2019 and 2020") %>%
   kable_styling(latex_options = c("striped", "scale-down"))
 
 ```
+
+&nbsp; 
+
+Table \@ref(tab:staff) shows a decrease in staff of more than 70%. These losses indicate mass unemployment in the restaurant industry and the far reaching implications of COVID-19, which will be discussed in depth in Section 3. Figure \@ref(fig:stafffig) gives a visual representation of the change in staffing. 
+
+&nbsp; 
 
 ```{r stafffig, fig.cap="Graph of average number of staff between May and June of 2019 and 2020", echo=FALSE, message=FALSE, warning=FALSE}
 
@@ -388,24 +499,28 @@ all_pop_plot_Staff <- gather(all_pop_plot_Staff)
 
 
 ggplot(all_pop_plot_Staff, aes(x = value, fill = key)) +
-  geom_density(kernel = "gaussian", alpha = 0.2) + guides(fill=guide_legend(title="Surveyed Resturants' Staff"))+ 
-  theme(legend.title = element_text(size = 5), legend.text = element_text(size = 5), legend.position = c(0.82, 0.9))+
-  scale_fill_discrete(labels = c("# of Staff May-June 2019", "# of Staff May-June 2020"))
+  geom_density(kernel = "gaussian", alpha = 0.2) + 
+  guides(fill=guide_legend(title="Surveyed Resturants' Staff"))+ 
+  theme_minimal() +
+  theme(legend.title = element_text(size = 10), 
+        legend.text = element_text(size = 10), 
+        legend.position = c(0.82, 0.9))+
+  scale_fill_discrete(labels = c("# of Staff May-June 2019", "# of Staff May-June 2020")) +
+  labs(x = "Number of Employees", 
+       y = "Density of Restaurants",
+       title = "Comparing Number of Employees Between 2019 and 2020")
 
 ```
 
+&nbsp; 
 
+Figure \@ref(fig:stafffig) shows that May and June of 2020, nearly all restaurants employed fewer than 20 staff. This is compared to 2019 where there is a greater number of staff employed, with some restaurants employing over 60 people. Not only did COVID-19 affect restaurants income and profit, it also affected the livelihoods of people who worked in the foodservice industry. 
 
-To understand the demographics of the surveyed businesses, we pulled information on their years of operation, type of operation and property ownership. It was discovered that the majority of businesses were non-franchised and were operational for less than five years (Table \@ref(tab:demfran))(Table \@ref(tab:demyears). [insert reference to experiences of new businesses] Furthermore, the majority of properties were leased, creating additional costs that are difficult to maintain with a decrease in income (Table \@ref(tab:demown)). Of the businesses that completed the survey, 41.03% of restaurants were classified as low-end, 39.16% were classified as average and 19.8% were classified as high-end (Table \@ref(tab:demprice)). These restaurants were categorized accordingly as to not inflate or deflate the statistics between high-end and low-end restaurants in the analysis. 
+&nbsp;
 
-```{r demyears, fig.cap="Number of Years in Operation", echo=FALSE, message=FALSE, warning=FALSE}
+To understand the demographics of the surveyed businesses, we pulled information on their type of operation, years of operation, and property ownership. Table \@ref(tab:demfran) compares the number of franchised and non-franchised restaurants in the GTA. Table \@ref(tab:demyears) shows the number of years the business has been operational. Lastly, Table \@ref(tab:demown) shows the number of restaurants that own their property vs lease it. 
 
-#Business operation year freq table
-kbl(tabyl(all_pop_resturants$Business_Operation_Year, sort = TRUE), booktabs = T, col.names = c("Years in Business", "Number of Restaurants", "Percent of Restaurants"), align = c("l", "l", "l"), caption = "Number of years in operation") %>%
-  kable_styling(latex_options = c("striped", "scale-down"))
-# 1-5 years owns takes 36% of dataset
-
-```
+&nbsp;
 
 ```{r demfran, fig.cap="Number of Restaurants Franchised", echo=FALSE, message=FALSE, warning=FALSE}
 
@@ -416,6 +531,17 @@ kbl(tabyl(all_pop_resturants$Franchise, sort = TRUE), booktabs = T, col.names = 
 
 ```
 
+
+```{r demyears, fig.cap="Number of Years in Operation", echo=FALSE, message=FALSE, warning=FALSE}
+
+#Business operation year freq table
+kbl(tabyl(all_pop_resturants$Business_Operation_Year, sort = TRUE), booktabs = T, col.names = c("Years in Business", "Number of Restaurants", "Percent of Restaurants"), align = c("l", "l", "l"), caption = "Number of years in operation") %>%
+  kable_styling(latex_options = c("striped", "scale-down"))
+# 1-5 years owns takes 36% of dataset
+
+```
+
+
 ```{r demown, fig.cap="Number of Restaurants Who Own the Property", echo=FALSE, message=FALSE, warning=FALSE}
 
 #Own / Lease
@@ -424,6 +550,10 @@ kbl(tabyl(all_pop_resturants$Own_Lease, sort = TRUE), booktabs = T, col.names = 
 #Lease 50%, own 40%, lease to own 10%
 
 ```
+
+It is apparent that the majority of businesses were non-franchised, and were operational for less than five years (Table \@ref(tab:demfran), Table \@ref(tab:demyears)). [*insert reference to experiences of new businesses*] Furthermore, the majority of properties were leased, creating additional costs that are difficult to maintain with a decrease in income (Table \@ref(tab:demown)). Finally, Table \@ref(tab:demprice) inspects the distribution of restaurants at different price-points. Restaurants were asked to self report their targeted demographic (low-end, average, high-end).
+
+&nbsp;
 
 ```{r demprice, fig.cap="Price-Point of Restaurants", echo=FALSE, message=FALSE, warning=FALSE}
 
@@ -434,7 +564,13 @@ kbl(tabyl(all_pop_resturants$Price_Point_Target, sort = TRUE), booktabs = T, col
 
 ```
 
+Of the businesses that completed the survey, 41.03% of restaurants were classified as low-end, 39.16% were classified as average, and 19.8% were classified as high-end (Table \@ref(tab:demprice)). These restaurants were categorized accordingly to have an accurate comparison between the control and sample groups during the temporary re-opening. The sample group were the restaurants which reopened and the control group were the ones which remained closed. Included in the next 3 sections are comparisons of profit generated and staff employed during the temporary re-opening. Income is not included as this study looks to determine if the two month period where the restaurant was allowed to open generated enough profit to allow the restaurant to survive the pandemic. 
+
+
 ```{r sampleControlGroup, echo=FALSE, message=FALSE, include=FALSE}
+
+###Generate the control group###
+
 #Load exported CSV file
 all_resturants= read.csv('../../dataset/raw_data_all_resturants.csv', stringsAsFactors = FALSE)
 
@@ -518,6 +654,8 @@ Within the low-end restaurants, reopening for a two month period showed signific
 
 ```{r lowincome, fig.cap="Profit of control and treatment groups of low-end restaurants between May and June of 2021", echo=FALSE, message=FALSE, warning=FALSE}
 
+
+#read in the results from the local .csv
 control_resturants = read.csv('../../dataset/control_resturants.csv', stringsAsFactors = FALSE)
 sample_resturants = read.csv('../../dataset/sample_resturants.csv', stringsAsFactors = FALSE)
 
@@ -529,13 +667,14 @@ sample_low_end_rest = read.csv('../../dataset/sample_low_end_resturants.csv', st
 sample_average_rest = read.csv('../../dataset/sample_average_resturants.csv', stringsAsFactors = FALSE)
 sample_high_end_rest = read.csv('../../dataset/sample_high_end_resturants.csv', stringsAsFactors = FALSE)
 
-#Plot low end control resturants - profit
-
+#Plot low end control restaurants - profit
 control_resturants_low_plot_profit <- data.frame(Profit_05_062019 = control_low_end_rest$Profit_052019_062019, 
                                                  Profit_05_062020 = control_low_end_rest$Profit_052020_062020, 
                                                  Profit_05_062021 = control_low_end_rest$Profit_052021_062021)
 control_resturants_low_plot_profit <- gather(control_resturants_low_plot_profit)
 
+
+#create the graph (income)
 profit_control_low_end <- ggplot(control_resturants_low_plot_profit, aes(x = value, fill = key)) +
   geom_density(kernel = "gaussian", alpha = 0.1) + guides(fill=guide_legend(title="Control Low-End Resturants Profit"))+ 
   theme(legend.title = element_text(size = 5), legend.text = element_text(size = 5), legend.position = c(0.82, 0.9))+
