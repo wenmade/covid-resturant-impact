@@ -1067,6 +1067,14 @@ In total, 33% of high-end restaurants scoring a five and over 20% scoring a one.
 
 
 # Conclusion 
+COVID-19 caused significant turmoil in the Canadian economy - especially in the restaurant industry. In the City of Toronto, restaurants saw a dramatic decrease in income, profit, and the number of staff employed. The Ontario government allowed a random selection of restaurants to reopen, in an attempt to stimulate the industry. 
+
+Comparing those restaurants who opened to those who were asked to stay closed, there was a significant increase in profit and staffing. Profit did not reach 2019 levels, but still increased by roughly 180%. Staffing returned to near-2019 levels. 
+
+Even with the increases seen in profit and staffing, helpfulness scores had mixed reviews. Regardless of the restaurant price-point, a significant portion of the sample responded that the process was not helpful whatsoever. Perhaps the stresses of re-opening during a pandemic outweighed the benefits. If this is the case, restaurant owners may choose to remain closed if the government gives them the option to re-open again during the pandemic. 
+
+If the Ontario Government wishes to pursue this avenue to stimulate the sector, they will need to do more testing to determine the number of restaurants to open, and for how long. Perhaps limiting competition and increasing the amount of time open would boost profit even more, shifting the average helpfulness rating higher. 
+
 
 # Appendix
 
