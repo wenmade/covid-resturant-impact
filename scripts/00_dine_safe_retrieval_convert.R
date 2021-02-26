@@ -9,7 +9,6 @@ dinesafe <- opendatatoronto::search_packages("Dinesafe")%>%
   select(id) %>%
   opendatatoronto::get_resource()
 
-
 # Although the retrieving of the original xml file was reproducible. 
 # The xml parsing did not work directly in RStudio due to most likely the formatting and nesting the xml file. 
 # Through looking at potential solutions on StackOverflow, there was no working reproducible way to convert the xml file to csv file. 
@@ -19,3 +18,9 @@ dinesafe <- opendatatoronto::search_packages("Dinesafe")%>%
 #_________________________________________#
 
 
+dinesafedata <- opendatatoronto::search_packages("Dinesafe")%>%
+  opendatatoronto::list_package_resources()%>%
+  filter(id =="c3ebef25-177b-4adc-9c47-8763b04a52fb") %>%
+  select(id) %>%
+  opendatatoronto::get_resource()
+dinesafedata
