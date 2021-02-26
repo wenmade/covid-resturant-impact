@@ -8,7 +8,7 @@ header-includes:
 output: 
   bookdown::pdf_document2:
     fig_caption: yes
-thanks: 'Code and data are available at: https://github.com/wenmade/2178Paper2.git.'
+thanks: 'Code and data are available at: https://github.com/wenmade/covid-resturant-impact.git.'
 abstract: The COVID-19 pandemic hit the restaurant industry hard, decimating staffing, income, and profit. In May and June of 2021, in an attempt to stimulate the sector, a random selection of Toronto restaurants were re-opened during the pandemic. Although there were significant increases in the number of employees and profit, the helpfulness of the temporary re-opening had mixed reviews. Even with the boost, restaurant owners may choose to remain closed if the Ontario government gives them another chance to re-open. \newpage
 bibliography: restaurant_references.bib
 toc: yes
