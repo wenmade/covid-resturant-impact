@@ -1,5 +1,5 @@
 ---
-title: "The Effects of Opening a Restaurant During a Pandemic"
+title: "Reopening During a Pandemic Stimulated Staffing and Profit, but Reviews on Helpfulness Showed Mixed Reviews"
 author: "Wen Ma, Reem Alasadi,  Rachael Lam, Tim Stephens"
 date: "`r format(Sys.time(), '%d %B %Y')`"
 header-includes:
