@@ -1,5 +1,5 @@
 ---
-title: "The Effects of Opening a Restaurant During a Pandemic"
+title: "Reopening During a Pandemic Stimulated Staffing and Profit, but Reviews on Helpfulness Showed Mixed Reviews"
 author: "Wen Ma, Reem Alasadi,  Rachael Lam, Tim Stephens"
 date: "`r format(Sys.time(), '%d %B %Y')`"
 header-includes:
@@ -9,7 +9,7 @@ output:
   bookdown::pdf_document2:
     fig_caption: yes
 thanks: 'Code and data are available at: https://github.com/wenmade/2178Paper2.git.'
-abstract: In May and June of 2021, a random selection of Toronto restaurants were selected to open during the COVID-19 pandemic. ***this needs more*** \newpage
+abstract: The COVID-19 pandemic hit the restaurant industry hard, decimating staffing, income, and profit. In May and June of 2021, in an attempt to stimulate the sector, a random selection of Toronto restaurants were re-opened during the pandemic. Although there were significant increases in the number of employees and profit, the helpfulness of the temporary re-opening had mixed reviews. Even with the boost, restaurant owners may choose to remain closed if the Ontario government gives them another chance to re-open. \newpage
 bibliography: restaurant_references.bib
 toc: yes
 ---
@@ -35,6 +35,7 @@ library(ggmap)
 library(sf)
 library(mapview)
 library(gridExtra)
+library(opendatatoronto)
 
 ```
 
@@ -1068,6 +1069,18 @@ In total, 33% of high-end restaurants scoring a five and over 20% scoring a one.
 # Conclusion 
 
 # Appendix
+
+## About Dinesafe data
+
+```{r dinesafedata, echo=FALSE, message=FALSE, warning=FALSE }
+dinesafedata <- opendatatoronto::search_packages("Dinesafe")%>%
+  opendatatoronto::list_package_resources()%>%
+  filter(id =="c3ebef25-177b-4adc-9c47-8763b04a52fb") %>%
+  select(id)
+```
+
+
+We found a foundational dataset to start our resturant research from Toronto Open Data Catalogue. The <DineSafe> Dataset is an xml file that contains the name, health inspection data and coordinates of GTA resturants. However, there is no detailed description on the website regarding the data overview. We attempted to retrieve the dataset and convert the xml to csv in R. However, after many attempts, we found out that the xml parsing did not work directly in RStudio due to most likely the formatting and length the xml file. Through looking at potential solutions on StackOverflow and and troubleshoot the error message with websites in the same nature, we did not discover any working reproducible way to convert the xml file to csv file. The cloest answer that matches our speculation is on stackover by "ChallengeAccepted": "After the 20th page the loop was still running with no urls and hence it started calling read_html with NAs for the other loop iterations.". (https://stackoverflow.com/questions/40230810/webscraping-in-r-does-not-exist-in-current-working-directory-error) Therefore a secondary approach was taken, the xml file was downloaded from the Toronto Open Data Catalogue and converted through an online converter: https://onlinexmltools.com/convert-xml-to-csv. The final result contains the basic information that we need to set up our survey simulation data - resturant counts, names and coordinates. As expected, the inspection part seems to be the issue that blocks R from properly parsing all the data. The inspection data in CSV ends up showing up as "Object". After the online coversion, the The converted csv file was downloaded into dataset/dinesafeCSV.csv. Original xml file was also saved in the location dataset/dine_safe_original.xml
 
 
 
