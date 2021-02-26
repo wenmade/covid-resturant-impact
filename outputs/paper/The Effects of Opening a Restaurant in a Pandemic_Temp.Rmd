@@ -1,5 +1,5 @@
 ---
-title: "The Effects of Opening a Restaurant During a Pandemic"
+title: "Reopening During a Pandemic Stimulated Staffing and Profit, but Reviews on Helpfulness Showed Mixed Reviews"
 author: "Wen Ma, Reem Alasadi,  Rachael Lam, Tim Stephens"
 date: "`r format(Sys.time(), '%d %B %Y')`"
 header-includes:
@@ -8,7 +8,7 @@ header-includes:
 output: 
   bookdown::pdf_document2:
 thanks: 'Code and data are available at: https://github.com/wenmade/2178Paper2.git.'
-abstract: In May and June of 2021, a random selection of Toronto restaurants were selected to open during the COVID-19 pandemic. ***this needs more*** \newpage
+abstract: The COVID-19 pandemic hit the restaurant industry hard, decimating staffing, income, and profit. In May and June of 2021, in an attempt to stimulate the sector, a random selection of Toronto restaurants were re-opened during the pandemic. Although there were significant increases in the number of employees and profit, the helpfulness of the temporary re-opening had mixed reviews. Even with the boost, restaurant owners may choose to remain closed if the Ontario government gives them another chance to re-open. \newpage
 bibliography: restaurant_references.bib
 toc: yes
 ---
