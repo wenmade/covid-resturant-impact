@@ -9,7 +9,7 @@ output:
   bookdown::pdf_document2:
     fig_caption: yes
 thanks: 'Code and data are available at: https://github.com/wenmade/covid-resturant-impact.git.'
-abstract: The COVID-19 pandemic hit the restaurant industry hard, decimating staffing, income, and profit. In May and June of 2021, in an attempt to stimulate the sector, a random selection of Toronto restaurants were re-opened during the pandemic. Although there were significant increases in the number of employees and profit, the helpfulness of the temporary re-opening had mixed reviews. Even with the boost, restaurant owners may choose to remain closed if the Ontario government gives them another chance to re-open. \newpage
+abstract: The COVID-19 pandemic hit the restaurant industry hard, decimating staffing, income, and profit. In May and June of 2021, in an attempt to stimulate the sector, a random selection of Toronto restaurants were re-opened during the pandemic. Although there were significant increases in the number of employees and profit, the helpfulness of the temporary re-opening had mixed reviews. Due to this uncertainty, it is necessary to have further conversations with restaurant owners to understand the deeper affects of COVID-19 and how to mitigate further hardships and consequences. \newpage
 bibliography: restaurant_references.bib
 toc: yes
 ---
@@ -55,7 +55,7 @@ In an effort to avoid further devastation to the restaurant community, Petit Pol
 
 # Data 
 
-```{r dataRandomization, echo=FALSE, message=FALSE, include=FALSE}
+```{r dataRandomization, echo=FALSE, message=FALSE, include=FALSE, eval=FALSE}
 
 #***GENERATE DATASET***#  
 
@@ -374,7 +374,7 @@ For the purposes of this study, we kept information about the business’ name, 
 &nbsp; 
 
 
-This dataset has strengths and weaknesses. For positives, this dataset is from a reputable source. It should contain all registered restaurants in the GTA. Nothing should be left out (unless the establishment is running illegally). Additionally, we have real restaurant names and locations to study, although locations were not a main source of interest in this study. In terms of weaknesses, Dinesafe did not specify how they classified different establishments. It is unknown what the differences are between different classes of establishments. For example, what is the specific difference between a "restaurant" and a "cafeteria"? Depending on how (or who) classified the different establishments, it is possible for bias to arise here. There is the possibility that an establishment that should be classified as one thing was classified as another. Another weakness of this dataset was that much of the information was simulated. With so many variables, the potential for error increased. Also, many assumptions were made about different probabilities. It is important to recognize that this study is merely a model developed on randomized data. It has potential to be used in the future on real data. 
+This dataset has strengths and weaknesses. For positives, this dataset is from a reputable source. It should contain all registered restaurants in the GTA. Nothing should be left out, unles the business is running unconventionally. Additionally, we have real restaurant names and locations to study, although locations were not a main source of interest in this study. In terms of weaknesses, Dinesafe did not specify how they classified different establishments. It is unknown what the differences are between different classes of establishments. For example, what is the specific difference between a "restaurant" and a "cafeteria"? Depending on how (or who) classified the different establishments, it is possible for bias to arise here. There is the possibility that an establishment that should be classified as one thing was classified as another. Another weakness of this dataset was that much of the information was simulated. With so many variables, the potential for error increased. Also, many assumptions were made about different probabilities. It is important to recognize that this study is merely a model developed on randomized data. It has potential to be used in the future on real data. 
 
 
 ## When Covid Strikes
@@ -467,7 +467,7 @@ income_and_profit_graphs <-
 
 &nbsp;
 
-Figure \@ref(fig:incproffig) shows that businesses in the months of May and June 2019 (red) saw a distributed income from \$100,000 to \$800,000. In 2020 (blue), these numbers were drastically different. Nearly all restaurants earned less than \$200,000, with most clustering between \$0 and \$100,000. The profit graph shows the same trend. In May and June 2019, restaurants were profiting somewhere between \$5,000 and \$30,000. However, in the same months of 2020, they were profiting close to or less than \$1000 and very few earning more than \$5000. COVID-19 hit the restaurant industry hard. 
+Figure \@ref(fig:incproffig) shows that businesses in the months of May and June 2019 (red) saw a distributed income from \$100,000 to \$800,000. In 2020 (blue), these numbers were drastically different. Nearly all restaurants earned less than \$200,000, with most clustering between \$0 and \$100,000. The profit graph shows the same trend. In May and June 2019, restaurants were profiting somewhere between \$5,000 and \$30,000. However, in the same months of 2020, they were profiting close to or less than \$1000 and very few earning more than \$5000. It is evident that the restaurant industry was substantially impacted by COVID-19. 
 
 &nbsp; 
 
@@ -488,7 +488,7 @@ kbl(average_staff, booktabs = T, col.names = c("Number of Staff 2019", "Number o
 
 &nbsp; 
 
-Table \@ref(tab:staff) shows a decrease in staff of more than 70%. These losses indicate mass unemployment in the restaurant industry and the far reaching implications of COVID-19, which will be discussed in depth in Section 3. Figure 2 gives a visual representation of the change in staffing. 
+Table \@ref(tab:staff) shows a decrease in staff of more than 70%. These losses indicate mass unemployment in the restaurant industry and the far reaching implications of COVID-19, which will be discussed in depth in Section 3. Figure 2 provides a visual representation of the change in staffing. 
 
 &nbsp; 
 
@@ -517,7 +517,7 @@ ggplot(all_pop_plot_Staff, aes(x = value, fill = key)) +
 
 &nbsp; 
 
-Figure 2 shows that in May and June of 2020, nearly all restaurants employed fewer than 20 staff. This is compared to 2019 where there is a greater number of staff employed, with some restaurants employing over 60 people. Not only did COVID-19 affect restaurants income and profit, it also affected the livelihoods of people who worked in the foodservice industry. 
+Figure 2 reveals that in May and June of 2020, nearly all restaurants employed fewer than 20 staff. This is compared to 2019 where there is a greater number of staff employed, with some restaurants employing over 60 people. Not only did COVID-19 affect restaurants' income and profit, it also affected the livelihoods of people who worked in the foodservice industry. 
 
 &nbsp;
 
@@ -557,7 +557,7 @@ kbl(tabyl(all_pop_resturants$Own_Lease, sort = TRUE), booktabs = T, col.names = 
 
 ```
 
-It is apparent that the majority of businesses were non-franchised, and were operational for less than five years (Table \@ref(tab:demfran), Table \@ref(tab:demyears)). [*insert reference to experiences of new businesses*] Furthermore, the majority of properties were leased, creating additional costs that are difficult to maintain with a decrease in income (Table \@ref(tab:demown)). Finally, Table \@ref(tab:demprice) inspects the distribution of restaurants at different price-points. Restaurants were asked to self report their targeted demographic (low-end, average, high-end).
+It is apparent that the majority of businesses were non-franchised, and were operational for less than five years (Table \@ref(tab:demfran), Table \@ref(tab:demyears)). Furthermore, the majority of properties were leased, creating additional costs that are difficult to maintain with a decrease in income (Table \@ref(tab:demown)). Finally, Table \@ref(tab:demprice) inspects the distribution of restaurants at different price-points. Restaurants were asked to self report their targeted demographic (low-end, average, high-end).
 
 &nbsp;
 
@@ -572,7 +572,7 @@ kbl(tabyl(all_pop_resturants$Price_Point_Target, sort = TRUE), booktabs = T, col
 
 ```
 
-Of the businesses that completed the survey, 41.03% of restaurants were classified as low-end, 39.16% were classified as average, and 19.8% were classified as high-end (Table \@ref(tab:demprice)). These restaurants were categorized accordingly to have an accurate comparison between the control and sample groups during the temporary re-opening. The sample group were the restaurants which reopened and the control group were the ones which remained closed. Included in the next 3 sections are comparisons of profit generated and staff employed during the temporary re-opening. Income is not included as this study looks to determine if the two month period where the restaurant was allowed to open generated enough profit to allow the restaurant to survive the pandemic. 
+Of the businesses that completed the survey, 40.22% of restaurants were classified as low-end, 39.68% were classified as average, and 20.01% were classified as high-end (Table \@ref(tab:demprice)). These restaurants were categorized accordingly to have an accurate comparison between the control and sample groups during the temporary re-opening. The sample group were the restaurants which reopened and the control group were the ones which remained closed. Included in the next 3 sections are comparisons of profit generated and staff employed during the temporary re-opening. Income is not included as this study looks to determine if the two month period where the restaurant was allowed to open generated enough profit to allow the restaurant to survive the pandemic. 
 
 
 ```{r sampleControlGroup, echo=FALSE, message=FALSE, include=FALSE}
@@ -797,12 +797,13 @@ Employment showed an almost 247% increase in staff (Figure \@ref(fig:lowstaff)).
 ```{r lowscore, fig.cap="Helpfulness score of low-end restaurants based on a 5-point scale", echo=FALSE, message=FALSE, warning=FALSE}
 
 #Helpfulness of low end
-kbl(tabyl(sample_low_end_rest$Helpfulness, sort = TRUE), booktabs = T, col.names = c("Helpfulness on 5-Point Scale", "Number of Restaurants", "Percent of Restaurants"), align = c("l", "l", "l"), caption = "Low-end restaurant responses to helpfulness on a 5-point scale") %>%
+kbl(tabyl(sample_low_end_rest$Helpfulness, sort = TRUE), booktabs = T, col.names = c("Helpfulness on 5-Point Scale", "Number of Restaurants", "Percent of Restaurants"), align = c("l", "l", "l"), caption = "High-end restaurant esponses to helpfulness on a 5-point scale") %>%
   kableExtra::kable_styling(latex_options = "HOLD_position") %>%
   kable_styling(latex_options = c("striped", "scale-down"))
+#average split of 33%
 
 ```
-Table \@ref(tab:lowscore) shows an average response of 3.36. Although 34% of respondents scored a five, 21% still scored a one. This could be due to the effort that it takes to prepare a restaurant to open for a two month period, especially in the wake of COVID-19. The amount of personal protective equipment (PPE), training and sanitizing equipment needed could outweigh the benefits of opening.
+Table \@ref(tab:lowscore) shows an average response of 3.36. Although 34% of respondents scored a five, 20% still scored a one. This could be due to the effort that it takes to prepare a restaurant to open for a two month period, especially in the wake of COVID-19. The amount of personal protective equipment (PPE), training and sanitizing equipment needed could outweigh the benefits of opening.
 
 
 ## Middle-End Restaurants
@@ -927,7 +928,7 @@ kbl(tabyl(sample_average_rest$Helpfulness, sort = TRUE), booktabs = T, col.names
 #average split of 33%
 
 ```
-With the improvement in profit and staffing, 38% of the restaurants categorized helpfulness as a five on the five point scale (Table \@ref(tab:midscore)). Although an additional 19% of restaurants scored a four, there were still almost 19% that scored a one.
+With the improvement in profit and staffing, 36% of the restaurants categorized helpfulness as a five on a five point scale (Table \@ref(tab:midscore)). Although an additional 18% of restaurants scored a four, there were still almost 21% that scored a one.
 
 
 
@@ -1042,7 +1043,7 @@ grid.arrange(control_high_end_staff, sample_high_end_staff,
 ```
 
 
-High-end restaurants saw a 251% increase in staff. Expectedly, high-end restaurants saw the lowest positive response to the reopening - shown in Table \@ref(tab:highscore). 
+High-end restaurants saw a 251% increase in staff. Additionally, high-end restaurants saw a similar number of positive responses to the reopening as middle-end restaurants - shown in Table \@ref(tab:highscore). 
 
 ```{r highscore, fig.cap="Helpfulness score of high-end restaurants based on a 5-point scale", echo=FALSE, message=FALSE, warning=FALSE}
 
@@ -1054,20 +1055,48 @@ kbl(tabyl(sample_high_end_rest$Helpfulness, sort = TRUE), booktabs = T, col.name
 
 ```
 
-In total, 33% of high-end restaurants scoring a five and over 20% scoring a one.
+In total, 37% of high-end restaurants scoring a five and over 20% scoring a one.
 
 
 # Discussion 
 
+COVID-19 had affected industries in the most unexpected ways, partially because the rampant nature of COVID-19 was unforeseen but also because policies and procedures were underdeveloped. It is clear through literature reviews and this study, that the restaurant industry is a sector that suffered the most losses. Through the surveys, it was apparent that profit losses between 2019 and 2020 were enough to put some restaurants out of business, with the minimum income reading $181. This study was executed in an effort to rebuild the service economy and encourage restaurant revival. Although numerically the study seemed successful, the helpfulness section indicated mixed reviews. It is important to follow up with restaurants to gain a deeper understanding into what worked and what failed. Despite this lack of complete understanding, there are a few areas that can be discussed including the impact on restaurants, unemployment of restaurant staff and broader implications of the study. Additionally, we will discuss the weaknesses of the study and how the study could be expanded in the future.
+
+## Restaurant Hardships
+
+Restaurant responses to the survey made it extremely obvious that the restaurant industry suffered an enormous amount due to the COVID-19 pandemic. In 2020, Businesses earned on average less than half of what they earned in the previous year according to our study. As restaurants contribute billions of dollars to the economy each year, this loss was observed by the entire Canadian public. Although lockdown measures prevented many citizens from dining out, and therefore, enabled monetary savings, the restaurant industry endured, and continues to endure hardships that forced almost 83% of businesses in the accommodation and foodservice industry to temporarily close [@wu]. According to another study by Statistics Canada and the Canadian Chamber of Commerce [@wu], 60% of restaurants would permanently close within three months. Restaurants already earn considerably less than other industries with profit margins that sit at 6.1% on average [@forbes2]. These already unstable practices became detrimental to restaurants when the epidemic arose.
+
+There are many factors that can be attributed to these massive losses that go beyond the effects of social distancing measures. For businesses that own the property of the restaurant, mortgages still had to be made. Although the Government of Canada created a mortgage payment deferral program, they still required individuals to resume payments after an allotted time, and repay the mortgage payment that was deferred [@govcan]. This type of payment plan is not feasible for restaurants and many were forced out of business. In addition, few provisions were put in place for businesses that leased their space. The Canada Emergency Commercial Rent Assistance (CECRA), launched by the Ontario government, provided loans to landlords that covered 50% of commercial rent and required tenets to cover 25% of rent [@ontgov]. Unfortunately, CECRA only lasted from April to June of 2020, which was inadequate considering the impacts of the epidemic still exist in 2021. 
+
+## Individual Impact
+
+The COVID-19 epidemic forced massive unemployment due to permanent closure or cuts to scale. It is estimated that 67% of businesses had to lay off staff [@wu], contributing to 800,000 individuals experiencing unemployment [@larue]. Unfortunately, workers in the service sector tend to already be in vulnerable positions, further exasperating economic disparities. In addition, workers under the age of 25 are twice as likely to work in a sector of the economy that has been shut down [@blundell]. This localized affection creates further strain for individuals who suffered unemployment. Similarly to restaurant owners, many individuals in these positions do not own property and therefore continue to pay rent. Unfortunately, the government provided even fewer services that would alleviate rent. The City of Toronto states on their website, “all property owners are strongly urged to find ways to help tenants to stay in their homes. The City encourages landlords and tenants to proactively communicate about their situations and establish fair arrangements” [@cityto]. The lack of resources forces tenants and landlords to make personal arrangements, which may never occur thus placing individuals in situations of potential homelessness and extreme strain.
+
+Not only does the closure of restaurants impact those that were laid off, but it also impacts individuals who depend on low-end restaurants. Many communities rely on the “convenience, reliability and affordability” of fast food restaurants especially as panic buying led to a shortage of cheap food staples that many families depend on [@myers]. Families who depended on free lunch programs provided by schools for their children further experienced food insecurity [@myers]. Although restaurants still offer curb-side pickup, restaurant closures could continue to limit people’s access to food, especially for those in marginalized communities.
+
+## Study Implications
+
+While it is important to discuss the far reaching consequences of COVID-19, it is also necessary to acknowledge the implications of a study such as this. Although this study could find a temporary solution to mitigate some impacts of the pandemic, it is imperative to recognize that we are examining the businesses and lives of real individuals. Individuals who have been enduring difficult circumstances due to the pandemic and subsequent lack of necessary resources. We must critically analyse the ethical implications of conducting studies on individuals with tangible consequences and work with these businesses and individuals to understand the best course of action. This study aimed to understand the effects of COVID-19 on businesses, and although we do have a section to investigate how helpful the study was, it is not nearly enough to fully comprehend the ways in which businesses need assistance. Further conversations should be performed to accomplish this task. These discussions will provide better insights into how the Government of Canada can relieve and improve current situations.
+
+## Weaknesses
+
+Part of the data about restaurants have been simulated and randomized, thus it does not capture real situations nor does it capture existing problems and biases. It may not be viable for a restaurant to afford the expenses of running a restaurant in those couple of months and could go bankrupt. Especially as COVID-19 guidelines require businesses to purchase the necessary PPE and sanitary equipment. Due to the simulated data and assumptions about decrease in profits, high demand could in fact generate a decent income not anticipated by the experiment. Although this is a beneficial outcome, we must recognize some of these stories that we might have missed.
+
+The experiment's focus is on the financial gain and keeping the foodservice industry afloat. It does not look at how keeping the open restaurants will affect people’s compliance with social distancing and quarantine during a mandated lockdown. The study contradicts lockdown stay-at-home guidelines and isolating unless absolutely necessary. Furthermore, it does not take into consideration how dining at the restaurants might affect the transmission of the virus. It is beyond the experiment’s scope, but it is an important aspect the Government of Canada must regard. Afterall, virus containment and elimination is extremely important in order to resume normalcy and revive the economy. This study would pose useful though for when the government is transitioning to gradual opening of restaurants when the majority have been vaccinated and the active infected cases are low.
+
+## Future Directions
+
+The study could benefit from adding an analysis of the Greater Toronto Area (GTA) neighborhoods into consideration. A clustering analysis could organize the randomization for the control and treatment groups on a neighborhood level, and that would help understand the challenges each neighborhood faces and thus design different solutions based on their needs. The diversity of the GTA signifies a similar variety of circumstances that should be considered when defining solutions for the restaurant industry.
+
+In addition, the trial could be repeated by using different parameters such as the duration the restaurants should stay open, or a rotational reopening of restaurants. It is unknown as to whether two month rotations are substantial enough to see improvements. Additionally, it would be interesting to explore how demand changes by season. Winter includes many holidays and attracts consumer behaviour, but it may lead to less outdoor foot traffic. Comparatively, summer allows for more foot traffic, yet there may be higher employment rates as students look for jobs thus less leisurely time available. The seasonality of the foodservice industry also creates demand for certain foods at different times of the year. For example, demand for ice cream usually increases in the summer and decreases in the winter. If using a rotational model, it would be unfair for some restaurants to benefit from popular months, while others do not receive the same benefits. We would need to create a model that promotes fairness on all levels of the experiment.
+
+Finally, another direction that could be captured is the definition of a restaurant. Although we used Dinesafe’s data, it was not concrete on how each restaurant differs and the distinct challenges that each may face. For this study, we excluded restaurants that were categorized as private cafeterias, such as educational facilities and care homes. These foodservice industries are still components of the food industry that need to be discussed, especially in relation to COVID-19 where they are still potential areas of transmission. Additionally, they are businesses that have also suffered increased losses during this time and no business should be excluded from study.
+
 
 # Conclusion 
-COVID-19 caused significant turmoil in the Canadian economy - especially in the restaurant industry. In the City of Toronto, restaurants saw a dramatic decrease in income, profit, and the number of staff employed. The Ontario government allowed a random selection of restaurants to reopen, in an attempt to stimulate the industry. 
+COVID-19 caused significant turmoil in the Canadian economy - especially in the restaurant industry. In the City of Toronto, restaurants saw a dramatic decrease in income, profit, and the number of staff employed. The Ontario government allowed a random selection of restaurants to reopen, in an attempt to stimulate the industry. Comparing those restaurants who opened to those who were asked to stay closed, there was a significant increase in profit and staffing. Profit did not reach 2019 levels, but still increased by roughly 180%. Staffing returned to near-2019 levels. Even with the increases seen in profit and staffing, helpfulness scores had mixed reviews. Regardless of the restaurant price-point, a significant portion of the sample responded that the process was not helpful whatsoever. Perhaps the stresses of re-opening during a pandemic outweighed the benefits. If this is the case, restaurant owners may choose to remain closed if the government gives them the option to re-open again during the pandemic. 
 
-Comparing those restaurants who opened to those who were asked to stay closed, there was a significant increase in profit and staffing. Profit did not reach 2019 levels, but still increased by roughly 180%. Staffing returned to near-2019 levels. 
-
-Even with the increases seen in profit and staffing, helpfulness scores had mixed reviews. Regardless of the restaurant price-point, a significant portion of the sample responded that the process was not helpful whatsoever. Perhaps the stresses of re-opening during a pandemic outweighed the benefits. If this is the case, restaurant owners may choose to remain closed if the government gives them the option to re-open again during the pandemic. 
-
-If the Ontario Government wishes to pursue this avenue to stimulate the sector, they will need to do more testing to determine the number of restaurants to open, and for how long. Perhaps limiting competition and increasing the amount of time open would boost profit even more, shifting the average helpfulness rating higher. 
+If the Ontario Government wishes to pursue this avenue to stimulate the sector, they will need to do more testing to determine the number of restaurants to open, and for how long. Perhaps limiting competition and increasing the amount of time open would boost profit even more, shifting the average helpfulness rating higher. This study could be expanded upon in a number of ways, but it should remain a priority to understand the effects of COVID-19 and mitigation measures in a comprehensive manner. Additionally, it is important to remember that real people and real businesses are suffering the consequences of COVID-19. Extensive conversations should be conducted to understand what intervention and resources would be the most beneficial for all business. 
 
 
 # Appendix
