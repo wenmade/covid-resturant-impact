@@ -528,9 +528,16 @@ To understand the demographics of the surveyed businesses, we pulled information
 ```{r demfran, fig.cap="Number of Restaurants Franchised", echo=FALSE, message=FALSE, warning=FALSE}
 
 #Franchise
-kbl(tabyl(all_pop_resturants$Franchise, sort = TRUE), booktabs = T, col.names = c("Franchise (Y/N)", "Number of Restaurants", "Percent of Restaurants"), align = c("l", "l", "l"), caption = "Number of restaurants franchised") %>%
+# kbl(tabyl(all_pop_resturants$Franchise, sort = TRUE), booktabs = T, col.names = c("Franchise (Y/N)", "Number of Restaurants", "Percent of Restaurants"), align = c("l", "l", "l"), caption = "Number of restaurants franchised") %>%
+#   kableExtra::kable_styling(latex_options = "HOLD_position") %>%
+#   kable_styling(latex_options = c("striped", "scale-down"))
+
+tabyl(all_pop_resturants$Franchise, sort = TRUE) %>%
+  adorn_pct_formatting() %>%
+  kbl(booktabs = T, col.names = c("Franchise (Y/N)", "Number of Restaurants", "Percent of Restaurants"), align = c("l", "l", "l"), caption = "Number of restaurants franchised") %>%
   kableExtra::kable_styling(latex_options = "HOLD_position") %>%
   kable_styling(latex_options = c("striped", "scale-down"))
+
 #Even split - 59% Non franchise vs. 41% franchise
 
 ```
@@ -538,22 +545,35 @@ kbl(tabyl(all_pop_resturants$Franchise, sort = TRUE), booktabs = T, col.names = 
 
 ```{r demyears, fig.cap="Number of Years in Operation", echo=FALSE, message=FALSE, warning=FALSE}
 
-#Business operation year freq table
-kbl(tabyl(all_pop_resturants$Business_Operation_Year, sort = TRUE), booktabs = T, col.names = c("Years in Business", "Number of Restaurants", "Percent of Restaurants"), align = c("l", "l", "l"), caption = "Number of years in operation") %>%
+# #Business operation year freq table
+# kbl(tabyl(all_pop_resturants$Business_Operation_Year, sort = TRUE), booktabs = T, col.names = c("Years in Business", "Number of Restaurants", "Percent of Restaurants"), align = c("l", "l", "l"), caption = "Number of years in operation") %>%
+#   kableExtra::kable_styling(latex_options = "HOLD_position") %>%
+#   kable_styling(latex_options = c("striped", "scale-down"))
+# # 1-5 years owns takes 36% of dataset
+
+
+tabyl(all_pop_resturants$Business_Operation_Year, sort = TRUE) %>%
+  adorn_pct_formatting() %>%
+  kbl(booktabs = T, col.names = c("Years in Business", "Number of Restaurants", "Percent of Restaurants"), align = c("l", "l", "l"), caption = "Number of years in operation") %>%
   kableExtra::kable_styling(latex_options = "HOLD_position") %>%
   kable_styling(latex_options = c("striped", "scale-down"))
-# 1-5 years owns takes 36% of dataset
 
 ```
 
 
 ```{r demown, fig.cap="Number of Restaurants Who Own the Property", echo=FALSE, message=FALSE, warning=FALSE}
 
-#Own / Lease
-kbl(tabyl(all_pop_resturants$Own_Lease, sort = TRUE), booktabs = T, col.names = c("Restaurant Ownership", "Number of Restaurants", "Percent of Restaurants"), align = c("l", "l", "l"), caption = "Number of restaurants who own the property") %>%
+# #Own / Lease
+# kbl(tabyl(all_pop_resturants$Own_Lease, sort = TRUE), booktabs = T, col.names = c("Restaurant Ownership", "Number of Restaurants", "Percent of Restaurants"), align = c("l", "l", "l"), caption = "Number of restaurants who own the property") %>%
+#   kableExtra::kable_styling(latex_options = "HOLD_position") %>%
+#   kable_styling(latex_options = c("striped", "scale-down"))
+# #Lease 50%, own 40%, lease to own 10%
+
+tabyl(all_pop_resturants$Own_Lease, sort = TRUE) %>%
+  adorn_pct_formatting() %>%
+  kbl(booktabs = T, col.names = c("Restaurant Ownership", "Number of Restaurants", "Percent of Restaurants"), align = c("l", "l", "l"), caption = "Number of restaurants who own the property") %>%
   kableExtra::kable_styling(latex_options = "HOLD_position") %>%
   kable_styling(latex_options = c("striped", "scale-down"))
-#Lease 50%, own 40%, lease to own 10%
 
 ```
 
@@ -563,19 +583,25 @@ It is apparent that the majority of businesses were non-franchised, and were ope
 
 ```{r demprice, fig.cap="Price-Point of Restaurants", echo=FALSE, message=FALSE, warning=FALSE}
 
-#Pricepoint
-kbl(tabyl(all_pop_resturants$Price_Point_Target, sort = TRUE), booktabs = T, col.names = c("Price-Point", "Number of Restaurants", "Percent of Restaurants"), 
-    align = c("l", "l", "l"), caption = "Price-point of restaurants") %>%
+# #Pricepoint
+# kbl(tabyl(all_pop_resturants$Price_Point_Target, sort = TRUE), booktabs = T, col.names = c("Price-Point", "Number of Restaurants", "Percent of Restaurants"), 
+#     align = c("l", "l", "l"), caption = "Price-point of restaurants") %>%
+#   kableExtra::kable_styling(latex_options = "HOLD_position") %>%
+#   kable_styling(latex_options = c("striped", "scale-down"))
+# #Average 39%, Low-end 40%, High-end 21%
+
+tabyl(all_pop_resturants$Price_Point_Target, sort = TRUE) %>%
+  adorn_pct_formatting() %>%
+  kbl(booktabs = T, col.names = c("Price-Point", "Number of Restaurants", "Percent of Restaurants"), align = c("l", "l", "l"), caption = "Price-point of restaurants") %>%
   kableExtra::kable_styling(latex_options = "HOLD_position") %>%
   kable_styling(latex_options = c("striped", "scale-down"))
-#Average 39%, Low-end 40%, High-end 21%
 
 ```
 
-Of the businesses that completed the survey, 40.22% of restaurants were classified as low-end, 39.68% were classified as average, and 20.01% were classified as high-end (Table \@ref(tab:demprice)). These restaurants were categorized accordingly to have an accurate comparison between the control and sample groups during the temporary re-opening. The sample group were the restaurants which reopened and the control group were the ones which remained closed. Included in the next 3 sections are comparisons of profit generated and staff employed during the temporary re-opening. Income is not included as this study looks to determine if the two month period where the restaurant was allowed to open generated enough profit to allow the restaurant to survive the pandemic. 
+Of the businesses that completed the survey, 40.2% of restaurants were classified as low-end, 39.7% were classified as average, and 20.1% were classified as high-end (Table \@ref(tab:demprice)). These restaurants were categorized accordingly to have an accurate comparison between the control and sample groups during the temporary re-opening. The sample group were the restaurants which reopened and the control group were the ones which remained closed. Included in the next 3 sections are comparisons of profit generated and staff employed during the temporary re-opening. Income is not included as this study looks to determine if the two month period where the restaurant was allowed to open generated enough profit to allow the restaurant to survive the pandemic. 
 
 
-```{r sampleControlGroup, echo=FALSE, message=FALSE, include=FALSE}
+```{r sampleControlGroup, echo=FALSE, message=FALSE, include=FALSE, eval=FALSE}
 
 ###Generate the control group###
 
@@ -624,7 +650,7 @@ write_csv(control_resturants_data, "../../dataset/control_resturants.csv")
 
 ```
 
-```{r sampleSeparation, echo=FALSE, message=FALSE, include=FALSE}
+```{r sampleSeparation, echo=FALSE, message=FALSE, include=FALSE, eval=FALSE}
 sample_resturants = read.csv('../../dataset/sample_resturants.csv', stringsAsFactors = FALSE)
 
 #get three tiers of resturants
@@ -639,7 +665,7 @@ write_csv(sample_high_end_rest, "../../dataset/sample_high_end_resturants.csv")
 
 ```
 
-```{r controlSeparation, echo=FALSE, message=FALSE, include=FALSE}
+```{r controlSeparation, echo=FALSE, message=FALSE, include=FALSE, eval=FALSE}
 
 control_resturants = read.csv('../../dataset/control_resturants.csv', stringsAsFactors = FALSE)
 
@@ -796,14 +822,20 @@ Employment showed an almost 247% increase in staff (Figure \@ref(fig:lowstaff)).
 
 ```{r lowscore, fig.cap="Helpfulness score of low-end restaurants based on a 5-point scale", echo=FALSE, message=FALSE, warning=FALSE}
 
-#Helpfulness of low end
-kbl(tabyl(sample_low_end_rest$Helpfulness, sort = TRUE), booktabs = T, col.names = c("Helpfulness on 5-Point Scale", "Number of Restaurants", "Percent of Restaurants"), align = c("l", "l", "l"), caption = "High-end restaurant esponses to helpfulness on a 5-point scale") %>%
+# #Helpfulness of low end
+# kbl(tabyl(sample_low_end_rest$Helpfulness, sort = TRUE), booktabs = T, col.names = c("Helpfulness on 5-Point Scale", "Number of Restaurants", "Percent of Restaurants"), align = c("l", "l", "l"), caption = "High-end restaurant esponses to helpfulness on a 5-point scale") %>%
+#   kableExtra::kable_styling(latex_options = "HOLD_position") %>%
+#   kable_styling(latex_options = c("striped", "scale-down"))
+# #average split of 33%
+
+tabyl(sample_low_end_rest$Helpfulness, sort = TRUE) %>%
+  adorn_pct_formatting() %>%
+  kbl(booktabs = T, col.names = c("Helpfulness on 5-Point Scale", "Number of Restaurants", "Percent of Restaurants"), align = c("l", "l", "l"), caption = "Low-end restaurant esponses to helpfulness on a 5-point scale") %>%
   kableExtra::kable_styling(latex_options = "HOLD_position") %>%
   kable_styling(latex_options = c("striped", "scale-down"))
-#average split of 33%
 
 ```
-Table \@ref(tab:lowscore) shows an average response of 3.36. Although 34% of respondents scored a five, 20% still scored a one. This could be due to the effort that it takes to prepare a restaurant to open for a two month period, especially in the wake of COVID-19. The amount of personal protective equipment (PPE), training and sanitizing equipment needed could outweigh the benefits of opening.
+Table \@ref(tab:lowscore) shows an average response of 3.36. Although 34.1% of respondents scored a five, 19.7% still scored a one. This could be due to the effort that it takes to prepare a restaurant to open for a two month period, especially in the wake of COVID-19. The amount of personal protective equipment (PPE), training and sanitizing equipment needed could outweigh the benefits of opening.
 
 
 ## Middle-End Restaurants
@@ -921,14 +953,20 @@ For restaurants in the mid-range of price-point, employment experienced a 254% i
 
 ```{r midscore, fig.cap="Helpfulness score of middle-end restaurants based on a 5-point scale", echo=FALSE, message=FALSE, warning=FALSE}
 
-#Helpfulness of average
-kbl(tabyl(sample_average_rest$Helpfulness, sort = TRUE), booktabs = T, col.names = c("Helpfulness on 5-Point Scale", "Number of Restaurants", "Percent of Restaurants"), align = c("l", "l", "l"), caption = "Middle-end restaurant responses to helpfulness on a 5-point scale") %>%
+# #Helpfulness of average
+# kbl(tabyl(sample_average_rest$Helpfulness, sort = TRUE), booktabs = T, col.names = c("Helpfulness on 5-Point Scale", "Number of Restaurants", "Percent of Restaurants"), align = c("l", "l", "l"), caption = "Middle-end restaurant responses to helpfulness on a 5-point scale") %>%
+#   kableExtra::kable_styling(latex_options = "HOLD_position") %>%
+#   kable_styling(latex_options = c("striped", "scale-down"))
+# #average split of 33%
+
+tabyl(sample_average_rest$Helpfulness, sort = TRUE) %>%
+  adorn_pct_formatting() %>%
+  kbl(booktabs = T, col.names = c("Helpfulness on 5-Point Scale", "Number of Restaurants", "Percent of Restaurants"), align = c("l", "l", "l"), caption = "Middle-end restaurant responses to helpfulness on a 5-point scale") %>%
   kableExtra::kable_styling(latex_options = "HOLD_position") %>%
   kable_styling(latex_options = c("striped", "scale-down"))
-#average split of 33%
 
 ```
-With the improvement in profit and staffing, 36% of the restaurants categorized helpfulness as a five on a five point scale (Table \@ref(tab:midscore)). Although an additional 18% of restaurants scored a four, there were still almost 21% that scored a one.
+With the improvement in profit and staffing, 36% of the restaurants categorized helpfulness as a five on a five point scale (Table \@ref(tab:midscore)). Although an additional 17.9% of restaurants scored a four, there were still  20.5% that scored a one.
 
 
 
@@ -1047,15 +1085,21 @@ High-end restaurants saw a 251% increase in staff. Additionally, high-end restau
 
 ```{r highscore, fig.cap="Helpfulness score of high-end restaurants based on a 5-point scale", echo=FALSE, message=FALSE, warning=FALSE}
 
-#Helpfulness of high end
-kbl(tabyl(sample_high_end_rest$Helpfulness, sort = TRUE), booktabs = T, col.names = c("Helpfulness on 5-Point Scale", "Number of Restaurants", "Percent of Restaurants"), align = c("l", "l", "l"), caption = "High-end restaurant esponses to helpfulness on a 5-point scale") %>%
+# #Helpfulness of high end
+# kbl(tabyl(sample_high_end_rest$Helpfulness, sort = TRUE), booktabs = T, col.names = c("Helpfulness on 5-Point Scale", "Number of Restaurants", "Percent of Restaurants"), align = c("l", "l", "l"), caption = "High-end restaurant esponses to helpfulness on a 5-point scale") %>%
+#   kableExtra::kable_styling(latex_options = "HOLD_position") %>%
+#   kable_styling(latex_options = c("striped", "scale-down"))
+# #average split of 33%
+
+tabyl(sample_high_end_rest$Helpfulness, sort = TRUE) %>%
+  adorn_pct_formatting() %>%
+  kbl(booktabs = T, col.names = c("Helpfulness on 5-Point Scale", "Number of Restaurants", "Percent of Restaurants"), align = c("l", "l", "l"), caption = "High-end restaurant esponses to helpfulness on a 5-point scale") %>%
   kableExtra::kable_styling(latex_options = "HOLD_position") %>%
   kable_styling(latex_options = c("striped", "scale-down"))
-#average split of 33%
 
 ```
 
-In total, 37% of high-end restaurants scoring a five and over 20% scoring a one.
+In total, 36.8% of high-end restaurants scoring a five and over 19.6% scoring a one.
 
 
 # Discussion 
