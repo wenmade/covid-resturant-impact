@@ -1,5 +1,5 @@
 ---
-title: "Reopening During a Pandemic Stimulated Staffing and Profit, but Reviews on Helpfulness Showed Mixed Reviews"
+title: "Reopening During a Pandemic in the Greater Toronto Area Stimulated Staffing and Profit, but Reviews on Helpfulness Showed Mixed Reviews"
 author: "Wen Ma, Reem Alasadi,  Rachael Lam, Tim Stephens"
 date: "`r format(Sys.time(), '%d %B %Y')`"
 header-includes:
@@ -50,7 +50,7 @@ At the beginning of the pandemic, nearly a sixth of all Canadians applied for em
 
 &nbsp;
 
-In an effort to avoid further devastation to the restaurant community, Petit Poll has collaborated with the Ontario Government to examine the effects of COVID-19 on restaurants in Toronto and understand what provisions can be made. This paper will first explore the effects of COVID-19 on the restaurant industry from 2019-2020 using Dinesafe data from the City of Toronto. We will then continue to investigate specific findings from the survey by comparing data from the control and treatment groups. We will finally end on a discussion about the greater implications of our study, limitations and possible expansions. 
+In an effort to avoid further devastation to the restaurant community, Petit Poll has collaborated with the Ontario Government to examine the effects of COVID-19 on restaurants in Toronto and understand what provisions can be made. Using Dinesafe [@Dinesafe] data from the City of Toronto as a parameter for simulated data, this paper will first explore the effects of COVID-19 on the restaurant industry from 2019-2020 using Dinesafe data from the City of Toronto. We will then continue to investigate specific findings from the survey by comparing data from the control and treatment groups. We will finally end on a discussion about the greater implications of our study, limitations and possible expansions. 
 
 
 # Data 
@@ -374,7 +374,7 @@ For the purposes of this study, we kept information about the business’ name, 
 &nbsp; 
 
 
-This dataset has strengths and weaknesses. For positives, this dataset is from a reputable source. It should contain all registered restaurants in the GTA. Nothing should be left out, unles the business is running unconventionally. Additionally, we have real restaurant names and locations to study, although locations were not a main source of interest in this study. In terms of weaknesses, Dinesafe did not specify how they classified different establishments. It is unknown what the differences are between different classes of establishments. For example, what is the specific difference between a "restaurant" and a "cafeteria"? Depending on how (or who) classified the different establishments, it is possible for bias to arise here. There is the possibility that an establishment that should be classified as one thing was classified as another. Another weakness of this dataset was that much of the information was simulated. With so many variables, the potential for error increased. Also, many assumptions were made about different probabilities. It is important to recognize that this study is merely a model developed on randomized data. It has potential to be used in the future on real data. 
+This dataset has strengths and weaknesses. For positives, this dataset is from a reputable source. It should contain all registered restaurants in the GTA. Nothing should be left out, unless the business is running unconventionally. Additionally, we have real restaurant names and locations to study, although locations were not a main source of interest in this study. In terms of weaknesses, Dinesafe did not specify how they classified different establishments. It is unknown what the differences are between different classes of establishments. For example, what is the specific difference between a "restaurant" and a "cafeteria"? Depending on how (or who) classified the different establishments, it is possible for bias to arise here. There is the possibility that an establishment that should be classified as one thing was classified as another. Another weakness of this dataset was that much of the information was simulated. With so many variables, the potential for error increased. Also, many assumptions were made about different probabilities. It is important to recognize that this study is merely a model developed on randomized data. It has potential to be used in the future on real data. 
 
 
 ## When Covid Strikes
@@ -528,9 +528,6 @@ To understand the demographics of the surveyed businesses, we pulled information
 ```{r demfran, fig.cap="Number of Restaurants Franchised", echo=FALSE, message=FALSE, warning=FALSE}
 
 #Franchise
-# kbl(tabyl(all_pop_resturants$Franchise, sort = TRUE), booktabs = T, col.names = c("Franchise (Y/N)", "Number of Restaurants", "Percent of Restaurants"), align = c("l", "l", "l"), caption = "Number of restaurants franchised") %>%
-#   kableExtra::kable_styling(latex_options = "HOLD_position") %>%
-#   kable_styling(latex_options = c("striped", "scale-down"))
 
 tabyl(all_pop_resturants$Franchise, sort = TRUE) %>%
   adorn_pct_formatting() %>%
@@ -545,12 +542,7 @@ tabyl(all_pop_resturants$Franchise, sort = TRUE) %>%
 
 ```{r demyears, fig.cap="Number of Years in Operation", echo=FALSE, message=FALSE, warning=FALSE}
 
-# #Business operation year freq table
-# kbl(tabyl(all_pop_resturants$Business_Operation_Year, sort = TRUE), booktabs = T, col.names = c("Years in Business", "Number of Restaurants", "Percent of Restaurants"), align = c("l", "l", "l"), caption = "Number of years in operation") %>%
-#   kableExtra::kable_styling(latex_options = "HOLD_position") %>%
-#   kable_styling(latex_options = c("striped", "scale-down"))
-# # 1-5 years owns takes 36% of dataset
-
+#Business operation year freq table
 
 tabyl(all_pop_resturants$Business_Operation_Year, sort = TRUE) %>%
   adorn_pct_formatting() %>%
@@ -563,11 +555,7 @@ tabyl(all_pop_resturants$Business_Operation_Year, sort = TRUE) %>%
 
 ```{r demown, fig.cap="Number of Restaurants Who Own the Property", echo=FALSE, message=FALSE, warning=FALSE}
 
-# #Own / Lease
-# kbl(tabyl(all_pop_resturants$Own_Lease, sort = TRUE), booktabs = T, col.names = c("Restaurant Ownership", "Number of Restaurants", "Percent of Restaurants"), align = c("l", "l", "l"), caption = "Number of restaurants who own the property") %>%
-#   kableExtra::kable_styling(latex_options = "HOLD_position") %>%
-#   kable_styling(latex_options = c("striped", "scale-down"))
-# #Lease 50%, own 40%, lease to own 10%
+#Own / Lease
 
 tabyl(all_pop_resturants$Own_Lease, sort = TRUE) %>%
   adorn_pct_formatting() %>%
@@ -583,12 +571,7 @@ It is apparent that the majority of businesses were non-franchised, and were ope
 
 ```{r demprice, fig.cap="Price-Point of Restaurants", echo=FALSE, message=FALSE, warning=FALSE}
 
-# #Pricepoint
-# kbl(tabyl(all_pop_resturants$Price_Point_Target, sort = TRUE), booktabs = T, col.names = c("Price-Point", "Number of Restaurants", "Percent of Restaurants"), 
-#     align = c("l", "l", "l"), caption = "Price-point of restaurants") %>%
-#   kableExtra::kable_styling(latex_options = "HOLD_position") %>%
-#   kable_styling(latex_options = c("striped", "scale-down"))
-# #Average 39%, Low-end 40%, High-end 21%
+#Pricepoint
 
 tabyl(all_pop_resturants$Price_Point_Target, sort = TRUE) %>%
   adorn_pct_formatting() %>%
@@ -822,15 +805,11 @@ Employment showed an almost 247% increase in staff (Figure \@ref(fig:lowstaff)).
 
 ```{r lowscore, fig.cap="Helpfulness score of low-end restaurants based on a 5-point scale", echo=FALSE, message=FALSE, warning=FALSE}
 
-# #Helpfulness of low end
-# kbl(tabyl(sample_low_end_rest$Helpfulness, sort = TRUE), booktabs = T, col.names = c("Helpfulness on 5-Point Scale", "Number of Restaurants", "Percent of Restaurants"), align = c("l", "l", "l"), caption = "High-end restaurant esponses to helpfulness on a 5-point scale") %>%
-#   kableExtra::kable_styling(latex_options = "HOLD_position") %>%
-#   kable_styling(latex_options = c("striped", "scale-down"))
-# #average split of 33%
+# Helpfulness of low end
 
 tabyl(sample_low_end_rest$Helpfulness, sort = TRUE) %>%
   adorn_pct_formatting() %>%
-  kbl(booktabs = T, col.names = c("Helpfulness on 5-Point Scale", "Number of Restaurants", "Percent of Restaurants"), align = c("l", "l", "l"), caption = "Low-end restaurant esponses to helpfulness on a 5-point scale") %>%
+  kbl(booktabs = T, col.names = c("Helpfulness on 5-Point Scale", "Number of Restaurants", "Percent of Restaurants"), align = c("l", "l", "l"), caption = "Low-end restaurants responses to helpfulness on a 5-point scale") %>%
   kableExtra::kable_styling(latex_options = "HOLD_position") %>%
   kable_styling(latex_options = c("striped", "scale-down"))
 
@@ -953,11 +932,7 @@ For restaurants in the mid-range of price-point, employment experienced a 254% i
 
 ```{r midscore, fig.cap="Helpfulness score of middle-end restaurants based on a 5-point scale", echo=FALSE, message=FALSE, warning=FALSE}
 
-# #Helpfulness of average
-# kbl(tabyl(sample_average_rest$Helpfulness, sort = TRUE), booktabs = T, col.names = c("Helpfulness on 5-Point Scale", "Number of Restaurants", "Percent of Restaurants"), align = c("l", "l", "l"), caption = "Middle-end restaurant responses to helpfulness on a 5-point scale") %>%
-#   kableExtra::kable_styling(latex_options = "HOLD_position") %>%
-#   kable_styling(latex_options = c("striped", "scale-down"))
-# #average split of 33%
+# Helpfulness of average
 
 tabyl(sample_average_rest$Helpfulness, sort = TRUE) %>%
   adorn_pct_formatting() %>%
@@ -1085,11 +1060,7 @@ High-end restaurants saw a 251% increase in staff. Additionally, high-end restau
 
 ```{r highscore, fig.cap="Helpfulness score of high-end restaurants based on a 5-point scale", echo=FALSE, message=FALSE, warning=FALSE}
 
-# #Helpfulness of high end
-# kbl(tabyl(sample_high_end_rest$Helpfulness, sort = TRUE), booktabs = T, col.names = c("Helpfulness on 5-Point Scale", "Number of Restaurants", "Percent of Restaurants"), align = c("l", "l", "l"), caption = "High-end restaurant esponses to helpfulness on a 5-point scale") %>%
-#   kableExtra::kable_styling(latex_options = "HOLD_position") %>%
-#   kable_styling(latex_options = c("striped", "scale-down"))
-# #average split of 33%
+# Helpfulness of high end
 
 tabyl(sample_high_end_rest$Helpfulness, sort = TRUE) %>%
   adorn_pct_formatting() %>%
@@ -1099,22 +1070,22 @@ tabyl(sample_high_end_rest$Helpfulness, sort = TRUE) %>%
 
 ```
 
-In total, 36.8% of high-end restaurants scoring a five and over 19.6% scoring a one.
+In total, 36.8% of high-end restaurants scored a five and over 19.6% scored a one.
 
 
 # Discussion 
 
-COVID-19 had affected industries in the most unexpected ways, partially because the rampant nature of COVID-19 was unforeseen but also because policies and procedures were underdeveloped. It is clear through literature reviews and this study, that the restaurant industry is a sector that suffered the most losses. Through the surveys, it was apparent that profit losses between 2019 and 2020 were enough to put some restaurants out of business, with the minimum income reading $181. This study was executed in an effort to rebuild the service economy and encourage restaurant revival. Although numerically the study seemed successful, the helpfulness section indicated mixed reviews. It is important to follow up with restaurants to gain a deeper understanding into what worked and what failed. Despite this lack of complete understanding, there are a few areas that can be discussed including the impact on restaurants, unemployment of restaurant staff and broader implications of the study. Additionally, we will discuss the weaknesses of the study and how the study could be expanded in the future.
+COVID-19 had affected industries in the most unexpected ways, partially because the rampant nature of COVID-19 was unforeseen but also because policies and procedures were underdeveloped. It is clear through literature reviews and this study, that the restaurant industry is a sector that suffered the most losses. Through the surveys, it was apparent that profit losses between 2019 and 2020 were enough to put some restaurants out of business. This study was executed in an effort to rebuild the service economy and encourage restaurant revival. Although numerically the study seemed successful, the helpfulness section indicated mixed reviews. It is important to follow up with restaurants to gain a deeper understanding into what worked and what failed. Despite this lack of complete understanding, there are a few areas that can be discussed including the impact on restaurants, unemployment of restaurant staff and broader implications of the study. Additionally, we will discuss the weaknesses of the study and how the study could be expanded in the future.
 
 ## Restaurant Hardships
 
-Restaurant responses to the survey made it extremely obvious that the restaurant industry suffered an enormous amount due to the COVID-19 pandemic. In 2020, Businesses earned on average less than half of what they earned in the previous year according to our study. As restaurants contribute billions of dollars to the economy each year, this loss was observed by the entire Canadian public. Although lockdown measures prevented many citizens from dining out, and therefore, enabled monetary savings, the restaurant industry endured, and continues to endure hardships that forced almost 83% of businesses in the accommodation and foodservice industry to temporarily close [@wu]. According to another study by Statistics Canada and the Canadian Chamber of Commerce [@wu], 60% of restaurants would permanently close within three months. Restaurants already earn considerably less than other industries with profit margins that sit at 6.1% on average [@forbes2]. These already unstable practices became detrimental to restaurants when the epidemic arose.
+Restaurant responses to the survey made it extremely obvious that the restaurant industry suffered an enormous amount due to the COVID-19 pandemic. In 2020, Businesses earned on average less than half of what they earned in the previous year according to our study. As restaurants contribute billions of dollars to the economy each year, this loss was observed by the entire Canadian public. Although lockdown measures prevented many citizens from dining out, and therefore, enabled monetary savings, the restaurant industry endured, and continues to endure hardships that forced almost 83% of businesses in the accommodation and foodservice industry to temporarily close [@wu]. According to another study by Statistics Canada and the Canadian Chamber of Commerce [@wu], 60% of restaurants would permanently close within three months. Restaurants already earn considerably less than other industries with profit margins that sit between 2.8% and 6.1% on average [@forbes2]. These already unstable practices became detrimental to restaurants when the epidemic arose.
 
 There are many factors that can be attributed to these massive losses that go beyond the effects of social distancing measures. For businesses that own the property of the restaurant, mortgages still had to be made. Although the Government of Canada created a mortgage payment deferral program, they still required individuals to resume payments after an allotted time, and repay the mortgage payment that was deferred [@govcan]. This type of payment plan is not feasible for restaurants and many were forced out of business. In addition, few provisions were put in place for businesses that leased their space. The Canada Emergency Commercial Rent Assistance (CECRA), launched by the Ontario government, provided loans to landlords that covered 50% of commercial rent and required tenets to cover 25% of rent [@ontgov]. Unfortunately, CECRA only lasted from April to June of 2020, which was inadequate considering the impacts of the epidemic still exist in 2021. 
 
 ## Individual Impact
 
-The COVID-19 epidemic forced massive unemployment due to permanent closure or cuts to scale. It is estimated that 67% of businesses had to lay off staff [@wu], contributing to 800,000 individuals experiencing unemployment [@larue]. Unfortunately, workers in the service sector tend to already be in vulnerable positions, further exasperating economic disparities. In addition, workers under the age of 25 are twice as likely to work in a sector of the economy that has been shut down [@blundell]. This localized affection creates further strain for individuals who suffered unemployment. Similarly to restaurant owners, many individuals in these positions do not own property and therefore continue to pay rent. Unfortunately, the government provided even fewer services that would alleviate rent. The City of Toronto states on their website, “all property owners are strongly urged to find ways to help tenants to stay in their homes. The City encourages landlords and tenants to proactively communicate about their situations and establish fair arrangements” [@cityto]. The lack of resources forces tenants and landlords to make personal arrangements, which may never occur thus placing individuals in situations of potential homelessness and extreme strain.
+The COVID-19 epidemic forced massive unemployment due to permanent closure or cuts to scale. It is estimated that 67% of businesses had to lay off staff [@wu], contributing to 800,000 individuals experiencing unemployment [@larue]. Unfortunately, workers in the service sector tend to already be in vulnerable positions, further exasperating economic disparities. In addition, workers under the age of 25 are twice as likely to work in a sector of the economy that has been shut down [@blundell]. This localized situation creates further strain for individuals who suffered unemployment. Similarly to restaurant owners, many individuals in these positions do not own property and therefore continue to pay rent. Unfortunately, the government provided even fewer services that would alleviate rent. The City of Toronto states on their website, “all property owners are strongly urged to find ways to help tenants to stay in their homes. The City encourages landlords and tenants to proactively communicate about their situations and establish fair arrangements” [@cityto]. The lack of resources forces tenants and landlords to make personal arrangements, which may never occur thus placing individuals in situations of potential homelessness and extreme strain.
 
 Not only does the closure of restaurants impact those that were laid off, but it also impacts individuals who depend on low-end restaurants. Many communities rely on the “convenience, reliability and affordability” of fast food restaurants especially as panic buying led to a shortage of cheap food staples that many families depend on [@myers]. Families who depended on free lunch programs provided by schools for their children further experienced food insecurity [@myers]. Although restaurants still offer curb-side pickup, restaurant closures could continue to limit people’s access to food, especially for those in marginalized communities.
 
@@ -1155,7 +1126,7 @@ dinesafedata <- opendatatoronto::search_packages("Dinesafe")%>%
 ```
 
 
-We found a foundational dataset to start our restaurant research from Toronto Open Data Catalogue. The <DineSafe> Dataset is an XML file that contains the name, health inspection data and coordinates of GTA resturaants. However, there is no detailed description on the website regarding the data overview. We attempted to retrieve the dataset and convert the XML to csv in R. However, after many attempts, we found out that the xml parsing did not work directly in RStudio due to most likely the formatting and length the XML file. Through looking at potential solutions on StackOverflow and and troubleshoot the error message with websites in the same nature, we did not discover any working reproducible way to convert the XML file to CSV file. The closest answer that matches our speculation is on stackover by "ChallengeAccepted": "After the 20th page the loop was still running with no urls and hence it started calling read_html with NAs for the other loop iterations.". (https://stackoverflow.com/questions/40230810/webscraping-in-r-does-not-exist-in-current-working-directory-error) Therefore a secondary approach was taken, the XML file was downloaded from the Toronto Open Data Catalogue and converted through an online converter: https://onlinexmltools.com/convert-xml-to-csv. The final result contains the basic information that we need to set up our survey simulation data - restaurant counts, names and coordinates. As expected, the inspection part seems to be the issue that blocks R from properly parsing all the data. The inspection data in CSV ends up showing up as "Object". After the online conversion, the The converted CSV file was downloaded into dataset/dinesafeCSV.csv. Original XML file was also saved in the location dataset/dine_safe_original.xml
+We found a foundational dataset to start our restaurant research from Toronto Open Data Catalogue. The <DineSafe> Dataset is an XML file that contains the name, health inspection data and coordinates of GTA resturaants. However, there is no detailed description on the website regarding the data overview. We attempted to retrieve the dataset and convert the XML to csv in R. However, after many attempts, we found out that the xml parsing did not work directly in RStudio due to most likely the formatting and length the XML file. Through looking at potential solutions on StackOverflow and and troubleshoot the error message with websites in the same nature, we did not discover any working reproducible way to convert the XML file to CSV file. The closest answer that matches our speculation is on stackover by "ChallengeAccepted": "After the 20th page the loop was still running with no urls and hence it started calling read_html with NAs for the other loop iterations.". (https://stackoverflow.com/questions/40230810/webscraping-in-r-does-not-exist-in-current-working-directory-error) Therefore a secondary approach was taken, the XML file was downloaded from the Toronto Open Data Catalogue and converted through an online converter: https://onlinexmltools.com/convert-xml-to-csv. The final result contains the basic information that we need to set up our survey simulation data - restaurant counts, names and coordinates. As expected, the inspection part seems to be the issue that blocks R from properly parsing all the data. The inspection data in CSV ends up showing up as "Object". After the online conversion, the The converted CSV file was downloaded into dataset/dinesafeCSV.csv. Original XML file was also saved in the location dataset/dine_safe_original.xml.
 
 
 
